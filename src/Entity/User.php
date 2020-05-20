@@ -34,19 +34,9 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $facebookID;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $facebookAccessToken;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -59,7 +49,7 @@ class User implements UserInterface
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $confirmKey;
 
@@ -92,6 +82,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Signalement::class, mappedBy="auteur")
      */
     private $signalements;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $googleId;
 
 
 
@@ -378,6 +373,18 @@ class User implements UserInterface
     public function setFacebookID($facebookID): void
     {
         $this->facebookID = $facebookID;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): self
+    {
+        $this->googleId = $googleId;
+
+        return $this;
     }
 
 }
