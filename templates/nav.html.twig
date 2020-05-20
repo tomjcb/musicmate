@@ -1,0 +1,138 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top col-12 navigation">
+    <div class="navbar-header col-2">
+        <a class="navbar-brand" href="{{ path('Index.index') }}">
+            <img src="{{ asset('images/logo.png') }}" width="60" height="60">
+            MusicMate{% if is_granted('ROLE_ADMIN') %} - Panel Admin{% endif %}</a>
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="collapse navbar-collapse col-10" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto col-12">
+                <li class="nav-item active col-3 dropdown"  style="text-align: center">
+                    <div class="input-group-btn input-group-prepend active dropdown">
+                        <button style="background: #465362; color:white" class="btn btn-default dropdown-toggle button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestion des (mettre un truc)
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="">Gestion des évènements</a>
+                            <a class="dropdown-item" href="#">Gestion des catégories</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item active col-3">
+                    <a class="nav-link" href="" tabindex="-1" aria-disabled="true">Gestion des utilisateurs</a>
+                </li>
+                <li class="nav-item active col-3">
+                    <a class="nav-link" href="" tabindex="-1" aria-disabled="true">Gestion des signalements</a>
+                </li>
+                <form class="form-inline my-2 my-lg-0 col-3" action="{{ path('app_logout') }}" style="text-align: right">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
+                        Se Déconnecter
+                        <i class="fa fa-sign-out"></i>
+                    </button>
+                </form>
+            </ul>
+        </div>
+    {% else %}
+        <div class="collapse navbar-collapse col-10" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto col-12">
+                <div class="navbar-form navbar-left col-6"  style="text-align: center;padding-right: 15px;padding-left: 15px;">
+                    <div class="input-group">
+                        <script>
+                            function search(ele) {
+                                if(event.key === 'Enter') {
+                                    var url = '';
+                                    url = url.replace("star", ele.value);
+                                    window.location.href = url;
+                                }
+                            }
+                        </script>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <div class="input-group ">
+                                <input id="searchBar" type="text" class="form-control my-0 py-1 red-border white" placeholder="Recherche" onkeydown="search(this)" >
+                                <div class="input-group-append">
+                                <a class="input-group-text red lighten-3" id="basic-text1" onclick="clickSearch()">
+                                    <i class="fa fa-search text-white" aria-hidden="true"></i>
+                                </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <script>
+                            function clickSearch(){
+                                var ele = document.getElementById("searchBar");
+                                var url = '';
+                                url = url.replace("star", ele.value);
+                                window.location.href = url;
+                            }
+                        </script>
+                    </div>
+                </div>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item active col-2" style="text-align: center">
+                    </li>
+                    <li class="nav-item active col-2" style="text-align: center">
+                        <!--Dropdown primary-->
+                        <div class="dropdown">
+
+                            <!--Trigger-->
+                            <button class="btn btn-outline-default  my-2 my-sm-0 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                Notifications
+                            </button>
+
+
+                            <!--Menu-->
+                            <div class="dropdown-menu dropdown-default">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                        <!--/Dropdown primary-->
+                    </li>
+                    <li class="nav-item active col-2">
+                        <!--Dropdown primary-->
+                        <div class="dropdown">
+
+                            <!--Trigger-->
+                            <a class="btn btn-outline-info my-2 my-sm-0 dropdown-toggle col-12" type="button" id="dropdownMenu3" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle-o"></i>
+                                {{ user.username|default('Profil') }}
+                            </a>
+
+
+                            <!--Menu-->
+                            <div class="dropdown-menu dropdown-info">
+                                <a class="dropdown-item" href="{{ path('Index.index') }}">Accueil</a>
+                                <a class="dropdown-item" href="{{ path('User.profil', {userName: user.username}) }}">Mon profil</a>
+                                <a class="dropdown-item" href="{{ path('User.publication') }}">Publier</a>
+                                <div class="dropdown-divider"></div>
+                                <button class="btn young-passion-gradient" onclick="location.href='{{ path('app_logout') }}';">
+                                    Se Déconnecter
+                                    <i class="fa fa-sign-out"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!--/Dropdown primary-->
+
+                    </li>
+                {% else %}
+                    <li class="nav-item active col-2" style="text-align: center">
+
+                    </li>
+                    <li class="nav-item active col-2" style="text-align: center">
+
+                    </li>
+                    <form class="form-inline my-2 my-lg-0 col-2" action="" method="post" style="text-align: right">
+                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <i class="fa fa-sign-in"></i>
+                            Se Connecter
+                        </button>
+                    </form>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+</nav>

@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MusicMate - Connexion{% endblock %}
+
+{% block body %}
+
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <div class="row heighter">
+        <div class="container">
+            <div class="row">
+                <form class="form-signin col-md-6 offset-3" action="{{ path('app_login') }}" method="post" style="text-align: center; margin-top: 30px">
+                    <img class="mb-4" src="/images/logo.png" alt="" width="125" height="125">
+                    <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {% if (error.messageKey == "Invalid credentials.") %}
+                                Mot de passe incorrect.
+                            {% else %}
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Material form login -->
+                    <div class="card">
+
+                        <!--Card content-->
+                        <div class="card-body px-lg-5 pt-0">
+
+
+                                <!-- Email -->
+                                <div class="md-form">
+                                    <input type="text" id="username" name="username" value="{{ last_username }}" class="form-control" required autofocus>
+                                    <label for="username">Nom d'utilisateur</label>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="md-form">
+                                    <input type="password" id="inputPassword" name="password" class="form-control" required>
+                                    <label for="inputPassword">Mot de passe</label>
+                                </div>
+
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <!-- Forgot password -->
+                                        <a href="">Mot de passe oublié ?</a>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                                <!-- Sign in button -->
+                                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Se connecter</button>
+
+                                <!-- Register -->
+                                <p>Pas encore de compte ?
+                                    <a href="{{ path('User.register') }}">En créer un</a>
+                                </p>
+
+                                <!-- Social login -->
+                                <p>ou connectez vous avec :</p>
+                                <a type="button" class="btn-floating btn-fb btn-sm">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                                <a type="button" class="btn-floating btn-red btn-sm">
+                                    <i class="fa fa-google"></i>
+                                </a>
+
+
+                        </div>
+
+                    </div>
+                    <!-- Material form login -->
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

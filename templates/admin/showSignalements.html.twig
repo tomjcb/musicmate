@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row first-content">
+        <div class="container content">
+            <div class="row">
+                <h1 class="first-title">Liste des signalements</h1>
+            </div>
+
+
+            <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
+
+            </div>
+
+
+            <table class="table table-striped table-responsive-md btn-table">
+
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Statut</th>
+                    <th>Utilisateur</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Publication</th>
+                    <th>Changer Statut</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for signalement in signalements %}
+                    <tr>
+                        <td scope="row">{{ signalement.id }}</td>
+                        {% if signalement.etat == "A traiter" %}
+                            <td><span class="badge green">{{ signalement.etat }}</span></td>
+                        {% elseif signalement.etat == "En cours" %}
+                            <td><span class="badge warning-color">{{ signalement.etat }}</span></td>
+                        {% elseif signalement.etat == "Clôt" %}
+                            <td><span class="badge red">{{ signalement.etat }}</span></td>
+                        {% endif %}
+                        <td class="gray-text">{{ signalement.auteur.username }}</td>
+                        <td>{{ signalement.message }}</td>
+                        <td>{{ signalement.datesignalement|date("d/m/Y | H:i:s") }}</td>
+                        <td><a class="btn-rounded btn-sm btn-info"><B>Voir Publication</B></a></td>
+                        <td style="text-align: center"><a class="btn-floating btn-rounded btn-sm btn-info {% if signalement.etat == "Clôt" %}disabled btn-grey{% endif %}" href="{{ path('Admin.signalementChangestate', {idsign: signalement.id}) }}"><i class="fas fa-exchange-alt"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

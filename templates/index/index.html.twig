@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom: -0px">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('confirm') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom: -0px">
+            {{ message }} (Cliquez <a class="alert-link" href="{{ path('app_login') }}">ici</a> pour vous connecter)
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    <div class="row first-content">
+        <div class="container content">
+            <div class="row" style="margin-top: 15px">
+                <h1 class="first-title">Bienvenue sur MusicMate</h1>
+            </div>
+            <div class="row">
+                <h4 class="first-title">MusicMate vous permet de faire de nouvelles connaissances amicales et musicales</h4>
+                <br>
+                <h5 class="first-title"> Qu'attendez vous ? Rejoignez-nous !!</h5>
+            </div>
+
+
+
+            <div class="row heighter">
+                <div class="container">
+                    <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
+
+                    </div>
+
+                    <a href="{{ path('app_login') }}" class="btn btn-success my-2 my-sm-0">
+                        <i class="fa fa-sign-in"></i>
+                        Se Connecter
+                    </a>
+
+                    <a href="{{ path('User.register') }}" class="btn btn-primary my-2 my-sm-0">
+                        <i class="fa fa-user-plus"></i>
+                        Créer un compte
+                    </a>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="row transition col-12" style="margin: 0; padding: 0">
+        <a href="" class="col-12" style="margin: 0; padding: 0">
+            <img src="" style="width: 100%">
+        </a>
+    </div>
+{% endblock %}

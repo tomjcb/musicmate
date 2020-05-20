@@ -1,0 +1,178 @@
+.accordeon{
+    margin-bottom: 10px;
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        En savoir plus
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+.titre{
+    font-size: 5vh;
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.underscored{
+    border-bottom: 3px solid black;
+}
+
+.synopsis{
+    background-color: #ffdb58;
+}
+
+.comment-box{
+    background: white;
+    font-size: 13px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    float: left;
+    width: 55%;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #DBDBDB;
+}
+
+.borderTop{
+    border-top: 1px solid #DBDBDB;
+}
+
+.comment-auteur-box{
+    display: block;
+    float: left;
+    width: 266px;
+    padding: 20px 20px 40px 20px;
+}
+
+.auteur-picture{
+    width: 20%;
+    padding-top: 10px;
+    float: left;
+}
+
+.auteur-profil{
+    padding-left: 15px;
+    width: 80%;
+    float: left;
+}
+
+.auteur-name{
+    color: #232323;
+    font-family: Roboto;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 36px;
+}
+
+.comment-contenu-box{
+    width: 100%;
+    max-width: 58%;
+    float: left;
+    padding: 20px;
+    border-left: 1px solid #DBDBDB;
+    min-height: 193px;
+}
+
+.comment-contenu{
+    float: left;
+    max-width: 100%;
+    padding: 0;
+}
+
+.comment-contenu-title{
+    color: #5F5F5F;
+    font-family: Roboto;
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 21px;
+    text-align: justify;
+}
+
+.comment-contenu-content{
+    color: #5F5F5F;
+    font-family: Roboto;
+    font-size: 20px;
+    line-height: 21px;
+    text-align: justify;
+}
+
+.comment-contenu-button{
+    padding-top: 60px;
+    float: right;
+}
+
+.commentaire-fond{
+    background-color: #ffca8a;
+    border: 1px solid black;
+}
+
+.profile-picture{
+    height: 38px;
+    width: 38px;
+    margin-right: 10px;
+}
+
+.commentaire-box{
+    background-color: #ffca8a;
+    border: 1px solid black;
+}
+
+.commentaire-auteur{
+    font-size: 17px;
+    font-style: italic;
+}
+
+.commentaire-titre{
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.commentaire-contenu{
+    font-size:12px;
+}
+
+.full{
+    width: 100%;
+}
+
+.spacing{
+    margin-top: 10px;
+}
+
+.details{
+    font-size: 20px;
+}
+
+ .categorie{
+     font-style: italic;
+     font-size: 15px;
+     margin-left: 40px;
+ }
+
+ .boxed{
+    border: 4mm ridge rgba(140, 140, 140, .6);
+ }
+
+.space { 
+    margin-top: -300px;        /* Size of fixed header */
+    padding-bottom: 300px; 
+    display: block; 
+  }
+
+.line {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+.notifyjs-bootstrap-base{
+    margin-top: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 30px;
+}
+
+.display-inline{
+    display: inline-block;
+    width: 100%;
+}

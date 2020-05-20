@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row first-content">
+        <div class="container content">
+            <div class="row">
+                {% if currentUserProfile is defined %}
+                <h1 class="first-title">Votre profil</h1>
+                {% else %}
+                <h1 class="first-title">Profil utilisateur</h1>
+                {% endif %}
+            </div>
+
+            <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="form-signin col-md-6 offset-3"  style="text-align: center;">
+
+                    <!-- Section: Basic Info -->
+                    <section class="card profile-card mb-4 text-center">
+                        <div class="avatar z-depth-1-half">
+                            <img src="https://cdn.onlinewebfonts.com/svg/img_258083.png" alt="" class="img-fluid">
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body">
+                            <!-- Title -->
+                            <h4 class="card-title"><strong>{{ user.prenom }} {{ user.nom }}</strong></h4>
+
+                            <p class="dark-grey-text">{{ user.username }}</p>
+
+                            <br>
+                            <i>Inscrit le : {{ user.dateinscription|date("d/m/Y") }}</i>
+                            <br>
+
+                            <!-- Social -->
+                            <a type="button" class="btn-floating btn-small heavy-rain-gradient waves-effect"><i class="fa fa-envelope-o grey-text"></i> </a>{{ user.mail }}
+
+
+
+                            <br>
+
+                            <button type="button" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect" data-toggle="modal" data-target="#modalContactUser">Modifier vos infos<i
+                                        class="fa fa-pencil-square-o ml-2"></i></button>
+                        </div>
+
+                    </section>
+                    <!-- Section: Basic Info -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,187 @@
+
+{% if id is defined %} {# Affichage login #}
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            {{ form_label(form._username, 'Login', {'label_attr': {'class': ''}}) }}
+            {% if erreurs._username is defined %}
+                <div class="input-group" style="text-align: left;">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-user-secret"></i>
+                        </div>
+                    </div>
+                    {{ form_widget(form._username,{'attr':{'class':'form-control is-invalid'}}) }}
+                </div>
+                <div class="alert alert-danger">{{erreurs._username}}</div>
+            {% else %}
+                <div class="input-group" style="text-align: left;">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-user-secret"></i>
+                        </div>
+                    </div>
+                    {{ form_widget(form._username,{'attr':{'class':'form-control'}}) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% else %} {# Création login / mot de passe #}
+
+    <!-- Material form register -->
+    <div class="card">
+
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+
+            <!-- Form -->
+            <div class="text-center" style="color: #757575;" action="#!">
+
+                <div class="form-row">
+                    <div class="col">
+
+                        {% set formErrors = form.vars.errors.form.getErrors(true) %}
+                        {% set test = 0 %}
+
+
+
+                        {# If there are errors in the form, display them in this unorganized list #}
+                        {% if formErrors|length %}
+                                {% for error in formErrors %}
+                                    {% if error.message == "Nom d'utilisateur déjà utilisé." %}
+                                        {% set userError = 1 %}
+                                    {% endif %}
+                                {% endfor %}
+                        {% endif %}
+
+                        <!-- First name -->
+                        <div class="md-form">
+                            {% if not form.nom.vars.valid %}
+                                {{ form_widget(form.nom,{'attr':{'class':'form-control is-invalid', 'id' : 'nomInput' }}) }}
+                            {% else %}
+                                {{ form_widget(form.nom,{'attr':{'class':'form-control', 'id' : 'nomInput' }}) }}
+                            {% endif %}
+
+                            <label for="{{ form.nom.vars.id }}">Nom</label>
+                            {% if not form.nom.vars.valid %}
+                            <small id="erreurNom" class="form-text text-muted mb-4 red-text">
+                                {{ form_errors(form.nom) }}
+                            </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Last name -->
+                        <div class="md-form">
+                            {% if not form.prenom.vars.valid %}
+                                {{ form_widget(form.prenom,{'attr':{'class':'form-control is-invalid', 'id' : 'prenomInput' }}) }}
+                            {% else %}
+                                {{ form_widget(form.prenom,{'attr':{'class':'form-control', 'id' : 'prenomInput' }}) }}
+                            {% endif %}
+                            <label for="{{ form.prenom.vars.id }}">Prénom</label>
+                            {% if not form.prenom.vars.valid %}
+                            <small id="erreurPrenom" class="form-text text-muted mb-4 red-text">
+                                {{ form_errors(form.prenom) }}
+                            </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Username -->
+                <div class="md-form">
+                    {% if formErrors|length %}
+                        {% for error in formErrors %}
+                            {% if error.message == "Nom d'utilisateur déjà utilisé." %}
+                                {{ form_widget(form._username,{'attr':{'class':'form-control is-invalid', 'id' : 'usernameInput' }}) }}
+                                {% set test = 1 %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if test == 0 %}
+                        {{ form_widget(form._username,{'attr':{'class':'form-control', 'id' : 'usernameInput' }}) }}
+                    {% endif %}
+
+
+                    <label for="{{ form._username.vars.id }}">Nom d'utilisateur</label>
+                    {% if formErrors|length %}
+                        {% for error in formErrors %}
+                            {% if error.message == "Nom d'utilisateur déjà utilisé." %}
+                                <small id="erreurUsername" class="form-text text-muted mb-4 red-text">
+                                    {{ form_errors(form) }}
+                                </small>
+                            {% endif %}
+                        {% endfor %}
+                    {%  endif %}
+                </div>
+
+                <!-- E-mail -->
+                <div class="md-form mt-0">
+                    {% if not form.mail.vars.valid %}
+                    {{ form_widget(form.mail,{'attr':{'class':'form-control is-invalid', 'id' : 'mailInput' }}) }}
+                    {% else %}
+                    {{ form_widget(form.mail,{'attr':{'class':'form-control', 'id' : 'mailInput' }}) }}
+                    {% endif %}
+                    <label for="{{ form.mail.vars.id }}">E-mail</label>
+                    {% if not form.mail.vars.valid %}
+                        <small id="erreurPrenom" class="form-text text-muted mb-4 red-text">
+                            {{ form_errors(form.mail) }}
+                        </small>
+                    {% endif %}
+                </div>
+
+                <!-- Password -->
+                <div class="md-form">
+                    {% if not form._password.first.vars.valid %}
+                    {{ form_widget(form._password.first,{'attr':{'class':'form-control is-invalid', 'id' : 'passwordInput' }}) }}
+                    {% else %}
+                    {{ form_widget(form._password.first,{'attr':{'class':'form-control', 'id' : 'passwordInput' }}) }}
+                    {% endif %}
+                    <label for="{{ form._password.first.vars.id }}">Mot de passe</label>
+                </div>
+
+                <!-- ConfirmPassword -->
+                <div class="md-form">
+                    {% if not form._password.first.vars.valid %}
+                        {{ form_widget(form._password.second,{'attr':{'class':'form-control is-invalid', 'id' : 'confirmpasswordInput' }}) }}
+                    {% else %}
+                        {{ form_widget(form._password.second,{'attr':{'class':'form-control', 'id' : 'confirmpasswordInput' }}) }}
+                    {% endif %}
+                    <label for="{{ form._password.second.vars.id }}">Confirmer mot de passe</label>
+                    {% if not form._password.first.vars.valid %}
+                    <small id="erreurPassword" class="form-text text-muted mb-4 red-text">
+                        {{ form_errors(form._password.first) }}
+                    </small>
+                    {% endif %}
+                </div>
+
+
+                <!-- Sign up button -->
+                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" value="{{ form_row(form.submit,{'label':'S\'inscrire'}) }}
+
+                <!-- Social register -->
+
+                <div class="text-center">
+                <p>ou inscrivez vous avec :</p>
+                <a type="button" class="btn-floating btn-fb btn-sm">
+                    <i class="fa fa-facebook-f"></i>
+                </a>
+                <a type="button" class="btn-floating btn-red btn-sm" >
+                    <i class="fa fa-google"></i>
+                </a>
+
+                <hr>
+
+                <!-- Terms of service -->
+                <p>By clicking
+                    <em>Sign up</em> you agree to our
+                    <a href="" target="_blank">terms of service</a>
+
+            </div>
+            <!-- Form -->
+
+        </div>
+
+    </div>
+    <!-- Material form register -->
+
+{% endif %}

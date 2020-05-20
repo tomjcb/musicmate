@@ -1,0 +1,40 @@
+﻿Faire un controller :
+php bin/console make:controller nomController
+
+Faire une entité :
+php bin/console make:entity nomEntite
+
+    Si erreur :
+    php bin/console make:entity --regenerate
+
+
+Faire des fixtures :
+php bin/console make:fixtures
+
+Push les fixtures :
+php bin/console doctrine:fixtures:load
+
+Convertir dans la base de données :
+php bin/console doctrine:schema:update --dump-sql
+php bin/console doctrine:schema:update --force
+php bin/console doctrine:fixtures:load
+
+Méthode toString :
+public function __toString()
+{
+    return "nom : ".$this->getLibelle()."\n ";
+}
+
+Vérifier les routes :
+bin/console debug:router
+
+
+Includes :
+use Twig\Environment;                            // template TWIG
+use Symfony\Bridge\Doctrine\RegistryInterface;   // ORM Doctrine
+use Symfony\Component\HttpFoundation\Request;    // objet REQUEST
+use Symfony\Component\HttpFoundation\Response;    // objet RESPONSE
+
+Demarrer serveur sous Windows :
+php -S 127.0.0.1:8000 -t public
+

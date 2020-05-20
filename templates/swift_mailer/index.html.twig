@@ -1,0 +1,9 @@
+<h2> {{ nom }} {{ prenom }}</h2>
+
+<h3>Merci pour votre inscription sur MusicMate !</h3>
+
+
+{# example, assuming you have a route named "login" #}
+Afin d'activer votre compte, veuillez cliquer sur <a href="{{ url('comfirm_register', {mail: mail, key: key}) }}">ce lien</a>.
+
+A bientôt !

@@ -1,0 +1,339 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MusicMate - Admin{% endblock %}
+
+{% block body %}
+
+    <!-- Main layout -->
+    <main>
+
+        <div class="container-fluid">
+
+            <!-- Section: Analytical panel -->
+            <section class="mt-md-4 pt-md-2 mb-5">
+
+                <!-- First row -->
+                <div class="row">
+
+                    <!-- First column -->
+                    <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+
+                        <!-- Card -->
+                        <div class="card card-cascade cascading-admin-card">
+
+                            <!-- Card Data -->
+                            <div class="admin-up">
+                                <i class="fas fa-users primary-color mr-3 z-depth-2"></i>
+                                <div class="data">
+                                    <p class="text-uppercase">Nombres d'inscrits</p>
+                                    <h4 class="font-weight-bold ">{{ countregister }}</h4>
+                                </div>
+                            </div>
+
+                        <br><br>
+
+                        </div>
+                        <!-- Card -->
+
+                    </div>
+                    <!-- First column -->
+
+                    <!-- Second column -->
+                    <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+
+                        <!-- Card -->
+                        <div class="card card-cascade cascading-admin-card">
+
+                            <!-- Card Data -->
+                            <div class="admin-up">
+                                <i class="fas fa-user-clock warning-color mr-3 z-depth-2"></i>
+                                <div class="data">
+                                    <p class="text-uppercase">Comptes non-activés</p>
+                                    <h4 class="font-weight-bold ">{{ countnonregister }}</h4>
+                                </div>
+                            </div>
+
+                            <br><br>
+
+                        </div>
+                        <!-- Card -->
+
+                    </div>
+                    <!-- Second column -->
+
+                    <!-- Third column -->
+                    <div class="col-xl-3 col-md-6 mb-md-0 mb-4">
+
+                        <!-- Card -->
+                        <div class="card card-cascade cascading-admin-card">
+
+                            <!-- Card Data -->
+                            <div class="admin-up">
+                                <i class="fas fa-user-slash red lighten-1 mr-3 z-depth-2"></i>
+                                <div class="data">
+                                    <p class="text-uppercase">Utilisateurs bannis</p>
+                                    <h4 class="font-weight-bold ">0</h4>
+                                </div>
+                            </div>
+
+                            <br><br>
+
+                        </div>
+                        <!-- Card -->
+
+                    </div>
+                    <!-- Third column -->
+
+                    <!-- Fourth column -->
+                    <div class="col-xl-3 col-md-6 mb-0">
+
+                        <!-- Card -->
+                        <div class="card card-cascade cascading-admin-card">
+
+                            <!-- Card Data -->
+                            <div class="admin-up">
+                                <i class="fas fa-chart-bar red accent-2 mr-3 z-depth-2"></i>
+                                <div class="data">
+                                    <p class="text-uppercase">A compléter</p>
+                                    <h4 class="font-weight-bold ">? ???</h4>
+                                </div>
+                            </div>
+
+                            <br><br>
+
+                        </div>
+                        <!-- Card -->
+
+                    </div>
+                    <!-- Fourth column -->
+
+                </div>
+                <!-- First row -->
+
+            </section>
+            <!-- Section: Analytical panel -->
+
+            <!-- Section: data tables -->
+            <section class="pb-3">
+
+                <!-- Grid row -->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-6 col-md-12">
+
+                        <!-- Panel -->
+                        <div class="card mb-4">
+
+                            <div class="card-header white-text primary-color">
+                                <h5 class="font-weight-500 my-1">Dernières inscriptions</h5>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="font-weight-bold ">Nom</th>
+                                            <th class="font-weight-bold ">Prenom</th>
+                                            <th class="font-weight-bold ">Username</th>
+                                            <th class="font-weight-bold ">E-Mail</th>
+                                            <th class="font-weight-bold ">Date d'inscription</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for user in lastusers %}
+                                            <tr>
+                                            <td>{{ user.nom }}</td>
+                                            <td>{{ user.prenom }}</td>
+                                            <td class="gray-text">{{ user.username }}</td>
+                                            <td>{{ user.mail }}</td>
+                                            <td>{{ user.dateinscription|date("d/m/Y | H:i:s") }}</td>
+                                            </tr>
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- Panel -->
+
+                        <!-- Panel -->
+                        <div class="card mb-lg-0 mb-4">
+
+                            <row class="card-header white-text primary-color">
+                                <h5 class="font-weight-500 my-1">Signalements récents <a class="btn btn-sm btn-rounded btn-blue" href="{{ path('Admin.showSignalements') }}"> Voir tous les signalements</a></h5>
+                            </row>
+
+                            <div class="card-body" style="max-height: 333px; overflow-y: auto;">
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="font-weight-bold ">Statut</th>
+                                            <th class="font-weight-bold ">Message</th>
+                                            <th class="font-weight-bold ">Utilisateur</th>
+                                            <th class="font-weight-bold ">Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for signalement in lastsignalement %}
+                                            <tr>
+                                                {% if signalement.etat == "A traiter" %}
+                                                    <td><span class="badge green">{{ signalement.etat }}</span></td>
+                                                {% elseif signalement.etat == "En cours" %}
+                                                    <td><span class="badge warning-color">{{ signalement.etat }}</span></td>
+                                                {% elseif signalement.etat == "Clôt" %}
+                                                    <td><span class="badge red">{{ signalement.etat }}</span></td>
+                                                {% endif %}
+                                                <td>{{ signalement.message }}</td>
+                                                <td class="gray-text">{{ signalement.auteur.username }}</td>
+                                                <td>{{ signalement.datesignalement|date("d/m/Y | H:i:s") }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- Panel -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-lg-6 col-md-12">
+
+                        <!-- Panel -->
+                        <div class="card mb-4">
+
+                            <div class="card-header white-text primary-color">
+                                <h5 class="font-weight-500 my-1">Activités récentes <a class="btn btn-sm btn-rounded btn-blue" href="{{ path('Admin.showActivities') }}"> Voir toute l'activité</a></h5>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="font-weight-bold ">Utilisateur</th>
+                                            <th class="font-weight-bold ">Type</th>
+                                            <th class="font-weight-bold ">Action</th>
+                                            <th class="font-weight-bold ">Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for activity in lastactivity %}
+                                            <tr>
+                                                <td class="gray-text">{{ activity.auteur.username }}</td>
+                                                <td>{{ activity.type }}</td>
+                                                <td>
+                                                    {% if activity.action == "Ajout" %}
+                                                        <span class="badge green">{{ activity.action }}</span>
+                                                    {% else %}
+                                                        <span class="badge red">{{ activity.action }}</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ activity.dateactivite|date("d/m/Y | H:i:s") }}</td>
+                                            </tr>
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- Panel -->
+                        {% if countsignalement == 0 %}
+                            <div class="card text-center mb-4 pt-4 pb-3 green accent-2 white-text">
+                                <i class="far fa-check-circle fa-3x mb-3"></i>
+                                <h4 class="h4-responsive">{{ countsignalement }} signalement</h4>
+                            </div>
+                        {% else %}
+                            <div class="card text-center mb-4 pt-4 pb-3 red accent-2 white-text">
+                                <i class="fa fa-bell fa-3x mb-3"></i>
+                                <h4 class="h4-responsive">{{ countsignalement }} signalements</h4>
+                            </div>
+                        {% endif %}
+                        <!-- Panel -->
+
+                        <!-- Panel -->
+
+                        <!-- Grid row -->
+                        <div class="row">
+
+                            <!-- Grid column -->
+                            <div class="col-md-6 mb-md-0 mb-4">
+
+                                <!-- Panel -->
+                                <div class="card">
+
+                                    <div class="card-header white-text grey darken-1">
+                                        <h5 class="font-weight-500 my-1">Nombre de publications</h5>
+                                    </div>
+
+                                    <h6 class="ml-4 mb-0 pt-4  font-weight-bold"><i class="fa fa-arrow-up blue-text mr-3"
+                                                                                    aria-hidden="true"></i> 2000 </h6>
+
+                                    <div class="card-body">
+                                        <br><br>
+                                    </div>
+
+                                </div>
+                                <!-- Panel -->
+
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-6 mb-0">
+
+                                <!-- Panel -->
+                                <div class="card">
+                                    <div class="card-header white-text warning-color">
+                                        <h5 class="font-weight-500 my-1">Nombre de commentaires</h5>
+                                    </div>
+
+                                    <h6 class="ml-4 mb-0 pt-4  font-weight-bold"><i class="fa fa-arrow-up blue-text mr-3"
+                                                                                    aria-hidden="true"></i>2000</h6>
+
+                                    <div class="card-body">
+                                        <br><br>
+                                    </div>
+
+                                </div>
+                                <!-- Panel -->
+
+                            </div>
+                            <!-- Grid column -->
+
+                        </div>
+                        <!-- Grid row -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+            </section>
+            <!-- Section: data tables -->
+
+        </div>
+
+    </main>
+    <!-- Main layout -->
+{% endblock %}

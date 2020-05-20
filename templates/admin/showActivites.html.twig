@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row first-content">
+        <div class="container content">
+            <div class="row">
+                <h1 class="first-title">Liste de l'activité</h1>
+            </div>
+
+
+            <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
+
+            </div>
+
+
+            <table class="table table-striped table-responsive-md btn-table">
+
+                <thead>
+                <tr>
+                    <th class="font-weight-bold ">Utilisateur</th>
+                    <th class="font-weight-bold ">Type</th>
+                    <th class="font-weight-bold ">Action</th>
+                    <th class="font-weight-bold ">Date</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for activity in activities %}
+                    <tr>
+                        <td class="gray-text">{{ activity.auteur.username }}</td>
+                        <td>{{ activity.type }}</td>
+                        <td>
+                            {% if activity.action == "Ajout" %}
+                                <span class="badge green">{{ activity.action }}</span>
+                            {% else %}
+                                <span class="badge red">{{ activity.action }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ activity.dateactivite|date("d/m/Y | H:i:s") }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

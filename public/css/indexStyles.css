@@ -1,0 +1,232 @@
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        Body
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+body{
+
+}
+
+.description{
+    min-height:130px;
+}
+
+.cacher{
+    visibility: hidden;
+}
+
+a{
+    text-decoration: none;
+}
+
+.heighter{
+    min-height: 745px;
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        Barre de navigation
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+.navigation{
+    background: #465362;
+}
+
+
+.button{
+    color : #465362;
+}
+
+li {
+    padding: 0;
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        First Content
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+/*
+Background
+ */
+
+.first-content{
+    background: white;
+}
+
+/*
+Titre
+ */
+
+.first-title{
+    width:100%;
+    text-align: center;
+}
+
+/*
+Caroussel
+ */
+
+.tv {
+    padding: 0;
+    margin: 50px auto 20px auto;
+    display:block;
+}
+
+.carousel-inner {
+    border: 3px solid black;
+}
+
+
+.carousel {
+    width: 100%;
+}
+
+.carousel img {
+    height: auto;
+    width: 100%;
+}
+
+.white-tv * {
+    color: white;
+}
+
+.carousel-item p {
+    font-size: 1em;
+    font-weight: bolder;
+}
+
+.carousel-item h2 {
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.carousel-control-prev {
+    cursor: pointer;
+}
+
+.carousel-control-next {
+    cursor: pointer;
+}
+
+.carousel-title{
+    background:black;
+    opacity: 0.75;
+    border-radius: 25px;
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        Second Content
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+/*
+Background
+ */
+.second-content{
+    background:#d6cab3
+}
+
+/*
+Titre
+ */
+
+.second-title{
+    width:100%;
+    text-align: center;
+}
+
+
+/*
+Items
+ */
+
+.second-title-second{
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    margin: 0;
+    background: grey;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top: solid 2px #BFD3C1;
+}
+
+.second-title-second-link{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+.second-title-second-link:hover{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+.category{
+    border : 2px solid black;
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        Third Content
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+/*
+Background
+ */
+.third-content{
+    background:#A0DDE6;
+}
+
+/*
+Titre
+ */
+
+.third-title{
+    width:100%;
+    text-align: center;
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        Fourth Content
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+/*
+Background
+ */
+.fourth-content{
+    background:#C0C5C1;
+}
+
+/*
+Titre
+ */
+
+.fourth-title{
+    width:100%;
+    text-align: center;
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        Footer
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+footer{
+    background: #465362;
+}

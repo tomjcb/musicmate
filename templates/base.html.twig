@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}MusicMate{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="shortcut icon" href="{{ asset('images/Logo_MusicMate.ico') }}" >
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link rel="stylesheet" href="{{ asset("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css") }}">
+
+        <link rel="stylesheet" href="{{ asset("css/indexStyles.css") }}" />
+        <link rel="stylesheet" href="{{ asset("css/showEvenementsStyles.css") }}" />
+        <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}"/>
+        <link rel="stylesheet" href="{{ asset("css/mdb.min.css") }}"/>
+
+
+
+
+    {% endblock %}
+</head>
+<body>
+{% include('nav.html.twig') %}
+{% block body %}{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset("js/jquery-3.4.1.min.js") }}"></script>
+    <script src="{{ asset("js/popper.min.js") }}"></script>
+    <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+
+    <script src="{{ asset("js/mdb.min.js") }}"></script>
+
+{% endblock %}
+{% include('footer.html.twig') %}
+</body>
+</html>
