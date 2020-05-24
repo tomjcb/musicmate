@@ -41,8 +41,15 @@ class ProfileController extends AbstractController
      */
     public function SetGoogleUsername(ManagerRegistry $doctrine, Request $request, Environment $twig){
         $entityManager = $this->getDoctrine()->getManager();
+        $user = new User();
 
         $User = $this->getUser();
+        if($User->getGoogleId() == null){
+            $social="Facebook";
+        }
+        else{
+            $social="Google";
+        }
         $form = $this->createForm(GoogleUserType::class);
         $form->handleRequest($request);
 
@@ -53,9 +60,15 @@ class ProfileController extends AbstractController
                 $entityManager->persist($User);
                 $entityManager->flush();
 
-                return $this->redirectToRoute("connect_google_start");
+                if($social == "Google"){
+                    return $this->redirectToRoute("connect_google_start");
+                }
+                else{
+                    return $this->redirectToRoute("connect_facebook_start");
+                }
+
 
         }
-        return new Response($twig->render('socialuser/index.html.twig',['form'=>$form->createView(), 'user' => $this->getUser()]));
+        return new Response($twig->render('socialuser/index.html.twig',['form'=>$form->createView(), 'user' => $this->getUser(), 'social' => $social]));
     }
 }

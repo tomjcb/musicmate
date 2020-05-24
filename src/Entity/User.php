@@ -88,6 +88,11 @@ class User implements UserInterface
      */
     private $googleId;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $facebookId;
+
 
 
     public function __construct()
@@ -362,17 +367,17 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getFacebookID()
+    public function getFacebookId()
     {
-        return $this->facebookID;
+        return $this->facebookId;
     }
 
     /**
-     * @param mixed $facebookID
+     * @param mixed $facebookId
      */
-    public function setFacebookID($facebookID): void
+    public function setFacebookId($facebookId): void
     {
-        $this->facebookID = $facebookID;
+        $this->facebookId = $facebookId;
     }
 
     public function getGoogleId(): ?string
