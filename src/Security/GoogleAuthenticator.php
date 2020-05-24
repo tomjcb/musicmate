@@ -66,12 +66,12 @@ class GoogleAuthenticator extends SocialAuthenticator
             if (!$user) {
                 $user = new User();
                 $user->setMail($googleUser->getEmail());
-                $user->setNom($googleUser->getFirstName());
-                $user->setPrenom($googleUser->getLastName());
+                $user->setNom($googleUser->getLastName());
+                $user->setPrenom($googleUser->getFirstName());
                 $user->setDateInscription(new \DateTime());
                 $user->setUsername($googleUser->getEmail());
                 $user->setComfirmed(1);
-                $user->setRoles('ROLE_USER');
+                $user->setRoles('ROLE_NEEDUSERNAME');
                 $this->em->persist($user);
                 $this->em->flush();
             }

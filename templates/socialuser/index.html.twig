@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MusicMate{% endblock %}
+
+{% block body %}
+
+
+<div class="row heighter">
+    <div class="container">
+        <div class="row">
+            <div class="form-signin col-md-6 offset-3" style="text-align: center; margin-top: 30px">
+                <img class="mb-4" src="/images/logo.png" alt="" width="125" height="125">
+                <h1 class="h3 mb-2 font-weight-normal">Vous y êtes presque !</h1>
+                <h6><i>Si vous êtes ici, c'est que la connexion à votre compte Google a réussie. <br> Il vous faut maintenant choisir un nom d'utilisateur pour pouvoir accéder au site.</i></h6>
+
+                <!-- Material form login -->
+                <div class="card">
+
+                    <!--Card content-->
+                    <div class="card-body px-lg-5 pt-0" style="margin-top: 15px">
+                        {{ form_start(form) }}
+
+                        <div class="md-form mt-0">
+                            {% if not form._username.vars.valid %}
+                                {{ form_widget(form._username,{'attr':{'class':'md-textarea form-control is-invalid', 'id' : 'mailInput' }}) }}
+                            {% else %}
+                                {{ form_widget(form._username,{'attr':{'class':'md-textarea form-control', 'id' : 'mailInput' }}) }}
+                            {% endif %}
+                            <label for="{{ form._username.vars.id }}">Votre nom d'utilisateur</label>
+                            {% if not form._username.vars.valid %}
+                                <small id="erreurContenu" class="form-text text-muted mb-4 red-text">
+                                    {{ form_errors(form._username) }}
+                                </small>
+                            {% endif %}
+                            {% if form.vars.errors.form.getErrors(true)|length %}
+                                {% for error in form.vars.errors.form.getErrors(true) %}
+                                    {% if error.message == "Nom d'utilisateur déjà utilisé." %}
+                                        <small id="erreurUsername" class="form-text text-muted mb-4 red-text">
+                                            {{ form_errors(form) }}
+                                        </small>
+                                    {% endif %}
+                                {% endfor %}
+                            {%  endif %}
+                        </div>
+
+                        <!-- Envoyer -->
+                        <button class="btn blue-gradient btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" value="{{ form_row(form.submit,{'label':'confirmer'}) }}
+
+                            <!-- Register -->
+
+
+                        </div>
+
+                    </div>
+                    <!-- Material form login -->
+
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

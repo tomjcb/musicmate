@@ -42,8 +42,6 @@
                         {% set formErrors = form.vars.errors.form.getErrors(true) %}
                         {% set test = 0 %}
 
-
-
                         {# If there are errors in the form, display them in this unorganized list #}
                         {% if formErrors|length %}
                                 {% for error in formErrors %}

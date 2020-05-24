@@ -28,6 +28,9 @@ class RegisterController extends AbstractController
             return $this->redirectToRoute("Index.index");
             //throw $this->createAccessDeniedException('GET OUT!');
         }
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_NEEDUSERNAME')){
+            return $this->redirectToRoute("User.setusername");
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
         $User = new User();

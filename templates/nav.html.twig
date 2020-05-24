@@ -46,7 +46,7 @@
                                 }
                             }
                         </script>
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if is_granted('ROLE_USER') %}
                             <div class="input-group ">
                                 <input id="searchBar" type="text" class="form-control my-0 py-1 red-border white" placeholder="Recherche" onkeydown="search(this)" >
                                 <div class="input-group-append">
@@ -66,7 +66,7 @@
                         </script>
                     </div>
                 </div>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% if is_granted('ROLE_USER') %}
                     <li class="nav-item active col-2" style="text-align: center">
                     </li>
                     <li class="nav-item active col-2" style="text-align: center">
@@ -125,12 +125,14 @@
                     <li class="nav-item active col-2" style="text-align: center">
 
                     </li>
-                    <form class="form-inline my-2 my-lg-0 col-2" action="" method="post" style="text-align: right">
-                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    {% if is_granted('ROLE_NEEDUSERNAME') %}
+                    <form class="form-inline my-2 my-lg-0 col-2" action="{{ path('app_logout') }}" method="post" style="text-align: right">
+                         <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
                             <i class="fa fa-sign-in"></i>
-                            Se Connecter
+                            Se Déconnecter
                         </button>
                     </form>
+                        {% endif %}
                 {% endif %}
             </ul>
         </div>

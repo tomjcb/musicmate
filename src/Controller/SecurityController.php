@@ -20,6 +20,9 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute("Index.index");
             //throw $this->createAccessDeniedException('GET OUT!');
         }
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_NEEDUSERNAME')){
+            return $this->redirectToRoute("User.setusername");
+        }
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }

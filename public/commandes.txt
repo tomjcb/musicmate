@@ -37,4 +37,5 @@ use Symfony\Component\HttpFoundation\Response;    // objet RESPONSE
 
 Demarrer serveur sous Windows :
 php -S 127.0.0.1:8000 -t public
+php -S localhost:8000 -t public
 

@@ -18,6 +18,10 @@ class IndexController extends AbstractController
             return $this->redirectToRoute("Admin.index");
         }
 
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_NEEDUSERNAME')){
+            return $this->redirectToRoute("User.setusername");
+        }
+
         elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             $publication = $doctrine->getRepository(Publication::class)->findBy(array(), array('id' => 'DESC'));
 
