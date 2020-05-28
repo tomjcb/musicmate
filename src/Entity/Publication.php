@@ -45,9 +45,25 @@ class Publication
      */
     private $signalements;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Like::class, mappedBy="publication")
+     */
+    private $likes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Dislike::class, mappedBy="publication")
+     */
+    private $dislikes;
+
+
     public function __construct()
     {
         $this->signalements = new ArrayCollection();
+        $this->userlike = new ArrayCollection();
+        $this->userdislike = new ArrayCollection();
+        $this->userlikes = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -133,4 +149,67 @@ class Publication
 
         return $this;
     }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setPublication($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getPublication() === $this) {
+                $like->setPublication(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dislike[]
+     */
+    public function getDislikes(): Collection
+    {
+        return $this->dislikes;
+    }
+
+    public function addDislike(Dislike $dislike): self
+    {
+        if (!$this->dislikes->contains($dislike)) {
+            $this->dislikes[] = $dislike;
+            $dislike->setPublication($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDislike(Dislike $dislike): self
+    {
+        if ($this->dislikes->contains($dislike)) {
+            $this->dislikes->removeElement($dislike);
+            // set the owning side to null (unless already changed)
+            if ($dislike->getPublication() === $this) {
+                $dislike->setPublication(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css") }}">
 
         <link rel="stylesheet" href="{{ asset("css/indexStyles.css") }}" />
+        <link rel="stylesheet" href="{{ asset("css/style.css") }}" />
         <link rel="stylesheet" href="{{ asset("css/showEvenementsStyles.css") }}" />
         <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}"/>
         <link rel="stylesheet" href="{{ asset("css/mdb.min.css") }}"/>
@@ -21,6 +22,17 @@
 </head>
 <body>
 {% include('nav.html.twig') %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var element = document.querySelector("body");
+        var height = element.offsetHeight;
+        if (height < screen.height) {
+            document.getElementById("footer").classList.add('stikybottom');
+        }
+    }, false);
+</script>
+
 {% block body %}{% endblock %}
 {% block javascripts %}
     <script src="{{ asset("js/jquery-3.4.1.min.js") }}"></script>
@@ -29,7 +41,13 @@
 
     <script src="{{ asset("js/mdb.min.js") }}"></script>
 
+    <script>
+        /* WOW.js init */
+        new WOW().init();
+    </script>
+
 {% endblock %}
-{% include('footer.html.twig') %}
 </body>
+
+{% include('footer.html.twig') %}
 </html>

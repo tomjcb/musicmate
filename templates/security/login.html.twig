@@ -3,16 +3,21 @@
 {% block title %}MusicMate - Connexion{% endblock %}
 
 {% block body %}
+    <style>
+        html{
+            margin: 0;
+            height: 100%;
+            min-height: 100%;
 
+        }
+        body{
+            height: 100%;
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-    <div class="row heighter">
-        <div class="container">
+        }
+    </style>
+    <body class="winter-neva-gradient">
+    <div class="row heighter" style="height: 100%">
+        <div class="container" style="margin-top: 0">
             <div class="row">
                 <form class="form-signin col-md-6 offset-3" action="{{ path('app_login') }}" method="post" style="text-align: center; margin-top: 30px">
                     <img class="mb-4" src="/images/logo.png" alt="" width="125" height="125">
@@ -83,5 +88,6 @@
             </div>
         </div>
     </div>
+    </body>
 
 {% endblock %}

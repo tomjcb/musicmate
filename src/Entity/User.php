@@ -93,6 +93,27 @@ class User implements UserInterface
      */
     private $facebookId;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="auteur")
+     */
+    private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Conversation::class, mappedBy="user")
+     */
+    private $conversations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Like::class, mappedBy="user")
+     */
+    private $likes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Dislike::class, mappedBy="user")
+     */
+    private $dislikes;
+
+
 
 
     public function __construct()
@@ -100,6 +121,10 @@ class User implements UserInterface
         $this->publications = new ArrayCollection();
         $this->activites = new ArrayCollection();
         $this->signalements = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+        $this->conversations = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -391,5 +416,130 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->contains($message)) {
+            $this->messages->removeElement($message);
+            // set the owning side to null (unless already changed)
+            if ($message->getAuteur() === $this) {
+                $message->setAuteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Conversation[]
+     */
+    public function getConversations(): Collection
+    {
+        return $this->conversations;
+    }
+
+    public function addConversation(Conversation $conversation): self
+    {
+        if (!$this->conversations->contains($conversation)) {
+            $this->conversations[] = $conversation;
+            $conversation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConversation(Conversation $conversation): self
+    {
+        if ($this->conversations->contains($conversation)) {
+            $this->conversations->removeElement($conversation);
+            // set the owning side to null (unless already changed)
+            if ($conversation->getUser() === $this) {
+                $conversation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dislike[]
+     */
+    public function getDislikes(): Collection
+    {
+        return $this->dislikes;
+    }
+
+    public function addDislike(Dislike $dislike): self
+    {
+        if (!$this->dislikes->contains($dislike)) {
+            $this->dislikes[] = $dislike;
+            $dislike->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDislike(Dislike $dislike): self
+    {
+        if ($this->dislikes->contains($dislike)) {
+            $this->dislikes->removeElement($dislike);
+            // set the owning side to null (unless already changed)
+            if ($dislike->getUser() === $this) {
+                $dislike->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }

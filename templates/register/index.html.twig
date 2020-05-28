@@ -3,32 +3,45 @@
 {% block title %}MusicMate - Inscription{% endblock %}
 
 {% block body %}
+    <style>
+        html{
+            margin: 0;
+            height: 100%;
+            min-height: 100%;
 
-    <div class="row first-content">
-    <div class="container content">
+        }
+        body{
+            height: 100%;
 
+        }
+    </style>
+    <body class="deep-blue-gradient">
 
+    <div class="row first-content deep-blue-gradient">
+        <div class="container content" style="margin-top: 0">
 
-    <div class="row heighter">
-    <div class="container">
-    <div class="row" style="margin-bottom: 30px">
-        <div class="form-signin col-md-6 offset-3" style="text-align: center; border-bottom: 3px solid #465362; margin-top: 15px;">
-            <img class="mb-4" src="/images/logo.png" alt="" width="125" height="125">
-            <h1 class="h3 mb-3 font-weight-normal" style="">S'inscrire</h1>
-        </div>
-    </div>
-    <div class="col-md-8 offset-2">
-    {{ form_start(form) }}
+            <div class="row heighter">
+                <div class="container">
+                    <div class="row" style="margin-bottom: 30px">
+                        <div class="form-signin col-md-6 offset-3" style="text-align: center; border-bottom: 3px solid #465362; margin-top: 15px;">
+                            <img class="mb-4" src="/images/logo.png" alt="" width="125" height="125">
+                            <h1 class="h3 mb-3 font-weight-normal" style="">S'inscrire</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-8 offset-2">
+                        {{ form_start(form) }}
 
-    {{ include ('register/userForm.html.twig') }}
+                        {{ include ('register/userForm.html.twig') }}
 
-    {{ form_end(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
 
 
         </div>
     </div>
+
+    </body>
 {% endblock %}

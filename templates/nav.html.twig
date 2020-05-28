@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top col-12 navigation">
+<nav class="navbar navbar-expand-lg navbar-dark mdb-skin fixed-top col-12 navigation">
     <div class="navbar-header col-2">
         <a class="navbar-brand" href="{{ path('Index.index') }}">
             <img src="{{ asset('images/logo.png') }}" width="60" height="60">
@@ -69,24 +69,22 @@
                 {% if is_granted('ROLE_USER') %}
                     <li class="nav-item active col-2" style="text-align: center">
                     </li>
+
                     <li class="nav-item active col-2" style="text-align: center">
                         <!--Dropdown primary-->
                         <div class="dropdown">
 
                             <!--Trigger-->
-                            <button class="btn btn-outline-default  my-2 my-sm-0 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            <a class="btn btn-outline-info  my-2 my-sm-0 dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell"></i>
                                 Notifications
-                            </button>
+                            </a>
 
 
                             <!--Menu-->
-                            <div class="dropdown-menu dropdown-default">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-menu dropdown-info">
+                                <a class="dropdown-item" href="{{ path('Conv.conv') }}">Messages</a>
                             </div>
                         </div>
                         <!--/Dropdown primary-->

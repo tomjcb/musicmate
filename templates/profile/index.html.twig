@@ -22,8 +22,6 @@
 
             </div>
 
-
-
             <div class="row">
                 <div class="form-signin col-md-6 offset-3"  style="text-align: center;">
 
@@ -57,6 +55,102 @@
                     </section>
                     <!-- Section: Basic Info -->
 
+
+                </div>
+            </div>
+
+            <h2 class="text-center" style="margin-bottom: 25px;">Activité</h2>
+            <div class="row" style="padding-bottom: 250px">
+                <div class="col-md-6" style="border-right: 3px solid #465362;">
+                    <h3>Publication{% if profileuser.publications|length > 1 %}s{% endif %}</h3>
+                    <div class="form-signin col-md-12"  style="text-align: center;">
+
+                        {% if profileuser.publications|length > 0 %}
+
+                            {% for publication in profileuser.publications %}
+
+
+                                <!-- Card -->
+                                <div class="card">
+                                    <div  style="text-align: right;">
+                                        <div class="dropdown">
+                                            <a class="btn-floating btn-rounded btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenu{{ publication.id }}" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false" style="text-align: right; position: absolute; right: 0;" title="Action"><i class="fas fa-angle-down"></i></a>
+
+                                            <div class="dropdown-menu dropdown-danger">
+                                                {% if user.id == publication.auteur.id %}
+                                                    <a class="dropdown-item" href="{{ path('User.deletePublication', {id: publication.id, authorid: publication.auteur.id}) }}">Supprimer la publication</a>
+                                                {% else %}
+                                                    <a class="dropdown-item" href="{{ path('User.signalement', {idpubli: publication.id}) }}">Signaler la publication</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card content -->
+                                    <div class="card-body">
+
+                                        <!-- Title -->
+                                        <a class="black-text" href="{{ path('User.profil', {userName: publication.auteur.username}) }}">
+                                            <h4  class="card-title" style="text-align: left;">
+                                                {{ publication.auteur.nom }} {{ publication.auteur.prenom }}
+
+                                            </h4>
+                                        </a>
+
+                                        <hr>
+                                        <!-- Text -->
+                                        <p class="card-text">{{ publication.contenu }}</p>
+
+                                    </div>
+                                    {% set isliked = 0 %}
+                                    {% for like in publication.likes %}
+                                        {% if like.user.id == user.id %}
+                                            {% set isliked = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% set isdisliked = 0 %}
+                                    {% for dislike in publication.dislikes %}
+                                        {% if dislike.user.id == user.id %}
+                                            {% set isdisliked = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <!-- Card footer -->
+                                    <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+                                        <ul class="list-unstyled list-inline font-small">
+                                            <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o"></i> {{ "now"|date("d/m/Y") }}</li>
+                                            <li class="list-inline-item pr-2"><a href="#" class="white-text"><i
+                                                            class="fa fa-comments pr-1"></i>0</a></li>
+                                            <li class="list-inline-item pr-2 white-text"><a href="{{ path('User.like', {idpubli: publication.id}) }}" class="{% if isliked == 1 %} blue-text {% else %} white-text {% endif %}" ><i class="fa fa-thumbs-o-up pr-1">
+                                                    </i></a>{{ publication.likes|length }}</li>
+                                            <li class="list-inline-item white-text"><a href="{{ path('User.dislike', {idpubli: publication.id}) }}" class="{% if isdisliked == 1 %} red-text {% else %} white-text {% endif %}"><i class="fa fa-thumbs-o-down pr-1"> </i></a>{{ publication.dislikes|length }}</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <br><br>
+
+                            {% endfor %}
+                        {% else %}
+                            <h4> Pas de publications.</h4>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Liké récemment</h3>
+
+
+                    {% if profileuser.likes|length == 0 %}
+                    <h4> Pas de likes récents.</h4>
+                    {% else %}
+                        {% for like in profileuser.likes %}
+                            <h4>{{ profileuser.username }} a aimé une publication de {{ like.publication.auteur.username }} : </h4>
+                            <h5>"<i>{{ like.publication.contenu }}</i>"</h5>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

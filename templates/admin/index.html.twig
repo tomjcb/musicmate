@@ -3,9 +3,21 @@
 {% block title %}MusicMate - Admin{% endblock %}
 
 {% block body %}
+    <style>
+        html{
+            margin: 0;
+            height: 100%;
+            min-height: 100%;
+
+        }
+        body{
+            height: 100%;
+
+        }
+    </style>
 
     <!-- Main layout -->
-    <main>
+    <body class="warm-flame-gradient">
 
         <div class="container-fluid">
 
@@ -187,11 +199,11 @@
                                         {% for signalement in lastsignalement %}
                                             <tr>
                                                 {% if signalement.etat == "A traiter" %}
-                                                    <td><span class="badge green">{{ signalement.etat }}</span></td>
+                                                    <td><span class="badge red">{{ signalement.etat }}</span></td>
                                                 {% elseif signalement.etat == "En cours" %}
                                                     <td><span class="badge warning-color">{{ signalement.etat }}</span></td>
                                                 {% elseif signalement.etat == "Clôt" %}
-                                                    <td><span class="badge red">{{ signalement.etat }}</span></td>
+                                                    <td><span class="badge green">{{ signalement.etat }}</span></td>
                                                 {% endif %}
                                                 <td>{{ signalement.message }}</td>
                                                 <td class="gray-text">{{ signalement.auteur.username }}</td>
@@ -334,6 +346,6 @@
 
         </div>
 
-    </main>
+    </body>
     <!-- Main layout -->
 {% endblock %}

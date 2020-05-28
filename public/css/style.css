@@ -16,7 +16,41 @@
       color: black;
   }
 
-  .rgba-pastelgreen-strong,
+.btn-pastelgreen {
+    background-color: #85d1ac !important;
+    color: #fff !important; }
+.btn-pastelgreen:hover {
+    color: #fff; }
+.btn-pastelgreen:focus, .btn-pastelgreen.focus {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }
+.btn-pastelgreen:focus, .btn-pastelgreen:active, .btn-pastelgreen.active {
+    background-color: #4cbb85 !important; }
+
+
+.btn-pastelprimary {
+    background-color: #789bff !important;
+    color: #fff !important; }
+.btn-pastelprimary:hover {
+    color: #fff; }
+.btn-pastelprimary:focus, .btn-pastelprimary.focus {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }
+.btn-pastelprimary:focus, .btn-pastelprimary:active, .btn-pastelprimary.active {
+    background-color: #4f66a7 !important; }
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+
+.rgba-pastelgreen-strong,
 .rgba-pastelgreen-strong:after {
   background-color: rgba(133, 209, 172, 0.7); }
 
@@ -25,3 +59,32 @@
 
 .pastelgreen-darker {
     background-color: #4cbb85 !important; }
+
+.lightamber-text{
+    color: #3F729B;
+}
+
+body { padding-top: 85px; }
+
+footer {
+
+    position:inherit;
+
+    bottom:0;
+
+    width:100%;
+
+    padding-top:50px;
+
+}
+
+#footer.stikybottom {
+    position: absolute;
+    bottom:0;
+
+    padding-top:50px;
+}
+
+html{
+    background-color: white;
+}

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Activite;
+use App\Entity\Dislike;
+use App\Entity\Like;
 use App\Entity\Publication;
 use App\Entity\User;
 use App\Form\PublicationType;
@@ -62,6 +64,8 @@ class PublicationController extends AbstractController
         }
         $entityManager = $this->getDoctrine()->getManager();
         $publi = $doctrine->getRepository(Publication::class)->findOneBy(['id'=>$id]);
+        $publilikes = $doctrine->getRepository(Like::class)->findBy(['publication' => $publi]);
+        $publidislikes = $doctrine->getRepository(Dislike::class)->findBy(['publication' => $publi]);
 
         $new_acti = new Activite();
         $new_acti->setAuteur($this->getUser());
@@ -70,6 +74,13 @@ class PublicationController extends AbstractController
         $new_acti->setDateActivite(new \DateTime());
 
         $entityManager->persist($new_acti);
+
+        foreach ($publilikes as $like){
+            $entityManager->remove($like);
+        }
+        foreach ($publidislikes as $dislike){
+            $entityManager->remove($dislike);
+        }
 
         $entityManager->remove($publi);
         $entityManager->flush();

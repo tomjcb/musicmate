@@ -1,6 +1,48 @@
-<footer class="row">
+{% set currentPath = path(app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')) %}
+
+{% if currentPath == "/" and not is_granted('ROLE_USER') %}
+<style>
+    footer{
+        position:relative;
+
+        bottom:0;
+
+        width:100%;
+
+        padding-top:50px;
+    }
+</style>
+{% endif %}
+{% set quotes = [
+    { 'content': 'La musique donne une âme à nos coeurs et des ailes à la pensée.', 'author':  'Platon'},
+    { 'content': "La musique met l'âme en harmonie avec tout ce qui existe.", 'author': 'Oscar Wilde'},
+    { 'content':"Là où est la musique, il n'y a pas de place pour le mal.", 'author': 'Miguel De Cervantes'},
+    { 'content':"Sans la musique, la vie serait une erreur.", 'author': 'Friedrich Nietzsche'},
+    { 'content':"Quiconque aime la musique ne peut jamais être tout à fait malheureux.", 'author': 'Franz Schubert'},
+    { 'content':"La musique, c'est partout pareil. Ça rassemble. Ça fait du bien. C'est un langage commun.", 'author': 'Jack Lang'},
+    { 'content':"La musique peut changer le monde car elle peut changer les gens.", 'author': 'Bono'},
+] %}
+
+{% set quote = random(quotes) %}
+<footer id="footer" class="page-footer font-small unique-color-dark pt-4">
+
+    <!-- Footer Elements -->
     <div class="container">
-        <div class="row">
-        </div>
+
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <i>&quot;{{ quote.content }}&quot;</i>  &nbsp; <B><i>{{ quote.author }}</i></B>
+        </ul>
+        <!-- Call to action -->
+
     </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 :
+        <a> MusicMate</a>
+    </div>
+    <!-- Copyright -->
+
 </footer>
