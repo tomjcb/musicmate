@@ -42,6 +42,7 @@ class AdminController extends AbstractController
 
         $countNonRegistered = sizeof($doctrine->getRepository(User::class)->findBy(array('roles' => 'ROLE_USER', 'comfirmed' => 0)));
         $countRegistered = sizeof($doctrine->getRepository(User::class)->findBy(array('roles' => 'ROLE_USER', 'comfirmed' => 1)));
+        $countAdmin = sizeof($doctrine->getRepository(User::class)->findBy(array('roles' => 'ROLE_ADMIN', 'comfirmed' => 1)));
         $countsignalement = sizeof($doctrine->getRepository(Signalement::class)->findBy(array('etat' => array('A traiter', 'En cours'))));
 
         return $this->render('admin/index.html.twig', [
@@ -49,6 +50,7 @@ class AdminController extends AbstractController
             'lastusers' => $lastusers,
             'countnonregister' => $countNonRegistered,
             'countregister' => $countRegistered,
+            'countadmin' => $countAdmin,
             'lastactivity' => $lastactivity,
             'lastsignalement' => $lastsignalement,
             'countsignalement' => $countsignalement
