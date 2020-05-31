@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Demande;
 use App\Entity\Publication;
 use App\Entity\User;
 use App\Form\GoogleUserType;
@@ -29,6 +30,15 @@ class ProfileController extends AbstractController
                 'currentUserProfile' => 'yes'
             ]);
         }
+        $demande = $doctrine->getRepository(Demande::class)->findOneBy(['fromuser' => $this->getUser()->getUsername(), 'touser' => $user]);
+        if($demande){
+            return $this->render('profile/index.html.twig', [
+                'user' => $this->getUser(),
+                'profileuser' => $user,
+                'isDemandeSent' => 'yes'
+            ]);
+        }
+
         return $this->render('profile/index.html.twig', [
             'user' => $this->getUser(),
             'profileuser' => $user

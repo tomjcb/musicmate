@@ -46,6 +46,13 @@ class ConvController extends AbstractController
         }
         elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
         $conv = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $this->getUser(), 'interlocuteur' => $cible));
+        $msg = $conv->getMessages();
+        $manager = $this->getDoctrine()->getManager();
+        foreach ($msg as $message){
+            $message->setIsRead(1);
+            $manager->persist($message);
+        }
+        $manager->flush();
         //$conv = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $this->getUser()));
 
         $defaultData = ['message' => ''];

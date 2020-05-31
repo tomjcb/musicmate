@@ -78,13 +78,20 @@
                             <a class="btn btn-outline-info  my-2 my-sm-0 dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell"></i>
-                                Notifications
+                                Notifications {% if user.demandes|length > 0 %}
+                                    <span class="badge badge-danger ml-2">{{ user.demandes|length }}</span>
+                                {% endif %}
                             </a>
 
 
                             <!--Menu-->
                             <div class="dropdown-menu dropdown-info">
                                 <a class="dropdown-item" href="{{ path('Conv.conv') }}">Messages</a>
+                                <a class="dropdown-item" href="">Demandes d'ami
+                                {% if user.demandes|length > 0 %}
+                                    <span class="badge badge-danger ml-2">{{ user.demandes|length }}</span>
+                                {% endif %}
+                                </a>
                             </div>
                         </div>
                         <!--/Dropdown primary-->

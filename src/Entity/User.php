@@ -113,6 +113,10 @@ class User implements UserInterface
      */
     private $dislikes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Demande::class, mappedBy="touser")
+     */
+    private $demandes;
 
 
 
@@ -125,6 +129,7 @@ class User implements UserInterface
         $this->conversations = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->dislikes = new ArrayCollection();
+        $this->demandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -541,5 +546,35 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|Demande[]
+     */
+    public function getDemandes(): Collection
+    {
+        return $this->demandes;
+    }
+
+    public function addDemande(Demande $demande): self
+    {
+        if (!$this->demandes->contains($demande)) {
+            $this->demandes[] = $demande;
+            $demande->setTouser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemande(Demande $demande): self
+    {
+        if ($this->demandes->contains($demande)) {
+            $this->demandes->removeElement($demande);
+            // set the owning side to null (unless already changed)
+            if ($demande->getTouser() === $this) {
+                $demande->setTouser(null);
+            }
+        }
+
+        return $this;
+    }
 
 }
