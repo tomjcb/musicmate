@@ -2,9 +2,6 @@
 
 {% block body %}
 
-
-
-
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
@@ -18,7 +15,7 @@
     {% endfor %}
 
 
-    <div class="row" style="padding-bottom: 250px">
+    <div class="row" style="padding-bottom: 150px">
         <div class="container content">
             <div class="row">
                 <h1 class="first-title">Bienvenue sur votre fil d'actualité  {{ user.username }}</h1>

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row first-content">
+        <div class="container content">
+            <div class="row">
+                <h1 class="first-title">Vos demandes d'ami</h1>
+
+            </div>
+
+            <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
+
+            </div>
+
+            <div class="row">
+                <div class="form-signin col-md-6 offset-3"  style="text-align: center;">
+
+                    {% for profileuser in users %}
+                    <!-- Section: Basic Info -->
+                    <section class="card profile-card mb-4 text-center">
+                        <div class="avatar z-depth-1-half">
+                            <img src="https://cdn.onlinewebfonts.com/svg/img_258083.png" alt="" class="img-fluid">
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body">
+                            <!-- Title -->
+                            <h4 class="card-title"><strong>{{ profileuser.prenom }} {{ profileuser.nom }}</strong></h4>
+
+                            <p class="dark-grey-text">{{ profileuser.username }}</p>
+
+                            <br>
+
+                            <a type="button" class="btn btn-success black-text btn-rounded btn-sm waves-effect" >Accepter</a>
+                            <a type="button" class="btn btn-danger black-text btn-rounded btn-sm waves-effect" >Décliner</a>
+                        </div>
+
+                    </section>
+                    <!-- Section: Basic Info -->
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

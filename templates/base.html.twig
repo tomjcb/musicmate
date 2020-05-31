@@ -24,13 +24,31 @@
 {% include('nav.html.twig') %}
 
 <script>
+    function resize(){
+        var element = document.querySelector("body");
+        var height = element.offsetHeight;
+        console.log("Windows innerHeight : " + window.innerHeight + "\n" + "Windows outerHeight : " + window.outerHeight + "\n" + "Body height : " + height);
+        if (height < window.innerHeight) {
+            document.getElementById("footer").classList.add('stikybottom');
+        }
+        else{
+            document.getElementById("footer").classList.remove('stikybottom');
+        }
+    }
     document.addEventListener("DOMContentLoaded", function (event) {
         var element = document.querySelector("body");
         var height = element.offsetHeight;
-        if (height < screen.height) {
+        window.onresize = resize;
+        console.log("Windows innerHeight : " + window.innerHeight + "\n" + "Windows outerHeight : " + window.outerHeight + "\n" + "Body height : " + height);
+        if (height < window.innerHeight - 30) {
             document.getElementById("footer").classList.add('stikybottom');
         }
+        else{
+            document.getElementById("footer").classList.remove('stikybottom');
+        }
     }, false);
+
+
 </script>
 
 {% block body %}{% endblock %}

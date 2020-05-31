@@ -21,7 +21,7 @@ class DemandeController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/demandeami/{userName}", name="User.demandeami")
      */
-    public function index(ManagerRegistry $doctrine, $userName = null)
+    public function makedemande(ManagerRegistry $doctrine, $userName = null)
     {
         $user = $doctrine->getRepository(User::class)->findOneBy(['username' => $userName]);
         $demande = $doctrine->getRepository(Demande::class)->findOneBy(['fromuser' => $this->getUser(), 'touser' => $userName]);
@@ -44,5 +44,24 @@ class DemandeController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('User.profil', array('userName' => $userName));
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/showdemandes", name="User.showDemandes")
+     */
+    public function showDemandes(ManagerRegistry $doctrine)
+    {   $users = [];
+        $demandes = $doctrine->getRepository(Demande::class)->findBy(['touser' => $this->getUser()]);
+        foreach ($demandes as $demande){
+            $user = $doctrine->getRepository(User::class)->findOneBy(['username' => $demande->getFromuser()]);
+            array_push($users, $user);
+        }
+
+        return $this->render('friendrequest/index.html.twig', [
+            'user' => $this->getUser(),
+            'demandes' => $demandes,
+            'users' => $users
+        ]);
     }
 }

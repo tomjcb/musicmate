@@ -87,7 +87,7 @@
                             <!--Menu-->
                             <div class="dropdown-menu dropdown-info">
                                 <a class="dropdown-item" href="{{ path('Conv.conv') }}">Messages</a>
-                                <a class="dropdown-item" href="">Demandes d'ami
+                                <a class="dropdown-item" href="{{ path('User.showDemandes') }}">Demandes d'ami
                                 {% if user.demandes|length > 0 %}
                                     <span class="badge badge-danger ml-2">{{ user.demandes|length }}</span>
                                 {% endif %}
