@@ -64,4 +64,19 @@ class DemandeController extends AbstractController
             'users' => $users
         ]);
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/demande/decline/{username}", name="User.declineDemande")
+     */
+    public function declineDemande(ManagerRegistry $doctrine, $username = null)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $demande = $doctrine->getRepository(Demande::class)->findOneBy(['fromuser' => $username, 'touser' => $this->getUser()]);
+        if($demande){
+            $manager->remove($demande);
+            $manager->flush();
+        }
+        return $this->redirectToRoute('User.showDemandes');
+    }
 }

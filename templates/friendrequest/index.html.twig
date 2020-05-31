@@ -22,6 +22,9 @@
             <div class="row">
                 <div class="form-signin col-md-6 offset-3"  style="text-align: center;">
 
+                    {% if users|length == 0 %}
+                        <i><h2 class="grey-text">Pas de demandes d'amis</h2></i>
+                    {% endif %}
                     {% for profileuser in users %}
                     <!-- Section: Basic Info -->
                     <section class="card profile-card mb-4 text-center">
@@ -38,7 +41,7 @@
                             <br>
 
                             <a type="button" class="btn btn-success black-text btn-rounded btn-sm waves-effect" >Accepter</a>
-                            <a type="button" class="btn btn-danger black-text btn-rounded btn-sm waves-effect" >Décliner</a>
+                            <a type="button" class="btn btn-danger black-text btn-rounded btn-sm waves-effect" href="{{ path('User.declineDemande', {username: profileuser.username}) }}">Décliner</a>
                         </div>
 
                     </section>
