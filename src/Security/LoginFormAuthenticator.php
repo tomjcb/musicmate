@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\Ban;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -77,6 +78,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         if($user->getComfirmed() == 0){
             throw new CustomUserMessageAuthenticationException("Votre compte n'est toujours pas activé. Regardez vos mails");
         }
+
+        $isBan = $this->entityManager->getRepository(Ban::class)->findOneBy(['userbanned' => $user->getId()]);
+        if($isBan){
+            throw new CustomUserMessageAuthenticationException("Vous êtes banni. Il reste " . $isBan->getStartBan()->diff($isBan->getEndBan())->format('%a jours'));
+        }
+
 
         return $user;
     }

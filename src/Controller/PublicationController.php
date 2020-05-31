@@ -87,4 +87,19 @@ class PublicationController extends AbstractController
 
         return $this->redirectToRoute("Index.index");
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/publication/show/{idpubli}", name="User.showPublication")
+     */
+    public function showPubli(ManagerRegistry $doctrine, Request $request, Environment $twig, $idpubli = null)
+    {
+        $publication = $doctrine->getRepository(Publication::class)->findOneBy(['id'=>$idpubli]);
+
+        if($publication){
+            return new Response($twig->render('publication/showPubli.html.twig', ['publication' => $publication, 'user' => $this->getUser()]));
+        }
+        $this->addFlash('danger', 'Publication introuvable');
+        return $this->redirectToRoute("Index.index");
+    }
 }

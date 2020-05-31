@@ -2,41 +2,7 @@
 
 {% block body %}
 
-    <style>
-        html{
-            height: 100%;
-            min-height: 100%;
-        }
-        html ,body {
-            margin: 0;
-            background: linear-gradient(290deg, #5cb09a, #a7dfd1, #86d3db, #86b5db, #98a7fb, #aca4bd);
-            background-size: 1200% 1200%;
 
-            -webkit-animation: AnimationName 13s ease infinite;
-            -moz-animation: AnimationName 13s ease infinite;
-            animation: AnimationName 13s ease infinite;
-        }
-
-        @-webkit-keyframes AnimationName {
-            0%{background-position:88% 0%}
-            50%{background-position:13% 100%}
-            100%{background-position:88% 0%}
-        }
-        @-moz-keyframes AnimationName {
-            0%{background-position:88% 0%}
-            50%{background-position:13% 100%}
-            100%{background-position:88% 0%}
-        }
-        @keyframes AnimationName {
-            0%{background-position:88% 0%}
-            50%{background-position:13% 100%}
-            100%{background-position:88% 0%}
-        }
-
-        body{
-
-        }
-    </style>
 
 
     {% for message in app.flashes('success') %}
@@ -52,7 +18,7 @@
     {% endfor %}
 
 
-    <div class="row">
+    <div class="row" style="padding-bottom: 250px">
         <div class="container content">
             <div class="row">
                 <h1 class="first-title">Bienvenue sur votre fil d'actualité  {{ user.username }}</h1>

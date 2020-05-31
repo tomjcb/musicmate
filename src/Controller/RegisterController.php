@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Doctrine\DBAL\Types\TextType;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -31,6 +32,8 @@ class RegisterController extends AbstractController
         if ($this->get('security.authorization_checker')->isGranted('ROLE_NEEDUSERNAME')){
             return $this->redirectToRoute("User.setusername");
         }
+
+
 
         $entityManager = $this->getDoctrine()->getManager();
         $User = new User();

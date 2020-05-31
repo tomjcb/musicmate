@@ -31,10 +31,10 @@ class UserFixtures extends Fixture
         $Users=[
             ['username'=>'admin','password'=>'admin','role'=>'ROLE_ADMIN','nom'=>'ADMIN','prenom'=>'Admin', 'confirmkey' => 12345645, 'confirmed' => 1],
             ['username'=>'client','password'=>'client','role'=>'ROLE_USER','nom'=>'CLIENT','prenom'=>'Client', 'confirmkey' => 12345645, 'confirmed' => 0],
-            ['username'=>'user','password'=>'user','role'=>'ROLE_USER','nom'=>'USER','prenom'=>'User', 'confirmkey' => 12345645, 'confirmed' => 1],
-            ['username'=>'user2','password'=>'user2','role'=>'ROLE_USER','nom'=>'USER2','prenom'=>'User2', 'confirmkey' => 12345645, 'confirmed' => 1],
-            ['username'=>'user3','password'=>'user3','role'=>'ROLE_USER','nom'=>'USER3','prenom'=>'User3', 'confirmkey' => 12345645, 'confirmed' => 1],
-            ['username'=>'user4','password'=>'user4','role'=>'ROLE_USER','nom'=>'USER4','prenom'=>'User4', 'confirmkey' => 12345645, 'confirmed' => 1]
+            ['username'=>'mdupont','password'=>'user','role'=>'ROLE_USER','nom'=>'DUPONT','prenom'=>'Michel', 'confirmkey' => 12345645, 'confirmed' => 1],
+            ['username'=>'plaupretre','password'=>'user2','role'=>'ROLE_USER','nom'=>'LAUPRETRE','prenom'=>'Pascal', 'confirmkey' => 12345645, 'confirmed' => 1],
+            ['username'=>'ibort','password'=>'user3','role'=>'ROLE_USER','nom'=>'BORT','prenom'=>'Isabelle', 'confirmkey' => 12345645, 'confirmed' => 1],
+            ['username'=>'nharg','password'=>'user4','role'=>'ROLE_USER','nom'=>'HARG','prenom'=>'Noémie', 'confirmkey' => 12345645, 'confirmed' => 1]
         ];
 
         foreach ($Users as $User){
@@ -61,9 +61,9 @@ class UserFixtures extends Fixture
 
     public function addPublication(ObjectManager $manager){
         $Publications = [
-            ['user'=>'user', 'contenu'=>"J'ai écouté les DaftPunk récemment.. ca faisait longtemps!"],
-            ['user'=>'user2', 'contenu'=>"J'aime plus trop la musique Rock ..."],
-            ['user'=>'user2', 'contenu'=>"Ecouter du Jazz ? Pourquoi pas"]
+            ['user'=>'mdupont', 'contenu'=>"J'ai écouté les DaftPunk récemment.. ca faisait longtemps!"],
+            ['user'=>'plaupretre', 'contenu'=>"J'aime plus trop la musique Rock ..."],
+            ['user'=>'plaupretre', 'contenu'=>"Ecouter du Jazz ? Pourquoi pas"]
         ];
 
         foreach ($Publications as $Publication){
@@ -87,7 +87,7 @@ class UserFixtures extends Fixture
 
     public function createConv(ObjectManager $manager){
         $admin = $manager->getRepository(User::class)->findOneBy(['username' => 'admin']);
-        $user = $manager->getRepository(User::class)->findOneBy(['username' => 'user']);
+        $user = $manager->getRepository(User::class)->findOneBy(['username' => 'mdupont']);
 
         $conv1 = new Conversation();
         $conv1->setUser($admin);
@@ -98,7 +98,7 @@ class UserFixtures extends Fixture
         $conv2->setInterlocuteur($admin->getUsername());
 
         $Messages = [
-            ['auteur'=>$admin, 'contenu'=>"Bonjour user. Je suis ici pour parler de votre dernier signalement."],
+            ['auteur'=>$admin, 'contenu'=>"Bonjour mdupont. Je suis ici pour parler de votre dernier signalement."],
             ['auteur'=>$user, 'contenu'=>"Bonjour admin. Il y a un problème avec mon signalement ?"],
             ['auteur'=>$admin, 'contenu'=>"Mhh oui, j'ai bien l'impression qu'il est injustifié. Qu'en pensez vous ?"],
             ['auteur'=>$user, 'contenu'=>"Il est vrai qu'après y avoir réfléchi, ma réaction était puérile .."],

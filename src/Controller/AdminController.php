@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Activite;
+use App\Entity\Ban;
 use App\Entity\Signalement;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
@@ -42,6 +43,7 @@ class AdminController extends AbstractController
 
         $countNonRegistered = sizeof($doctrine->getRepository(User::class)->findBy(array('roles' => 'ROLE_USER', 'comfirmed' => 0)));
         $countRegistered = sizeof($doctrine->getRepository(User::class)->findBy(array('roles' => 'ROLE_USER', 'comfirmed' => 1)));
+        $countBan = sizeof($doctrine->getRepository(Ban::class)->findAll());
         $countAdmin = sizeof($doctrine->getRepository(User::class)->findBy(array('roles' => 'ROLE_ADMIN', 'comfirmed' => 1)));
         $countsignalement = sizeof($doctrine->getRepository(Signalement::class)->findBy(array('etat' => array('A traiter', 'En cours'))));
 
@@ -50,6 +52,7 @@ class AdminController extends AbstractController
             'lastusers' => $lastusers,
             'countnonregister' => $countNonRegistered,
             'countregister' => $countRegistered,
+            'countban' => $countBan,
             'countadmin' => $countAdmin,
             'lastactivity' => $lastactivity,
             'lastsignalement' => $lastsignalement,

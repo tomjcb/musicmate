@@ -48,8 +48,14 @@
 
                             <br>
 
+                            {% if currentUserProfile is defined %}
                             <button type="button" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect" data-toggle="modal" data-target="#modalContactUser">Modifier vos infos<i
                                         class="fa fa-pencil-square-o ml-2"></i></button>
+                            {% endif %}
+
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a type="button" class="btn btn-danger btn-rounded btn-sm waves-effect">Bannir l'utilisateur</a>
+                            {% endif %}
                         </div>
 
                     </section>
