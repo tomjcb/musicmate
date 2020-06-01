@@ -118,6 +118,11 @@ class User implements UserInterface
      */
     private $demandes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class)
+     */
+    private $amis;
+
 
 
     public function __construct()
@@ -130,6 +135,7 @@ class User implements UserInterface
         $this->likes = new ArrayCollection();
         $this->dislikes = new ArrayCollection();
         $this->demandes = new ArrayCollection();
+        $this->amis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -572,6 +578,32 @@ class User implements UserInterface
             if ($demande->getTouser() === $this) {
                 $demande->setTouser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getAmis(): Collection
+    {
+        return $this->amis;
+    }
+
+    public function addAmi(self $ami): self
+    {
+        if (!$this->amis->contains($ami)) {
+            $this->amis[] = $ami;
+        }
+
+        return $this;
+    }
+
+    public function removeAmi(self $ami): self
+    {
+        if ($this->amis->contains($ami)) {
+            $this->amis->removeElement($ami);
         }
 
         return $this;

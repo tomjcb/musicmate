@@ -27,11 +27,45 @@ class ConvController extends AbstractController
         }
         elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             //$conv = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $this->getUser(), 'interlocuteur' => 'admin'));
-            $conv = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $this->getUser()));
+            $allconv = $doctrine->getRepository(Conversation::class)->findBy(['user' => $this->getUser()]);
             return $this->render('conv/index.html.twig', [
                 'user' => $this->getUser(),
-                'conv' => $conv
+                'allconv' => $allconv
             ]);
+        }
+    }
+
+    /**
+     * @Route("/messages/createconv/{cible}", name="Conv.createconv")
+     */
+    public function createconv(Request $request,ManagerRegistry $doctrine, $cible = null)
+    {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_NEEDUSERNAME')) {
+            return $this->redirectToRoute("User.setusername");
+        }
+        elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            $existingconv = $doctrine->getRepository(Conversation::class)->findOneBy(['user' => $this->getUser(), 'interlocuteur' => $cible]);
+            if($existingconv){
+                return $this->redirectToRoute('Conv.showconv', array('cible' => $cible));
+            }
+            else{
+                $manager = $this->getDoctrine()->getManager();
+                $usercible = $doctrine->getRepository(User::class)->findOneBy(['username' => $cible]);
+
+                $conv1 = new Conversation();
+                $conv1->setUser($this->getUser());
+                $conv1->setInterlocuteur($cible);
+
+                $conv2 = new Conversation();
+                $conv2->setUser($usercible);
+                $conv2->setInterlocuteur($this->getUser()->getUsername());
+
+                $manager->persist($conv1);
+                $manager->persist($conv2);
+
+                $manager->flush();
+            }
+            return $this->redirectToRoute('Conv.showconv', array('cible' => $cible));
         }
     }
 
@@ -45,6 +79,7 @@ class ConvController extends AbstractController
             return $this->redirectToRoute("User.setusername");
         }
         elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+        $allconv = $doctrine->getRepository(Conversation::class)->findBy(['user' => $this->getUser()]);
         $conv = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $this->getUser(), 'interlocuteur' => $cible));
         $msg = $conv->getMessages();
         $manager = $this->getDoctrine()->getManager();
@@ -106,6 +141,7 @@ class ConvController extends AbstractController
         return $this->render('conv/index.html.twig', [
             'form'=>$form->createView(),
             'user' => $this->getUser(),
+            'allconv' => $allconv,
             'conv' => $conv,
             'active' => 1
         ]);

@@ -49,15 +49,45 @@
                                         </div>
                                     </div>
                                     <div class="inbox_chat">
-                                        <div class="chat_list active_chat" >
+                                        {% for soloconv in allconv %}
+
+                                            {% set count = 0 %}
+
+                                                {% for msg in soloconv.messages %}
+                                                    {% if msg.auteur != user %}
+                                                        {% if msg.isRead == 0 %}
+                                                            {% set count = count + 1 %}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                        <div class="chat_list
+                                        {% if conv is defined %}
+                                        {% if conv.id == soloconv.id %}
+                                        active_chat
+                                        {% endif %}
+                                        {% endif %}
+                                        ">
                                             <div class="chat_people">
                                                 <div class="chat_img"> <img src="https://cdn.onlinewebfonts.com/svg/img_258083.png" alt="sunil"> </div>
                                                 <div class="chat_ib">
-                                                    <a href="{{ path('Conv.showconv', {cible: conv.interlocuteur}) }}"><h5>{{ conv.interlocuteur }} <span class="chat_date">{{ conv.messages|last.datemessage|date("M d") }}</span></h5></a>
-                                                    <p>{{ conv.messages|last.contenu }}</p>
+                                                    <a href="{{ path('Conv.showconv', {cible: soloconv.interlocuteur}) }}">
+                                                        <h5>{{ soloconv.interlocuteur }} {% if count > 0 %} <span class="badge badge-info rounded ml-2">{{ count }}</span> {% endif %}
+                                                            <span class="chat_date">
+                                                                {% if soloconv.messages|length > 0 %}
+                                                                {{ soloconv.messages|last.datemessage|date("M d") }}
+                                                                {% endif %}
+                                                            </span></h5></a>
+                                                    <p>
+                                                        {% if soloconv.messages|length > 0 %}
+                                                        {{ soloconv.messages|last.contenu }}
+                                                        {% endif %}
+                                                    </p>
+
                                                 </div>
                                             </div>
                                         </div>
+                                        {% endfor %}
 
                                     </div>
                                 </div>
@@ -90,27 +120,6 @@
                                     </script>
                                     <div class="type_msg">
                                         <div class="input_msg_write">
-                                            <script>
-                                                function checkempty(ele) {
-                                                    var sendbtn = document.getElementById("sendbtn");
-                                                    if(ele.value === ''){
-                                                        sendbtn.disabled = true;
-                                                    }
-                                                    else{
-                                                        sendbtn.disabled = false;
-                                                    }
-                                                }
-
-                                                function sendmsg(ele){
-                                                    if(event.key === 'Enter') {
-                                                        if(ele.value != ''){
-                                                            var url = '{{ path('Admin.index',{search: "star"}) }}';
-                                                            url = url.replace("star", ele.value);
-                                                            window.location.href = url;
-                                                        }
-                                                    }
-                                                }
-                                            </script>
                                             {% if active is defined and active == 1 %}
                                             {{ form_start(form) }}
                                             {{ form_widget(form.message,{'attr':{'class':'write_msg'}}) }}
@@ -119,14 +128,6 @@
                                             {% endif %}
                                         </div>
                                     </div>
-                                    <script>
-                                        function clickSearch(){
-                                            var ele = document.getElementById("msgbar");
-                                            var url = '{{ path('Conv.sendmsg',{msg: "star", cible: conv.interlocuteur}) }}';
-                                            url = url.replace("star", encodeURIComponent(ele.value));
-                                            window.location.href = url;
-                                        }
-                                    </script>
                                 </div>
                             </div>
 

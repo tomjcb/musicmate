@@ -40,7 +40,7 @@
 
                             <br>
 
-                            <a type="button" class="btn btn-success black-text btn-rounded btn-sm waves-effect" >Accepter</a>
+                            <a type="button" class="btn btn-success black-text btn-rounded btn-sm waves-effect" href="{{ path('User.acceptDemande', {username: profileuser.username}) }}">Accepter</a>
                             <a type="button" class="btn btn-danger black-text btn-rounded btn-sm waves-effect" href="{{ path('User.declineDemande', {username: profileuser.username}) }}">Décliner</a>
                         </div>
 

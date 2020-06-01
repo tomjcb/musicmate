@@ -74,19 +74,37 @@
                         <!--Dropdown primary-->
                         <div class="dropdown">
 
+                            {% set count = 0 %}
+
+                            {% for conv in user.conversations %}
+                                {% for msg in conv.messages %}
+                                    {% if msg.auteur != user %}
+                                        {% if msg.isRead == 0 %}
+                                            {% set count = count + 1 %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+
                             <!--Trigger-->
                             <a class="btn btn-outline-info  my-2 my-sm-0 dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell"></i>
-                                Notifications {% if user.demandes|length > 0 %}
-                                    <span class="badge badge-danger ml-2">{{ user.demandes|length }}</span>
+                                Notifications {% if user.demandes|length + count > 0 %}
+                                    <span class="badge badge-danger ml-2">{{ user.demandes|length + count }}</span>
                                 {% endif %}
                             </a>
 
 
+
+
                             <!--Menu-->
                             <div class="dropdown-menu dropdown-info">
-                                <a class="dropdown-item" href="{{ path('Conv.conv') }}">Messages</a>
+                                <a class="dropdown-item" href="{{ path('Conv.conv') }}">Messages
+                                    {% if count > 0 %}
+                                        <span class="badge badge-danger ml-2">{{ count }}</span>
+                                    {% endif %}
+                                </a>
                                 <a class="dropdown-item" href="{{ path('User.showDemandes') }}">Demandes d'ami
                                 {% if user.demandes|length > 0 %}
                                     <span class="badge badge-danger ml-2">{{ user.demandes|length }}</span>
