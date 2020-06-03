@@ -41,6 +41,7 @@ class IndexController extends AbstractController
         else{
             return $this->render('index/index.html.twig', [
                 'controller_name' => 'IndexController',
+                'test' => 'despacito'
             ]);
         }
 
