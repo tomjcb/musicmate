@@ -20,18 +20,26 @@
     <button class="msg_send_btn" type="submit" id="sendbtn">CHERCHER</button>
     {{ form_end(form) }}
 
-    <img id="cover" src="">
+    <div class="row text-center align-content-center justify-content-center align-self-center">
 
-    <div id="time" ></div>
+    <div class="col-md-12">
+        <img id="cover" src="">
+    </div>
+
+    <div class="col-md-12">
+        <div id="time" ></div>
+    </div>
 
     <a type="button" onclick="prev()" class="btn-floating btn-rounded btn-sm btn-info dropdown-toggle"><i class="fas fa-step-backward"></i></a>
-    <a type="button" id="action" onclick="action()" class="btn-floating btn-rounded btn-sm btn-green dropdown-toggle"><i class="fas fa-play"></i></a>
+    <a type="button" id="action" onclick="action()"  class="btn-floating btn-rounded btn-sm btn-green dropdown-toggle"><i class="fas fa-play"></i></a>
     <a type="button" onclick="next()" class="btn-floating btn-rounded btn-sm btn-info dropdown-toggle"><i class="fas fa-step-forward"></i></a>
+    </div>
 
 
 
-    <div class="row" style="border: solid">
-        <div id="progress" class="red">
+    <div class="row" style="border: solid; border-radius: 25px;">
+        <div id="progress" class="dusty-grass-gradient text-center" style="border-radius: 25px;">
+
             <br>
         </div>
     </div>
@@ -40,8 +48,9 @@
     <script>
         var spotifyApi = new SpotifyWebApi();
         spotifyApi.setAccessToken('{{ auth }}');
+
         var track;
-        var currenttrack;
+        var currenttrack;setTimeout(() => {  console.log("World!");
         spotifyApi.getMyCurrentPlayingTrack().then(
             function (data) {
                 track = data;
@@ -51,11 +60,32 @@
                     title += artist['name'] + "  "
                 });
                 document.getElementById('time').innerHTML = title;
+                ;
             },
             function (err) {
                 console.error(err);
             }
         );
+
+        }, 500);
+
+        function msToTime(s) {
+            var ms = s % 1000;
+            s = (s - ms) / 1000;
+            var secs = s % 60;
+            s = (s - secs) / 60;
+            var mins = s % 60;
+            var hrs = (s - mins) / 60;
+
+            if(secs < 10){
+                return mins + ':0' + secs;
+            }
+            else{
+                return mins + ':' + secs;
+            }
+
+
+        }
 
 
         window.setInterval(function(){
@@ -69,10 +99,14 @@
             );
             var dif = (parseInt(track['progress_ms']) / parseInt(track['item']['duration_ms'])) * 100;
             document.getElementById('progress').style.width = dif + '%';
-            if(track['progress_ms'] < 500){
+
+
+            document.getElementById('progress').innerHTML = msToTime(parseInt(track['progress_ms'] ));
+            if(track['progress_ms'] < 2000){
                 reload();
             }
-        }, 100);
+
+        }, 250);
 
         function reload(){
             spotifyApi.getMyCurrentPlayingTrack().then(
@@ -94,36 +128,31 @@
         function action() {
             spotifyApi.getMyCurrentPlaybackState().then(
                 function (data) {
-                    currenttrack = data;
-                },
-                function (err) {
-                    console.error(err);
-                }
-            );
-            if (currenttrack['is_playing']) {
-                pause();
-                document.getElementById('action').innerHTML = '<i class="fas fa-play"></i>';
-            }
-            else{
-                play();
-                document.getElementById('action').innerHTML = '<i class="fas fa-pause"></i>';
+                    if (data['is_playing']) {
+                        pause();
+                        document.getElementById('action').innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                    else{
+                        play();
+                        document.getElementById('action').innerHTML = '<i class="fas fa-pause"></i>';
 
-            }
+                    }
+                },
+
+            );
+
         }
 
         function play() {
             spotifyApi.play().then(
-                function (err) {
-                    console.error(err);
-                }
+
             );
+
         }
 
         function pause() {
             spotifyApi.pause().then(
-                function (err) {
-                    console.error(err);
-                }
+
             );
         }
 
