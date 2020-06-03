@@ -40,8 +40,9 @@
                         <script>
                             function search(ele) {
                                 if(event.key === 'Enter') {
-                                    var url = '';
+                                    var url = '{{ path('spotify_app',{search: "star"}) }}';
                                     url = url.replace("star", ele.value);
+                                    url = url.replace("'",' ');
                                     window.location.href = url;
                                 }
                             }

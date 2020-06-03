@@ -100,43 +100,43 @@ class ConvController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $this->getDoctrine()->getManager();
-            $msg = $form['message']->getData();
-            $usercible = $doctrine->getRepository(User::class)->findOneBy(['username' => $cible]);
+                $manager = $this->getDoctrine()->getManager();
+                $msg = $form['message']->getData();
+                $usercible = $doctrine->getRepository(User::class)->findOneBy(['username' => $cible]);
 
-            if($usercible){
-                $conv1 = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $this->getUser(), 'interlocuteur' => $usercible->getUsername()));
-                $conv2 = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $usercible, 'interlocuteur' => $this->getUser()->getUsername()));
+                if($usercible){
+                    $conv1 = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $this->getUser(), 'interlocuteur' => $usercible->getUsername()));
+                    $conv2 = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $usercible, 'interlocuteur' => $this->getUser()->getUsername()));
 
-                $msg1 = new Message();
-                $msg1->setAuteur($this->getUser());
-                $msg1->setContenu($msg);
-                $msg1->setDateMessage(new \DateTime());
-                $msg1->setIsRead(false);
+                    $msg1 = new Message();
+                    $msg1->setAuteur($this->getUser());
+                    $msg1->setContenu($msg);
+                    $msg1->setDateMessage(new \DateTime());
+                    $msg1->setIsRead(false);
 
-                $manager->persist($msg1);
+                    $manager->persist($msg1);
 
-                $msg2 = new Message();
-                $msg2->setAuteur($this->getUser());
-                $msg2->setContenu($msg);
-                $msg2->setDateMessage(new \DateTime());
-                $msg2->setIsRead(false);
+                    $msg2 = new Message();
+                    $msg2->setAuteur($this->getUser());
+                    $msg2->setContenu($msg);
+                    $msg2->setDateMessage(new \DateTime());
+                    $msg2->setIsRead(false);
 
-                $manager->persist($msg2);
+                    $manager->persist($msg2);
 
-                $conv1->addMessage($msg1);
-                $conv2->addMessage($msg2);
+                    $conv1->addMessage($msg1);
+                    $conv2->addMessage($msg2);
 
-                $manager->persist($conv1);
-                $manager->persist($conv2);
+                    $manager->persist($conv1);
+                    $manager->persist($conv2);
 
-                $manager->flush();
+                    $manager->flush();
 
-                return $this->redirectToRoute('Conv.showconv', array('cible' => $usercible->getUsername()));
+                    return $this->redirectToRoute('Conv.showconv', array('cible' => $usercible->getUsername()));
 
 
+                }
             }
-        }
 
         return $this->render('conv/index.html.twig', [
             'form'=>$form->createView(),

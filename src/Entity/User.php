@@ -123,6 +123,16 @@ class User implements UserInterface
      */
     private $amis;
 
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $atoken;
+
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $rtoken;
+
 
 
     public function __construct()
@@ -605,6 +615,30 @@ class User implements UserInterface
         if ($this->amis->contains($ami)) {
             $this->amis->removeElement($ami);
         }
+
+        return $this;
+    }
+
+    public function getAtoken(): ?string
+    {
+        return $this->atoken;
+    }
+
+    public function setAtoken(?string $atoken): self
+    {
+        $this->atoken = $atoken;
+
+        return $this;
+    }
+
+    public function getRtoken(): ?string
+    {
+        return $this->rtoken;
+    }
+
+    public function setRtoken(?string $rtoken): self
+    {
+        $this->rtoken = $rtoken;
 
         return $this;
     }

@@ -9,12 +9,135 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello {{ me.display_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Tom/Documents/01SITES/musicmate/src/Controller/SpotifyController.php'|file_link(0) }}">src/Controller/SpotifyController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Tom/Documents/01SITES/musicmate/templates/spotify/index.html.twig'|file_link(0) }}">templates/spotify/index.html.twig</a></code></li>
-    </ul>
+
+    {{ dump(me) }}
+    {{ dump(current) }}
+
+    {{ form_start(form) }}
+    {{ form_widget(form.search,{'attr':{'class':'write_msg'}}) }}
+    <button class="msg_send_btn" type="submit" id="sendbtn">CHERCHER</button>
+    {{ form_end(form) }}
+
+    <img id="cover" src="">
+
+    <div id="time" ></div>
+
+    <a type="button" onclick="prev()" class="btn-floating btn-rounded btn-sm btn-info dropdown-toggle"><i class="fas fa-step-backward"></i></a>
+    <a type="button" id="action" onclick="action()" class="btn-floating btn-rounded btn-sm btn-green dropdown-toggle"><i class="fas fa-play"></i></a>
+    <a type="button" onclick="next()" class="btn-floating btn-rounded btn-sm btn-info dropdown-toggle"><i class="fas fa-step-forward"></i></a>
+
+
+
+    <div class="row" style="border: solid">
+        <div id="progress" class="red">
+            <br>
+        </div>
+    </div>
 </div>
+    <script type="text/javascript" src="{{  asset("bower_components/spotify-web-api-js/src/spotify-web-api.js") }}"></script>
+    <script>
+        var spotifyApi = new SpotifyWebApi();
+        spotifyApi.setAccessToken('{{ auth }}');
+        var track;
+        var currenttrack;
+        spotifyApi.getMyCurrentPlayingTrack().then(
+            function (data) {
+                track = data;
+                document.getElementById('cover').src = track['item']['album']['images'][1]['url'] ;
+                var title = track['item']['name'] + "  -  ";
+                track['item']['artists'].forEach((artist) => {
+                    title += artist['name'] + "  "
+                });
+                document.getElementById('time').innerHTML = title;
+            },
+            function (err) {
+                console.error(err);
+            }
+        );
+
+
+        window.setInterval(function(){
+            spotifyApi.getMyCurrentPlayingTrack().then(
+                function (data) {
+                    track = data;
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
+            var dif = (parseInt(track['progress_ms']) / parseInt(track['item']['duration_ms'])) * 100;
+            document.getElementById('progress').style.width = dif + '%';
+            if(track['progress_ms'] < 500){
+                reload();
+            }
+        }, 100);
+
+        function reload(){
+            spotifyApi.getMyCurrentPlayingTrack().then(
+                function (data) {
+                    track = data;
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
+            document.getElementById('cover').src = track['item']['album']['images'][1]['url'] ;
+            var title = track['item']['name'] + "  -  ";
+            track['item']['artists'].forEach((artist) => {
+                title += artist['name'] + "  "
+            });
+            document.getElementById('time').innerHTML = title;
+        }
+
+        function action() {
+            spotifyApi.getMyCurrentPlaybackState().then(
+                function (data) {
+                    currenttrack = data;
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
+            if (currenttrack['is_playing']) {
+                pause();
+                document.getElementById('action').innerHTML = '<i class="fas fa-play"></i>';
+            }
+            else{
+                play();
+                document.getElementById('action').innerHTML = '<i class="fas fa-pause"></i>';
+
+            }
+        }
+
+        function play() {
+            spotifyApi.play().then(
+                function (err) {
+                    console.error(err);
+                }
+            );
+        }
+
+        function pause() {
+            spotifyApi.pause().then(
+                function (err) {
+                    console.error(err);
+                }
+            );
+        }
+
+        function prev(){
+            spotifyApi.skipToPrevious().then(
+
+            );
+        }
+
+        function next(){
+            spotifyApi.skipToNext().then(
+
+            );
+        }
+
+    </script>
 {% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MusicMate - Recherche{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper text-center">
+        <h1>Résultat de votre recherche pour "{{ search }}"</h1>
+        <a href="{{ path('spotify') }}"><h5> Revenir à la page de recherche</h5></a>
+    </div>
+    <div class="container text-center align-content-center">
+        <div id="results" class="row text-center align-content-center justify-content-center align-self-center">
+
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript" src="{{  asset("bower_components/spotify-web-api-js/src/spotify-web-api.js") }}"></script>
+    <script>
+        var count = 0;
+        var spotifyApi = new SpotifyWebApi();
+        spotifyApi.setAccessToken('{{ auth }}');
+
+        spotifyApi.searchTracks('{{ search }}').then(
+            function (data) {
+                console.log('Search by "{{ search }}"', data);
+                var stock = "";
+                data['tracks']['items'].forEach((song) => {
+                    var current = song['uri'];
+                    var bis = current.replace('spotify:track:', '');
+                    stock += ' <div class="col-md-3" style="margin-right: 25px" ><iframe src="https://open.spotify.com/embed/track/' +  bis + '" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> &nbsp; </div>';
+                    count = data;
+                });
+                document.getElementById('results').innerHTML = stock ;
+                if(data['tracks']['items'].length == 0){
+                    document.getElementById('results').innerHTML = '<h4>Aucun résultat</h4>' ;
+                }
+            },
+            function (err) {
+                console.error(err);
+            },
+        );
+        setTimeout(() => { size(); }, 1000);
+
+        function size(){
+            var element = document.querySelector("body");
+            var height = element.offsetHeight;
+            if (height < window.innerHeight - 30) {
+                document.getElementById("footer").classList.add('stikybottom');
+            }
+            else{
+                document.getElementById("footer").classList.remove('stikybottom');
+            }
+        }
+
+    </script>
+{% endblock %}
