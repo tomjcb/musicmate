@@ -218,30 +218,5 @@
 
         }, false);
     </script>
-    <script type="text/javascript" src="{{  asset("bower_components/spotify-web-api-js/src/spotify-web-api.js") }}"></script>
-    <script>
-        var spotifyApi = new SpotifyWebApi();
-        spotifyApi.setAccessToken('BQBszFcyA5C6naP9mLPQhjmxhoI8ZAeVA-k-GpCvgGlLbQytnE3Ftu1iBHYIFDyjaeByv5ggeEwb5Ocl60GNiSuVDaPwqIAiPFELyIslg02ytWtuUI4Jde0jkXt12mVx_uxKzDy-q-UIEbEOQB4EdBb0CbVl23t3xULIeEvvtkjwKGS2gfoIrQ');
-
-        spotifyApi.searchTracks('{{ test }}').then(
-            function (data) {
-                console.log('Search by "Mirador"', data);
-                var p = data['tracks']['items'][0]['uri'];
-                var pbis = p.replace('spotify:track:', '');
-                var stock = "";
-                data['tracks']['items'].forEach((song) => {
-                    var current = song['uri'];
-                    var bis = current.replace('spotify:track:', '');
-                    stock += '<iframe src="https://open.spotify.com/embed/track/' +  bis + '" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
-                });
-                console.log(pbis);
-                console.log(data['tracks']['items'][0]['uri']);
-                document.getElementById('spotify-test').innerHTML = stock ;
-            },
-            function (err) {
-                console.error(err);
-            }
-        );
-    </script>
 {% endblock %}
 

@@ -153,6 +153,23 @@
                 </div>
 
 
+                <!-- FavGenres -->
+                <div class="md-form">
+                    {% if not form.favgenres.vars.valid %}
+                        {{ form_widget(form.favgenres,{'attr':{'class':'form-control is-invalid', 'id' : 'confirmpasswordInput' }}) }}
+                    {% else %}
+                        {{ form_widget(form.favgenres,{'attr':{'class':'form-control', 'id' : 'confirmpasswordInput' }}) }}
+                    {% endif %}
+                    <label for="{{ form.favgenres.vars.id }}">Genres de musiques favoris (facultatif)</label>
+                    {% if not form.favgenres.vars.valid %}
+                        <small id="erreurPassword" class="form-text text-muted mb-4 red-text">
+                            {{ form_errors(form.favgenres) }}
+                        </small>
+                    {% endif %}
+                    <i><h6 class="grey-text" style="font-size: 0.800rem;">Vous pouvez ajouter vos genres de musiques favoris, en les séparant par un point-virgule (Exemple : rock;metal;country;jazz ...)</h6></i>
+                </div>
+
+
                 <!-- Sign up button -->
                 <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" value="{{ form_row(form.submit,{'label':'S\'inscrire'}) }}
 

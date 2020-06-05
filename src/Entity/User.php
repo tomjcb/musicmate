@@ -133,6 +133,11 @@ class User implements UserInterface
      */
     private $rtoken;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $favgenres;
+
 
 
     public function __construct()
@@ -639,6 +644,18 @@ class User implements UserInterface
     public function setRtoken(?string $rtoken): self
     {
         $this->rtoken = $rtoken;
+
+        return $this;
+    }
+
+    public function getFavgenres(): ?string
+    {
+        return $this->favgenres;
+    }
+
+    public function setFavgenres(?string $favgenres): self
+    {
+        $this->favgenres = $favgenres;
 
         return $this;
     }

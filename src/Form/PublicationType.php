@@ -7,6 +7,7 @@ use App\Entity\Publication;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -29,6 +30,7 @@ class PublicationType extends AbstractType
                     new Length(array('min' => 2, 'minMessage' => 'Pas assez de caractères, 2 mini', 'max' => 100, 'maxMessage' => "Max. 100 caractères autorisés !")),
                 ),
             ))
+            ->add('songlinked', HiddenType::class, ['required'=>false])
             ->add('submit', SubmitType::class)
             ->getForm();
     }

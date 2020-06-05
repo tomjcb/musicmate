@@ -34,6 +34,7 @@ class GoogleUserType extends AbstractType
                     'value' => '',
                 ),
             ))
+            ->add('favgenres', TextType::class, ['required'=>false])
             ->add('submit', SubmitType::class)
             ->getForm();
     }

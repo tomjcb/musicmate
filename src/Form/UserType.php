@@ -54,6 +54,7 @@ class UserType extends AbstractType
                     new Length(array('min' => 2, 'minMessage' => 'Pas assez de caractères, 2 mini')),
                 ),
             ))
+            ->add('favgenres', TextType::class, ['required'=>false])
             ->add('submit', SubmitType::class)
             ->getForm()
         ;

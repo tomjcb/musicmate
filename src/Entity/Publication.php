@@ -55,6 +55,11 @@ class Publication
      */
     private $dislikes;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $songlinked;
+
 
     public function __construct()
     {
@@ -208,6 +213,18 @@ class Publication
                 $dislike->setPublication(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSonglinked(): ?string
+    {
+        return $this->songlinked;
+    }
+
+    public function setSonglinked(?string $songlinked): self
+    {
+        $this->songlinked = $songlinked;
 
         return $this;
     }

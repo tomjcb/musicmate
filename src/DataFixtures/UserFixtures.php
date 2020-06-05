@@ -29,12 +29,12 @@ class UserFixtures extends Fixture
 
     public function addUser(ObjectManager $manager){
         $Users=[
-            ['username'=>'admin','password'=>'admin','role'=>'ROLE_ADMIN','nom'=>'ADMIN','prenom'=>'Admin', 'confirmkey' => 12345645, 'confirmed' => 1],
-            ['username'=>'client','password'=>'client','role'=>'ROLE_USER','nom'=>'CLIENT','prenom'=>'Client', 'confirmkey' => 12345645, 'confirmed' => 0],
-            ['username'=>'mdupont','password'=>'user','role'=>'ROLE_USER','nom'=>'DUPONT','prenom'=>'Michel', 'confirmkey' => 12345645, 'confirmed' => 1],
-            ['username'=>'plaupretre','password'=>'user2','role'=>'ROLE_USER','nom'=>'LAUPRETRE','prenom'=>'Pascal', 'confirmkey' => 12345645, 'confirmed' => 1],
-            ['username'=>'ibort','password'=>'user3','role'=>'ROLE_USER','nom'=>'BORT','prenom'=>'Isabelle', 'confirmkey' => 12345645, 'confirmed' => 1],
-            ['username'=>'nharg','password'=>'user4','role'=>'ROLE_USER','nom'=>'HARG','prenom'=>'Noémie', 'confirmkey' => 12345645, 'confirmed' => 1]
+            ['username'=>'admin','password'=>'admin','role'=>'ROLE_ADMIN','nom'=>'ADMIN','prenom'=>'Admin', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => null],
+            ['username'=>'client','password'=>'client','role'=>'ROLE_USER','nom'=>'CLIENT','prenom'=>'Client', 'confirmkey' => 12345645, 'confirmed' => 0, 'favgenres' => null],
+            ['username'=>'mdupont','password'=>'user','role'=>'ROLE_USER','nom'=>'DUPONT','prenom'=>'Michel', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'rock;metal;country'],
+            ['username'=>'plaupretre','password'=>'user2','role'=>'ROLE_USER','nom'=>'LAUPRETRE','prenom'=>'Pascal', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'EDM;dubstep'],
+            ['username'=>'ibort','password'=>'user3','role'=>'ROLE_USER','nom'=>'BORT','prenom'=>'Isabelle', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'classique'],
+            ['username'=>'nharg','password'=>'user4','role'=>'ROLE_USER','nom'=>'HARG','prenom'=>'Noémie', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'orchestral;classique']
         ];
 
         foreach ($Users as $User){
@@ -51,6 +51,7 @@ class UserFixtures extends Fixture
             $new_User->setConfirmKey($User['confirmkey']);
             $new_User->setComfirmed($User['confirmed']);
             $new_User->setMail("example@email.fr");
+            $new_User->setFavgenres($User['favgenres']);
 
             //echo $new_User;
             $manager->persist($new_User);

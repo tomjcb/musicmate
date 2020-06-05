@@ -33,6 +33,72 @@
                                 {% endif %}
                             </div>
 
+                            <div class="md-form">
+                                <input type="text" class="form-control" id="searchSong" onkeyup="search(this)">
+                                <label for="searchSong">Chercher une musique</label>
+                                <i><h6 class="grey-text" style="font-size: 0.800rem;">Vous pouvez ajouter une musique à votre publication, en la cherchant et en cliquant dessus</h6></i>
+                            </div>
+
+
+                            <div id="namesong"></div>
+
+                            <div id="results" class="md-form mt-0" style="max-height: 200px; overflow-y: scroll"></div>
+                            <script type="text/javascript" src="{{  asset("bower_components/spotify-web-api-js/src/spotify-web-api.js") }}"></script>
+                            <script>
+                                var count = 0;
+                                var spotifyApi = new SpotifyWebApi();
+                                spotifyApi.setAccessToken('{{ user.atoken }}');
+                                function search(ele){
+                                    var stock = "";
+
+                                    spotifyApi.searchTracks(ele.value).then(
+                                        function (data) {
+
+                                            data['tracks']['items'].forEach((song) => {
+                                                var current = song['uri'];
+                                                var bis = current.replace('spotify:track:', '');
+                                                var name = song['name'] + "  -  ";
+                                                song['artists'].forEach((artist) => {
+                                                    name += artist['name'] + "  "
+                                                });
+                                                stock += ' <a onclick=\"test(\'' + bis +'\',\''+ name +'\');\" ><iframe style="margin-bottom: 10px" src="https://open.spotify.com/embed/track/' +  bis + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></a>';
+                                                count = data;
+                                            });
+                                            document.getElementById('results').innerHTML = stock ;
+                                            if(data['tracks']['items'].length == 0){
+                                                document.getElementById('results').innerHTML = '<h4>Aucun résultat</h4>' ;
+                                            }
+                                        },
+                                        function (err) {
+                                            console.error(err);
+                                        },
+                                    );
+                                    if(ele.value === ""){
+                                        document.getElementById('results').innerHTML = '';
+                                    }
+                                    setTimeout(() => { size(); }, 1000);
+
+
+                                }
+                                function size(){
+                                    var element = document.querySelector("body");
+                                    var height = element.offsetHeight;
+                                    if (height < window.innerHeight - 30) {
+                                        document.getElementById("footer").classList.add('stikybottom');
+                                    }
+                                    else{
+                                        document.getElementById("footer").classList.remove('stikybottom');
+                                    }
+                                }
+
+                                function test(embed, name){
+                                    document.getElementById('{{ form.songlinked.vars.id }}').value = embed;
+                                    document.getElementById('namesong').innerHTML = 'Musique choisie : ' +  name;
+                                }
+
+
+                            </script>
+
                             <!-- Envoyer -->
                             <button class="btn blue-gradient btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" value="{{ form_row(form.submit,{'label':'Envoyer'}) }}
 
