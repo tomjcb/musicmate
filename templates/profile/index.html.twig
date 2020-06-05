@@ -28,7 +28,7 @@
                     <!-- Section: Basic Info -->
                     <section class="card profile-card mb-4 text-center">
                         <div class="avatar z-depth-1-half">
-                            <img src="https://cdn.onlinewebfonts.com/svg/img_258083.png" alt="" class="img-fluid">
+                            <img src="{{ asset("images/defaultpp.png") }}" alt="" class="img-fluid">
                         </div>
                         <!-- Card content -->
                         <div class="card-body">
@@ -159,9 +159,9 @@
                                             <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o"></i> {{ "now"|date("d/m/Y") }}</li>
                                             <li class="list-inline-item pr-2"><a href="#" class="white-text"><i
                                                             class="fa fa-comments pr-1"></i>0</a></li>
-                                            <li class="list-inline-item pr-2 white-text"><a href="{{ path('User.like', {idpubli: publication.id}) }}" class="{% if isliked == 1 %} blue-text {% else %} white-text {% endif %}" ><i class="fa fa-thumbs-o-up pr-1">
+                                            <li class="list-inline-item pr-2 white-text"><a href="{{ path('User.like', {idpubli: publication.id, profile: profileuser.username}) }}" class="{% if isliked == 1 %} blue-text {% else %} white-text {% endif %}" ><i class="fa fa-thumbs-o-up pr-1">
                                                     </i></a>{{ publication.likes|length }}</li>
-                                            <li class="list-inline-item white-text"><a href="{{ path('User.dislike', {idpubli: publication.id}) }}" class="{% if isdisliked == 1 %} red-text {% else %} white-text {% endif %}"><i class="fa fa-thumbs-o-down pr-1"> </i></a>{{ publication.dislikes|length }}</li>
+                                            <li class="list-inline-item white-text"><a href="{{ path('User.dislike', {idpubli: publication.id, profile: profileuser.username}) }}" class="{% if isdisliked == 1 %} red-text {% else %} white-text {% endif %}"><i class="fa fa-thumbs-o-down pr-1"> </i></a>{{ publication.dislikes|length }}</li>
                                         </ul>
                                     </div>
 

@@ -20,9 +20,9 @@ class ReactionController extends AbstractController
 {
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/user/like/{idpubli}", name="User.like")
+     * @Route("/user/like/{idpubli}/{profile}", name="User.like")
      */
-    public function like(ManagerRegistry $doctrine, $idpubli = null)
+    public function like(ManagerRegistry $doctrine, $idpubli = null, $profile = null)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $publication = $doctrine->getRepository(Publication::class)->findOneBy(['id' => $idpubli]);
@@ -51,14 +51,17 @@ class ReactionController extends AbstractController
                 $entityManager->flush();
             }
         }
+        if($profile != null){
+            return $this->redirectToRoute('User.profil', array('userName' => $profile));
+        }
         return $this->redirectToRoute("Index.index");
     }
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/user/dislike/{idpubli}", name="User.dislike")
+     * @Route("/user/dislike/{idpubli}/{profile}", name="User.dislike")
      */
-    public function dislike(ManagerRegistry $doctrine, $idpubli = null)
+    public function dislike(ManagerRegistry $doctrine, $idpubli = null, $profile = null)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $publication = $doctrine->getRepository(Publication::class)->findOneBy(['id' => $idpubli]);
@@ -86,6 +89,9 @@ class ReactionController extends AbstractController
                 $publication->setNbDislikes($publication->getNbDislikes()-1);
                 $entityManager->flush();
             }
+        }
+        if($profile != null){
+            return $this->redirectToRoute('User.profil', array('userName' => $profile));
         }
         return $this->redirectToRoute("Index.index");
     }

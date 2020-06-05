@@ -131,6 +131,7 @@
                             <div class="dropdown-menu dropdown-info">
                                 <a class="dropdown-item" href="{{ path('Index.index') }}">Accueil</a>
                                 <a class="dropdown-item" href="{{ path('User.profil', {userName: user.username}) }}">Mon profil</a>
+                                <a class="dropdown-item" href="{{ path('User.showFriends') }}">Mes amis</a>
                                 <a class="dropdown-item" href="{{ path('User.publication') }}">Publier</a>
                                 <div class="dropdown-divider"></div>
                                 <button class="btn young-passion-gradient" onclick="location.href='{{ path('app_logout') }}';">

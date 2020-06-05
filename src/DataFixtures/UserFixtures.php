@@ -24,6 +24,7 @@ class UserFixtures extends Fixture
         $this->addUser($manager);
         $this->addPublication($manager);
         $this->createConv($manager);
+        $this->addAmis($manager);
         $manager->flush();
     }
 
@@ -34,7 +35,8 @@ class UserFixtures extends Fixture
             ['username'=>'mdupont','password'=>'user','role'=>'ROLE_USER','nom'=>'DUPONT','prenom'=>'Michel', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'rock;metal;country'],
             ['username'=>'plaupretre','password'=>'user2','role'=>'ROLE_USER','nom'=>'LAUPRETRE','prenom'=>'Pascal', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'EDM;dubstep'],
             ['username'=>'ibort','password'=>'user3','role'=>'ROLE_USER','nom'=>'BORT','prenom'=>'Isabelle', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'classique'],
-            ['username'=>'nharg','password'=>'user4','role'=>'ROLE_USER','nom'=>'HARG','prenom'=>'Noémie', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'orchestral;classique']
+            ['username'=>'nharg','password'=>'user4','role'=>'ROLE_USER','nom'=>'HARG','prenom'=>'Noémie', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'orchestral;classique'],
+            ['username'=>'ebigre','password'=>'user5','role'=>'ROLE_USER','nom'=>'BIGRE','prenom'=>'Edouard', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'RnB;Hip-Hop']
         ];
 
         foreach ($Users as $User){
@@ -139,5 +141,17 @@ class UserFixtures extends Fixture
         $manager->persist($user);
 
 
+    }
+
+    public function addAmis(ObjectManager $manager){
+        $dupont = $manager->getRepository(User::class)->findOneBy(['username' => 'mdupont']);
+        $harg = $manager->getRepository(User::class)->findOneBy(['username' => 'nharg']);
+        $bigre = $manager->getRepository(User::class)->findOneBy(['username' => 'ebigre']);
+
+        $dupont->addAmi($harg);
+        $harg->addAmi($dupont);
+
+        $dupont->addAmi($bigre);
+        $bigre->addAmi($dupont);
     }
 }

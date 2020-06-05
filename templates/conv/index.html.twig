@@ -69,7 +69,7 @@
                                         {% endif %}
                                         ">
                                             <div class="chat_people">
-                                                <div class="chat_img"> <img src="https://cdn.onlinewebfonts.com/svg/img_258083.png" alt="sunil"> </div>
+                                                <div class="chat_img"> <img src="{{ asset("images/defaultpp.png") }}" alt="sunil"> </div>
                                                 <div class="chat_ib">
                                                     <a href="{{ path('Conv.showconv', {cible: soloconv.interlocuteur}) }}">
                                                         <h5>{{ soloconv.interlocuteur }} {% if count > 0 %} <span class="badge badge-info rounded ml-2">{{ count }}</span> {% endif %}
@@ -91,7 +91,18 @@
 
                                     </div>
                                 </div>
+
                                 <div class="mesgs">
+                                    {% if conv is defined %}
+                                    <div class="row" style="background-color: #e3e3e3; padding-top: 10px; padding-bottom: 10px; margin-left: -25px">
+                                        <div class="col-md-4">
+                                            <img src="{{ asset("images/defaultpp.png") }}" style="max-height: 75px; max-width: 75px;" alt="sunil">
+                                        </div>
+                                        <div class="col-md-8 align-content-center justify-content-center align-self-center">
+                                            <h3>{{  conv.interlocuteur }}</h3>
+                                        </div>
+                                    </div>
+                                    {% endif %}
                                     <div class="msg_history" id="history">
                                         {% if active is defined and active == 1 %}
                                         {% for message in conv.messages %}
@@ -111,6 +122,8 @@
                                                     </div>
                                                 </div>
                                             {% endif %}
+                                        {% else %}
+                                            <div class="align-self-center"> Vous n'avez pas de messages dans cette conversation. Envoyez le premier !</div>
                                         {% endfor %}
                                         {% endif %}
                                     </div>

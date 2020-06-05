@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row first-content">
+        <div class="container content">
+            <div class="row">
+                <h1 class="first-title">Vos amis</h1>
+
+            </div>
+
+            <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
+
+            </div>
+
+            <div class="row">
+                <div class="form-signin col-md-6 offset-3"  style="text-align: center;">
+
+                    {% if user.amis|length == 0 %}
+                        <i><h2 class="grey-text">Pas d'amis</h2></i>
+                    {% endif %}
+                    {% for ami in user.amis %}
+                        <!-- Section: Basic Info -->
+                        <section class="card profile-card mb-4 text-center">
+                            <div class="avatar z-depth-1-half">
+                                <img src="{{ asset("images/defaultpp.png") }}" alt="" class="img-fluid">
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body">
+                                <!-- Title -->
+                                <h4 class="card-title"><strong>{{ ami.prenom }} {{ ami.nom }}</strong></h4>
+
+                                <p class="dark-grey-text">{{ ami.username }}</p>
+
+                                <br>
+
+                                <a type="button" class="btn btn-fb white-text btn-rounded btn-sm waves-effect" href="{{ path('User.profil', {userName: ami.username}) }}">Voir profil</a>
+                                <a type="button" class="btn btn-green dark-text btn-rounded btn-sm waves-effect" href="{{ path('Conv.createconv', {cible: ami.username}) }}">Envoyer un message</a>
+                                <a type="button" class="btn btn-danger white-text btn-rounded btn-sm waves-effect" href="{{ path('User.deleteFriend', {username: ami.username}) }}">Supprimer l'ami</a>
+                            </div>
+
+                        </section>
+                        <!-- Section: Basic Info -->
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

@@ -52,7 +52,15 @@
                         {% elseif signalement.etat == "Clôt" %}
                             <td><span class="badge green">{{ signalement.etat }}</span></td>
                         {% endif %}
-                        <td class="gray-text">{{ signalement.auteur.username }}</td>
+                        <td class="dropdown">
+                            <a class="dropdown-toggle gray-text" type="button" id="dropdownMenu{{ signalement.id }}sign" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false"  title="Actions sur l'utilisateur">{{ signalement.auteur.username }}</a>
+
+                            <div class="dropdown-menu dropdown-info">
+                                <a class="dropdown-item" href="{{ path('User.profil', {userName: signalement.publication.auteur.username}) }}">Voir le profil</a>
+                                <a class="dropdown-item" href="{{ path('Conv.createconv', {cible: signalement.auteur.username}) }}">Envoyer un message</a>
+                            </div>
+                        </td>
                         <td>{{ signalement.message }}</td>
                         <td>{{ signalement.datesignalement|date("d/m/Y | H:i:s") }}</td>
                         <td><a href="{{ path('User.showPublication', {idpubli: signalement.publication.id}) }}" class="btn-rounded btn-sm btn-info"><B>Voir Publication</B></a></td>
@@ -63,6 +71,7 @@
                             <div class="dropdown-menu dropdown-warning">
                                 <a class="dropdown-item" href="{{ path('User.profil', {userName: signalement.publication.auteur.username}) }}">Voir le profil</a>
                                 <a class="dropdown-item" href="{{ path('Admin.ban', {iduser: signalement.publication.auteur.id}) }}">Bannir l'utilisateur</a>
+                                <a class="dropdown-item" href="{{ path('Conv.createconv', {cible: signalement.publication.auteur.username}) }}">Envoyer un message</a>
                             </div>
                         </td>
 
