@@ -133,7 +133,7 @@
 
                                         <hr>
                                         <!-- Text -->
-                                        <p class="card-text">{{ publication.contenu }}</p>
+                                        <p class="card-text">{{ publication.contenu|nl2br }}</p>
 
                                         {% if publication.songlinked is not null %}
                                             <iframe style="margin-bottom: 10px" src="https://open.spotify.com/embed/track/{{ publication.songlinked }}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>

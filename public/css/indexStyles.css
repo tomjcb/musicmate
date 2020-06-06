@@ -242,7 +242,8 @@ img{ max-width:100%;}
     background: #f8f8f8 none repeat scroll 0 0;
     float: left;
     overflow: hidden;
-    width: 40%; border-right:1px solid #c4c4c4;
+    width: 40%;
+    border-right:1px solid #c4c4c4;
 }
 .inbox_msg {
     border: 1px solid #c4c4c4;
@@ -294,7 +295,7 @@ img{ max-width:100%;}
     margin: 0;
     padding: 18px 16px 10px;
 }
-.inbox_chat { height: 610px; overflow-y: scroll;}
+.inbox_chat { height: 620px; overflow-y: scroll;}
 
 .active_chat{ background:#ebebeb;}
 
@@ -352,7 +353,10 @@ img{ max-width:100%;}
     width: 100%;
 }
 
-.type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+.type_msg {
+
+    position: relative;
+}
 .msg_send_btn {
     background: #4cbb85 none repeat scroll 0 0;
     border: medium none;
@@ -370,4 +374,28 @@ img{ max-width:100%;}
 .msg_history {
     height: 516px;
     overflow-y: auto;
+    border-bottom: 1px solid #c4c4c4;
+    margin-bottom: 10px;
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+                                        Commentaires
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+.comment-wrapper .panel-body {
+    max-height:650px;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:3px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:3px solid #efefef;
+    padding-bottom:15px;
+    padding-top: 10px;
 }

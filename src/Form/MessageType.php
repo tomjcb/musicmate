@@ -27,7 +27,7 @@ class MessageType extends AbstractType
     {
 
         $builder
-            ->add('motif', TextType::class, array(
+            ->add('motif', TextareType::class, array(
                 'constraints' => array(
                     new Length(array('min' => 2, 'minMessage' => 'Pas assez de caractères, 2 mini', 'max' => 100, 'maxMessage' => "Max. 100 caractères autorisés !")),
                 ),

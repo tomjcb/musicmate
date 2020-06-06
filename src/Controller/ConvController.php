@@ -8,6 +8,7 @@ use App\Entity\Message;
 use App\Entity\Publication;
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
@@ -92,8 +93,8 @@ class ConvController extends AbstractController
 
         $defaultData = ['message' => ''];
         $form = $this->createFormBuilder($defaultData)
-            ->add('message', TextType::class, [
-                'attr' => ['placeholder' => 'Ecrivez votre message', 'autocomplete' => 'off'],
+            ->add('message', TextareaType::class, [
+                'attr' => ['placeholder' => 'Ecrivez votre message', 'autocomplete' => 'off', 'style' => 'width: 92%; float:left;', 'rows' => 2],
             ])
             ->getForm();
 

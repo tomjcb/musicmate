@@ -60,6 +60,11 @@ class Publication
      */
     private $songlinked;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="publication", orphanRemoval=true)
+     */
+    private $commentaires;
+
 
     public function __construct()
     {
@@ -69,6 +74,7 @@ class Publication
         $this->userlikes = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->dislikes = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -225,6 +231,37 @@ class Publication
     public function setSonglinked(?string $songlinked): self
     {
         $this->songlinked = $songlinked;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setPublication($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getPublication() === $this) {
+                $commentaire->setPublication(null);
+            }
+        }
 
         return $this;
     }

@@ -5,10 +5,7 @@
 <div class="row">
     <div class="container content">
         <div class="row">
-            <h1 class="first-title">Bienvenue sur votre fil d'actualité  {{ user.username }}</h1>
-        </div>
-        <div class="row">
-            <h5 class="first-title"> Vous retrouverez ici différentes publications</h5>
+            <h1 class="first-title">Publication</h1>
         </div>
 
         <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
@@ -52,7 +49,11 @@
 
                                 <hr>
                                 <!-- Text -->
-                                <p class="card-text">{{ publication.contenu }}</p>
+                                <p class="card-text">{{ publication.contenu|nl2br }}</p>
+
+                                {% if publication.songlinked is not null %}
+                                    <iframe style="margin-bottom: 10px" src="https://open.spotify.com/embed/track/{{ publication.songlinked }}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                {% endif %}
 
                             </div>
                             {% set isliked = 0 %}
@@ -73,14 +74,70 @@
                                 <ul class="list-unstyled list-inline font-small">
                                     <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o"></i> {{ "now"|date("d/m/Y") }}</li>
                                     <li class="list-inline-item pr-2"><a href="#" class="white-text"><i
-                                                    class="fa fa-comments pr-1"></i>0</a></li>
+                                                    class="fa fa-comments pr-1"></i>{{ publication.commentaires|length }}</a></li>
                                     <li class="list-inline-item pr-2 white-text"><a href="{{ path('User.like', {idpubli: publication.id}) }}" class="{% if isliked == 1 %} blue-text {% else %} white-text {% endif %}" ><i class="fa fa-thumbs-o-up pr-1">
                                             </i></a>{{ publication.likes|length }}</li>
                                     <li class="list-inline-item white-text"><a href="{{ path('User.dislike', {idpubli: publication.id}) }}" class="{% if isdisliked == 1 %} red-text {% else %} white-text {% endif %}"><i class="fa fa-thumbs-o-down pr-1"> </i></a>{{ publication.dislikes|length }}</li>
                                 </ul>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-12 col-md-offset-2 col-sm-12">
+                                    <div class="comment-wrapper">
+                                        <div class="panel panel-info">
+                                            <div class="panel-body">
+                                                <div class="clearfix"></div>
+                                                <hr style="margin-top: 5px; margin-bottom: 5px">
+                                                <ul id="comments" class="media-list" style="max-height: 380px; overflow-y: scroll;">
+
+                                                {% for commentaire in publication.commentaires %}
+                                                    <div class="dropdown">
+                                                        <a class="text-info" id="dropdownMenu{{ commentaire.id }}" data-toggle="dropdown"
+                                                           aria-haspopup="true" aria-expanded="false" style="z-index: 10; top: 0;right: 0; float: right; margin: 0; margin-right: 15px;"><i class="fas fa-angle-down"></i></a>
+                                                        <div class="dropdown-menu dropdown-default">
+                                                            {% if user.id == commentaire.user.id or is_granted('ROLE_ADMIN') or user.id == publication.auteur.id %}
+                                                                <a class="dropdown-item" href="{{ path('User.deleteCom', {idpubli: publication.id, idcom: commentaire.id}) }}">Supprimer le commentaire</a>
+                                                            {% endif %}
+                                                                <a class="dropdown-item" href="{{ path('User.signalement', {idpubli: publication.id}) }}">Signaler le comentaire</a>
+                                                        </div>
+                                                    </div>
+                                                    <li class="media">
+
+                                                        <a href="#" class="pull-left">
+                                                            <img src="{{ asset('images/defaultpp.png') }}" alt="" class="rounded-circle z-depth-1-half">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <strong class="text-default">{{ commentaire.user.prenom }} {{ commentaire.user.nom }}</strong>
+                                                            <h6>
+                                                                {{ commentaire.contenu|nl2br }}
+                                                            </h6>
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">30 min ago</small>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row align-content-center justify-content-center" style="padding-bottom: 10px">
+                                <div class="col-md-9 align-content-center justify-content-center align-self-center">
+                                    {{ form_start(form) }}
+                                    {{ form_widget(form.contenu,{'attr':{}}) }}
+                                </div>
+                                <div class="col-md-2">
+                                    <a type="button" class="btn-floating btn-default btn-sm" onclick="document.getElementsByName('form')[0].submit();" ><i class="fas fa-paper-plane"></i></a>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+
                         </div>
+
+
 
                         <br><br>
                 {% endif %}
@@ -89,5 +146,10 @@
         </div>
     </div>
 </div>
+
+    <script>
+        var element = document.getElementById("comments");
+        element.scrollTop = element.scrollHeight;
+    </script>
 
 {% endblock %}

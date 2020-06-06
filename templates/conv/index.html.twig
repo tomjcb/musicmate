@@ -109,7 +109,7 @@
                                             {% if message.auteur.username == user.username %}
                                                 <div class="outgoing_msg">
                                                     <div class="sent_msg">
-                                                        <p>{{ message.contenu }}</p>
+                                                        <p>{{ message.contenu|nl2br }}</p>
                                                         <span class="time_date"> {{ message.datemessage|date("H:i | d/m/Y") }}</span> </div>
                                                 </div>
                                             {% else %}
@@ -117,7 +117,7 @@
                                                     <div class="incoming_msg_img"> <img src="https://cdn.onlinewebfonts.com/svg/img_258083.png" alt="sunil"> </div>
                                                     <div class="received_msg">
                                                         <div class="received_withd_msg">
-                                                            <p>{{ message.contenu }}</p>
+                                                            <p>{{ message.contenu|nl2br }}</p>
                                                             <span class="time_date"> {{ message.datemessage|date("H:i | d/m/Y") }}</span></div>
                                                     </div>
                                                 </div>

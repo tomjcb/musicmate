@@ -46,4 +46,13 @@ class IndexController extends AbstractController
         }
 
     }
+
+    /**
+     * @Route("/faq", name="Index.faq")
+     */
+    public function faq(){
+        return $this->render('faq/index.html.twig', [
+
+        ]);
+    }
 }
