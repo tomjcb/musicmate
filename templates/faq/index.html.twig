@@ -38,7 +38,21 @@
                 min-height: 550px;
             }
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        html {
+            scroll-padding-top: 90px; /* height of sticky header */
+        }
+
+
     </style>
+    <script>
+        var shiftWindow = function() { scrollBy(0, -50) };
+        if (location.hash) shiftWindow();
+        window.addEventListener("hashchange", shiftWindow);
+    </script>
 
     <header>
     <!-- Intro Section -->
@@ -96,10 +110,9 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.5s" aria-hidden="true"></i>
-                                <strong>How to create an account?</strong>
+                                <strong>Le site est-il facile d'accès?</strong>
                             </p>
-                            <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                nesciunt sapiente earu proident.
+                            <p class="grey-text font-small mx-4">Oui ! L'inscription classique est rapide, et si vous ne trouvez pas ça assez rapide, vous pouvez également vous inscrire avec Google / Facebook
                             </p>
                         </div>
                         <!-- Panel -->
@@ -114,10 +127,9 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.6s" aria-hidden="true"></i>
-                                <strong>Is it mobile friendly?</strong>
+                                <strong>Dois-je avoir certains goûts musicaux?</strong>
                             </p>
-                            <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                nesciunt sapiente earu proident.
+                            <p class="grey-text font-small mx-4">MusicMate est une plateforme communautaire, il n'y a pas de barrière, et il y a de la place pour les goûts et les couleurs de tout le monde !
                             </p>
                         </div>
                         <!-- Panel -->
@@ -132,10 +144,10 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.7s" aria-hidden="true"></i>
-                                <strong>Is it bootstrap based?</strong>
+                                <strong>J'ai peur de ne pas m'y retrouver</strong>
                             </p>
-                            <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                nesciunt sapiente earu proident.
+                            <p class="grey-text font-small mx-4">Pas d'inquiétudes, MusicMate est basé sur les codes de la plupart des réseaux sociaux, afin que ce dernier soit utilisable par la majorité. <br>
+                                (Et si tout de même il a des éléments que vous ne comprenez pas, allez voir la section <a href="#qea">Questions/Réponses</a> )
                             </p>
                         </div>
                         <!-- Panel -->
@@ -156,7 +168,7 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.5s" aria-hidden="true"></i>
-                                <strong>How to cancel a plan?</strong>
+                                <strong>Question 4</strong>
                             </p>
                             <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
                                 nesciunt sapiente earu proident.
@@ -174,7 +186,7 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.6s" aria-hidden="true"></i>
-                                <strong>How to change theme color?</strong>
+                                <strong>Question 5</strong>
                             </p>
                             <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
                                 nesciunt sapiente earu proident.
@@ -192,7 +204,7 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.7s" aria-hidden="true"></i>
-                                <strong>Place your question here?</strong>
+                                <strong>Question 6</strong>
                             </p>
                             <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
                                 nesciunt sapiente earu proident.
@@ -215,10 +227,24 @@
             <section class="mt-3 pt-1 pb-5 mb-5">
 
                 <!-- Section heading -->
-                <h3 class="text-center title my-5 pb-5 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
-                    <strong>Question with collapse</strong>
+                <h3 id="qea" class=" text-center title my-5  dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                    <strong>Questions / Réponses</strong>
                 </h3>
 
+                <h3 class="text-center dark-grey-text wow fadeIn" data-wow-delay="0.3s"> Sommaire :</h3>
+                <br>
+                <div class="text-center">
+                    <a href="#inscription"><h5>Inscription</h5></a>
+                    <a><h5>Publication</h5></a>
+                    <a><h5>Commentaires</h5></a>
+                    <a><h5>Mon Profil</h5></a>
+                </div>
+
+                <br><br><br>
+
+                <h4 id="inscription" class="text-center title dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                    <strong>Inscription</strong>
+                </h4>
                 <!-- Grid row -->
                 <div class="row d-flex justify-content-center">
 
@@ -232,28 +258,33 @@
                             <div class="card border-0">
 
                                 <!-- Card header -->
-                                <div class="card-header indigo lighten-2 z-depth-1 mb-1" role="tab" id="heading1">
-                                    <a data-toggle="collapse" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading10">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse10" aria-expanded="false" aria-controls="collapse10">
                                         <h5 class="mb-0 white-text">
-                                            #1 Lorem ipsum dolor sit?
+                                            Comment s'inscrire ?
                                             <i class="fas fa-angle-down rotate-icon"></i>
                                         </h5>
                                     </a>
                                 </div>
 
                                 <!-- Card body -->
-                                <div id="collapse1" class="collapse show" role="tabpanel" aria-labelledby="heading1"
+                                <div id="collapse10" class="collapse" role="tabpanel" aria-labelledby="heading10"
                                      data-parent="#accordionEx7">
-                                    <div class="card-body mb-1 rgba-indigo-slight white-text">
-                                        <p class="dark-grey-text">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                            richardson
-                                            ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food
-                                            truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
-                                            put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil
-                                            anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente
-                                            ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-                                            farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
-                                            of them accusamus labore sustainable.
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/inscription/img1.JPG') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Il suffit de cliquer sur le bouton <a class="btn btn-pastelprimary btn-sm my-2 my-sm-0 " ><i class="fa fa-user-plus"></i>Créer un compte</a>. <br>
+                                            Ensuite, plusieurs options s'offrent à vous.
+                                            <br>
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/inscription/img2.JPG') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Vous pouvez vous inscrire via un formulaire classique, ou pour encore plus de simplicité, vous pouvez vous inscrire via Facebook ou Google
+                                            <br>
+
                                         </p>
                                     </div>
                                 </div>
@@ -264,27 +295,30 @@
                             <div class="card border-0">
 
                                 <!-- Card header -->
-                                <div class="card-header indigo lighten-2 z-depth-1 mb-1" role="tab" id="heading2">
-                                    <a class="collapsed" data-toggle="collapse" href="#collapse2" aria-expanded="false"
-                                       aria-controls="collapse2">
+                                <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading11">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse11" aria-expanded="false"
+                                       aria-controls="collapse11">
                                         <h5 class="mb-0 white-text">
-                                            #2 Nihil anim keffiyeh helvetica?
+                                            Inscription par Facebook ?
                                             <i class="fas fa-angle-down rotate-icon"></i>
                                         </h5>
                                     </a>
                                 </div>
 
                                 <!-- Card body -->
-                                <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="heading2"
+                                <div id="collapse11" class="collapse" role="tabpanel" aria-labelledby="heading11"
                                      data-parent="#accordionEx7">
-                                    <div class="card-body mb-1 rgba-indigo-slight white-text">
-                                        <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt
-                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                            mollit anim id est laborum.</p>
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/inscription/img3.JPG') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il vous suffit de cliquer sur le petit bouton <a class="btn-floating btn-fb btn-sm"><i class="fa fa-facebook-f"></i></a>. <br>
+                                            Ensuite vous serez redirigé sur la page Facebook, afin de saisir vos identifiants de connection. <br>
+                                            Une fois cette action effectuée, il vous restera une dernière étape :
+                                        </p>
+                                        <img src="{{ asset('images/screens/inscription/img4.JPG') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Félicitations ! Vous faites maintenant parti de nos membres grâce à votre inscription par Facebook !
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -294,29 +328,155 @@
                             <div class="card border-0">
 
                                 <!-- Card header -->
-                                <div class="card-header indigo lighten-2 z-depth-1 mb-1" role="tab" id="heading3">
-                                    <a class="collapsed" data-toggle="collapse" href="#collapse3" aria-expanded="false"
-                                       aria-controls="collapse3">
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading12">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse12" aria-expanded="false"
+                                       aria-controls="collapse12">
                                         <h5 class="mb-0 white-text">
-                                            #3 Ut enim ad minim veniam, quis?
+                                            Inscription par Google ?
                                             <i class="fas fa-angle-down rotate-icon"></i>
                                         </h5>
                                     </a>
                                 </div>
 
                                 <!-- Card body -->
-                                <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="heading3"
+                                <div id="collapse12" class="collapse" role="tabpanel" aria-labelledby="heading12"
                                      data-parent="#accordionEx7">
-                                    <div class="card-body mb-1 rgba-indigo-slight white-text">
-                                        <p class="dark-grey-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                            doloremque
-                                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-                                            quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
-                                            quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
-                                            dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-                                            qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-                                            non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                            voluptatem.
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/inscription/img3.JPG') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il vous suffit de cliquer sur le petit bouton <a class="btn-floating btn-red btn-sm"><i class="fa fa-google"></i></a>. <br>
+                                            Ensuite vous serez redirigé sur la page Google, afin de saisir vos identifiants de connection. <br>
+                                            Une fois cette action effectuée, il vous restera une dernière étape :
+                                        </p>
+                                        <img src="{{ asset('images/screens/inscription/img5.JPG') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Félicitations ! Vous faites maintenant parti de nos membres grâce à votre inscription par Google !
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                        </div>
+                        <!-- Accordion wrapper -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+                <br><br><br>
+
+                <h4 id="inscription" class="text-center title dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                    <strong>Publication</strong>
+                </h4>
+                <!-- Grid row -->
+                <div class="row d-flex justify-content-center">
+
+                    <!-- Grid column -->
+                    <div class="col-md-10 col-xl-8">
+
+                        <!-- Accordion wrapper -->
+                        <div class="accordion md-accordion" id="accordionEx70" role="tablist" aria-multiselectable="true">
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading20">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse20" aria-expanded="false" aria-controls="collapse20">
+                                        <h5 class="mb-0 white-text">
+                                            Comment s'inscrire ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse20" class="collapse" role="tabpanel" aria-labelledby="heading20"
+                                     data-parent="#accordionEx70">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/inscription/img1.JPG') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Il suffit de cliquer sur le bouton <a class="btn btn-pastelprimary btn-sm my-2 my-sm-0 " ><i class="fa fa-user-plus"></i>Créer un compte</a>. <br>
+                                            Ensuite, plusieurs options s'offrent à vous.
+                                            <br>
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/inscription/img2.JPG') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Vous pouvez vous inscrire via un formulaire classique, ou pour encore plus de simplicité, vous pouvez vous inscrire via Facebook ou Google
+                                            <br>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading21">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse21" aria-expanded="false"
+                                       aria-controls="collapse21">
+                                        <h5 class="mb-0 white-text">
+                                            Inscription par Facebook ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse21" class="collapse" role="tabpanel" aria-labelledby="heading21"
+                                     data-parent="#accordionEx70">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/inscription/img3.JPG') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il vous suffit de cliquer sur le petit bouton <a class="btn-floating btn-fb btn-sm"><i class="fa fa-facebook-f"></i></a>. <br>
+                                            Ensuite vous serez redirigé sur la page Facebook, afin de saisir vos identifiants de connection. <br>
+                                            Une fois cette action effectuée, il vous restera une dernière étape :
+                                        </p>
+                                        <img src="{{ asset('images/screens/inscription/img4.JPG') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Félicitations ! Vous faites maintenant parti de nos membres grâce à votre inscription par Facebook !
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading22">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse22" aria-expanded="false"
+                                       aria-controls="collapse22">
+                                        <h5 class="mb-0 white-text">
+                                            Inscription par Google ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse22" class="collapse" role="tabpanel" aria-labelledby="heading22"
+                                     data-parent="#accordionEx70">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/inscription/img3.JPG') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il vous suffit de cliquer sur le petit bouton <a class="btn-floating btn-red btn-sm"><i class="fa fa-google"></i></a>. <br>
+                                            Ensuite vous serez redirigé sur la page Google, afin de saisir vos identifiants de connection. <br>
+                                            Une fois cette action effectuée, il vous restera une dernière étape :
+                                        </p>
+                                        <img src="{{ asset('images/screens/inscription/img5.JPG') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Félicitations ! Vous faites maintenant parti de nos membres grâce à votre inscription par Google !
                                         </p>
                                     </div>
                                 </div>
@@ -334,6 +494,9 @@
 
             </section>
             <!-- Section: FAQ 2 -->
+            <button onclick="topFunction()" id="myBtn" class="btn-default" title="Retour au sommaire des Q&R">Retour au sommaire</button>
+
+
 
         </div>
         <!-- Second container -->
@@ -342,10 +505,34 @@
     <!-- Main content -->
 
     <script>
+        function resize(){
+            document.getElementById("footer").classList.remove('stikybottom');
+        }
         document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("footer").classList.remove('stikybottom');
 
         }, false);
+
+        window.onresize = resize;
+
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            console.log(document.body.scrollTop +" - " + document.documentElement.scrollTop);
+            if (document.documentElement.scrollTop > 1545) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            window.location.href = "#qea";
+        }
     </script>
 
 {% endblock %}
