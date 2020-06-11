@@ -168,10 +168,9 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.5s" aria-hidden="true"></i>
-                                <strong>Question 4</strong>
+                                <strong>L'accès est-il payant ?</strong>
                             </p>
-                            <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                nesciunt sapiente earu proident.
+                            <p class="grey-text font-small mx-4">Non ! L'inscription et l'intégralité du site est disponible, gratuitement.
                             </p>
                         </div>
                         <!-- Panel -->
@@ -186,10 +185,9 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.6s" aria-hidden="true"></i>
-                                <strong>Question 5</strong>
+                                <strong>Suis-je obligé d'être actif ?</strong>
                             </p>
-                            <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                nesciunt sapiente earu proident.
+                            <p class="grey-text font-small mx-4">Non, vous vous connectez, et publiez / regardez du contenu uniquement lorsque vous en avez envie.
                             </p>
                         </div>
                         <!-- Panel -->
@@ -204,10 +202,9 @@
                         <div class="text-left">
                             <p class="title font-weight-bold dark-grey-text text-uppercase spacing mt-4 mx-4">
                                 <i class="fas fa-compact-disc text-default mr-2 wow fadeInLeft" data-wow-delay="0.7s" aria-hidden="true"></i>
-                                <strong>Question 6</strong>
+                                <strong>Puis-je inviter mes amis ?</strong>
                             </p>
-                            <p class="grey-text font-small mx-4">Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                nesciunt sapiente earu proident.
+                            <p class="grey-text font-small mx-4">Bien sûr ! Comme le dit l'adage, plus on est de fous, plus on rit !
                             </p>
                         </div>
                         <!-- Panel -->
@@ -233,11 +230,18 @@
 
                 <h3 class="text-center dark-grey-text wow fadeIn" data-wow-delay="0.3s"> Sommaire :</h3>
                 <br>
-                <div class="text-center">
-                    <a href="#inscription"><h5>Inscription</h5></a>
-                    <a><h5>Publication</h5></a>
-                    <a><h5>Commentaires</h5></a>
-                    <a><h5>Mon Profil</h5></a>
+                <div class="row text-center align-content-center justify-content-center align-self-center">
+                <div class="col-md-3 text-center wow fadeIn rgba-pastelgreen-slight" data-wow-delay="0.3s" style="border: solid;">
+                    <a href="#inscription" ><h5 class="sommaire-content">Inscription</h5></a>
+                    <div style="border-bottom: solid 2px"></div>
+                    <a href="#publication"><h5 class="sommaire-content">Publication</h5></a>
+                    <div style="border-bottom: solid 2px"></div>
+                    <a href="#commentaires"><h5 class="sommaire-content">Commentaires</h5></a>
+                    <div style="border-bottom: solid 2px"></div>
+                    <a href="#recherche"><h5 class="sommaire-content">Rechercher</h5></a>
+                    <div style="border-bottom: solid 2px"></div>
+                    <a href="#profil"><h5 class="sommaire-content">Profil</h5></a>
+                </div>
                 </div>
 
                 <br><br><br>
@@ -368,7 +372,7 @@
 
                 <br><br><br>
 
-                <h4 id="inscription" class="text-center title dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                <h4 id="publication" class="text-center title dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
                     <strong>Publication</strong>
                 </h4>
                 <!-- Grid row -->
@@ -387,7 +391,7 @@
                                 <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading20">
                                     <a class="collapsed" data-toggle="collapse" href="#collapse20" aria-expanded="false" aria-controls="collapse20">
                                         <h5 class="mb-0 white-text">
-                                            Comment s'inscrire ?
+                                            Comment puis-je poster une publication ?
                                             <i class="fas fa-angle-down rotate-icon"></i>
                                         </h5>
                                     </a>
@@ -397,18 +401,24 @@
                                 <div id="collapse20" class="collapse" role="tabpanel" aria-labelledby="heading20"
                                      data-parent="#accordionEx70">
                                     <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
-                                        <img src="{{ asset('images/screens/inscription/img1.JPG') }}">
+                                        <img src="{{ asset('images/screens/publication/img2.png') }}">
                                         <p class="dark-grey-text my-4" >
 
-                                            Il suffit de cliquer sur le bouton <a class="btn btn-pastelprimary btn-sm my-2 my-sm-0 " ><i class="fa fa-user-plus"></i>Créer un compte</a>. <br>
-                                            Ensuite, plusieurs options s'offrent à vous.
+                                            Il faut que vous vous dirigiez en haut à droite de la page, puis que vous cliquiez sur le bouton contenant votre nom d'utilisateur.
                                             <br>
 
                                         </p>
-                                        <img src="{{ asset('images/screens/inscription/img2.JPG') }}">
+                                        <img src="{{ asset('images/screens/publication/img1.png') }}">
                                         <p class="dark-grey-text my-4" >
 
-                                            Vous pouvez vous inscrire via un formulaire classique, ou pour encore plus de simplicité, vous pouvez vous inscrire via Facebook ou Google
+                                            Ensuite, il faut que vous cliquiez sur <B>"Publier"</B> et vous allez être redirigé sur la page de publication.
+                                            <br>
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img3.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Vous pouvez maintneant remplir le champ 'contenu', avec ce que vous voulez publier, et cliquez sur le bouton 'Envoyer' pour publier.
                                             <br>
 
                                         </p>
@@ -425,7 +435,7 @@
                                     <a class="collapsed" data-toggle="collapse" href="#collapse21" aria-expanded="false"
                                        aria-controls="collapse21">
                                         <h5 class="mb-0 white-text">
-                                            Inscription par Facebook ?
+                                            Ajouter une musique à une publication ?
                                             <i class="fas fa-angle-down rotate-icon"></i>
                                         </h5>
                                     </a>
@@ -435,15 +445,29 @@
                                 <div id="collapse21" class="collapse" role="tabpanel" aria-labelledby="heading21"
                                      data-parent="#accordionEx70">
                                     <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
-                                        <img src="{{ asset('images/screens/inscription/img3.JPG') }}">
-                                        <p class="dark-grey-text my-4">
-                                            Il vous suffit de cliquer sur le petit bouton <a class="btn-floating btn-fb btn-sm"><i class="fa fa-facebook-f"></i></a>. <br>
-                                            Ensuite vous serez redirigé sur la page Facebook, afin de saisir vos identifiants de connection. <br>
-                                            Une fois cette action effectuée, il vous restera une dernière étape :
+                                        <img src="{{ asset('images/screens/publication/img3.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Il faut tout d'abord suivre la même procédure que pour poster une publication, pour arriver sur la page de publication.
+                                            <br>
+                                            Ensuite, il faut écrire dans le champ 'Chercher une musique', le nom de la musique que vous voulez ajouter à votre publication.
+
                                         </p>
-                                        <img src="{{ asset('images/screens/inscription/img4.JPG') }}">
+                                        <img src="{{ asset('images/screens/publication/img4.png') }}">
                                         <p class="dark-grey-text my-4">
-                                            Félicitations ! Vous faites maintenant parti de nos membres grâce à votre inscription par Facebook !
+                                            Par exemple, si vous écrivez 'daft punk one more time', vous aurez une liste de musique correspondante à votre recherche.
+                                            <br>
+                                            Il suffira ensuite de cliquer sur le morceau de musique que vous souhaiter ajouter.
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img5.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            La musique sélectionnée s'affiche, il ne vous rester plus qu'à ajouter du texte dans le champ 'contenu' et à cliquer sur envoyer
+                                            <br>
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img6.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Félicitations, vous venez de poster une publication contenant une musique !
+                                            <br>
                                         </p>
                                     </div>
                                 </div>
@@ -458,7 +482,7 @@
                                     <a class="collapsed" data-toggle="collapse" href="#collapse22" aria-expanded="false"
                                        aria-controls="collapse22">
                                         <h5 class="mb-0 white-text">
-                                            Inscription par Google ?
+                                            Supprimer une publication que j'ai posté ?
                                             <i class="fas fa-angle-down rotate-icon"></i>
                                         </h5>
                                     </a>
@@ -468,15 +492,486 @@
                                 <div id="collapse22" class="collapse" role="tabpanel" aria-labelledby="heading22"
                                      data-parent="#accordionEx70">
                                     <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
-                                        <img src="{{ asset('images/screens/inscription/img3.JPG') }}">
+                                        <img src="{{ asset('images/screens/publication/img7.png') }}">
                                         <p class="dark-grey-text my-4">
-                                            Il vous suffit de cliquer sur le petit bouton <a class="btn-floating btn-red btn-sm"><i class="fa fa-google"></i></a>. <br>
-                                            Ensuite vous serez redirigé sur la page Google, afin de saisir vos identifiants de connection. <br>
-                                            Une fois cette action effectuée, il vous restera une dernière étape :
+                                           Une fois que vous avez créer une publication, si vous voulez la supprimer, il faut tout d'abord cliquer sur le bouton en haut à droite.
                                         </p>
-                                        <img src="{{ asset('images/screens/inscription/img5.JPG') }}">
+                                        <img src="{{ asset('images/screens/publication/img8.png') }}">
                                         <p class="dark-grey-text my-4">
-                                            Félicitations ! Vous faites maintenant parti de nos membres grâce à votre inscription par Google !
+                                            Et il faut ensuite tout simplement cliquer sur 'Supprimer la publication'. <br>
+                                            La publication est maintenant supprimée.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading23">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse23" aria-expanded="false"
+                                       aria-controls="collapse23">
+                                        <h5 class="mb-0 white-text">
+                                            Like / Dislike une publication ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse23" class="collapse" role="tabpanel" aria-labelledby="heading23"
+                                     data-parent="#accordionEx70">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/publication/img9.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Il suffit de cliquer sur le 'pouce levé' pour Liker, ou sur le 'pouce baissé' pour Disliker
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading24">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse24" aria-expanded="false"
+                                       aria-controls="collapse24">
+                                        <h5 class="mb-0 white-text">
+                                            Signaler une publication ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse24" class="collapse" role="tabpanel" aria-labelledby="heading24"
+                                     data-parent="#accordionEx70">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/publication/img16.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Une publication postée vous semble offensante ou éronnée  et vous voulez la signaler ? Il faut tout d'abord cliquer sur le bouton en haut à droite.
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img14.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il faut maintenant cliquer sur 'Signaler la publication'.
+                                            <br>
+                                            Vous allez être redirigé vers une page, afin de poster la raison de votre signalement.
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img15.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il suffit d'écrire la raison de votre signalement, et de cliquer sur 'Signaler'.
+                                            <br>
+                                            Mais attention, n'abusez pas du système de signalement, les signalements non-justifiés, s'ils sont répétés, peuvent aboutir à une sanction.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                        </div>
+                        <!-- Accordion wrapper -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+                <br><br><br>
+
+                <h4 id="commentaires" class="text-center title dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                    <strong>Commentaires</strong>
+                </h4>
+                <!-- Grid row -->
+                <div class="row d-flex justify-content-center">
+
+                    <!-- Grid column -->
+                    <div class="col-md-10 col-xl-8">
+
+                        <!-- Accordion wrapper -->
+                        <div class="accordion md-accordion" id="accordionEx71" role="tablist" aria-multiselectable="true">
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading30">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse30" aria-expanded="false"
+                                       aria-controls="collapse30">
+                                        <h5 class="mb-0 white-text">
+                                            Mettre un commentaire sur une publication ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse30" class="collapse" role="tabpanel" aria-labelledby="heading30"
+                                     data-parent="#accordionEx71">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/publication/img10.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Pour mettre un commentaire sur une publication, vous pouvez soit cliquer sur la publication, soit cliquer sur l'icône.
+                                            <br>
+                                            Vous allez ensuite être redirigé sur une page permettant de commenter la publication.
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img11.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Vous aurez ensuite un espace de saisie de texte, où vous pourrez écrire votre comentaire.
+                                            <br>
+                                            Il faut ensuite cliquer sur le bouton à droite, pour poster le commentaire.
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img12.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Félicitations, vous venez de poster un comentaire !
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading31">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse31" aria-expanded="false"
+                                       aria-controls="collapse31">
+                                        <h5 class="mb-0 white-text">
+                                            Supprimer un commentaire ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse31" class="collapse" role="tabpanel" aria-labelledby="heading31"
+                                     data-parent="#accordionEx71">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/publication/img13.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Si vous souhaiter supprimer un de vos commentaires, ou un des commentaires sur une de vos publications, il faut tout d'abord cliquer sur la petite flèche en haut à droite.
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img17.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                           Il suffit ensuite de cliquer sur 'Supprimer le commentaire'.
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading32">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse32" aria-expanded="false"
+                                       aria-controls="collapse32">
+                                        <h5 class="mb-0 white-text">
+                                            Signaler un commentaire ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse32" class="collapse" role="tabpanel" aria-labelledby="heading32"
+                                     data-parent="#accordionEx71">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/publication/img18.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Un commentaire posté vous semble offensant ou éronné  et vous voulez le signaler ? Il faut tout d'abord cliquer sur la petite flèche en haut à droite.
+                                        </p>
+                                        <img src="{{ asset('images/screens/publication/img19.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Il suffit ensuite de cliquer sur 'Signaler le commentaire'.
+                                            <br>
+                                            Vous allez être redirigé vers une page, afin de poster la raison de votre signalement.
+
+                                        <img src="{{ asset('images/screens/publication/img20.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il suffit d'écrire la raison de votre signalement, et de cliquer sur 'Signaler'.
+                                            <br>
+                                            Mais attention, n'abusez pas du système de signalement, les signalements non-justifiés, s'ils sont répétés, peuvent aboutir à une sanction.
+                                        </p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                        </div>
+                        <!-- Accordion wrapper -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+                <br><br><br>
+
+                <h4 id="recherche" class="text-center title dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                    <strong>Recherche</strong>
+                </h4>
+                <!-- Grid row -->
+                <div class="row d-flex justify-content-center">
+
+                    <!-- Grid column -->
+                    <div class="col-md-10 col-xl-8">
+
+                        <!-- Accordion wrapper -->
+                        <div class="accordion md-accordion" id="accordionEx72" role="tablist" aria-multiselectable="true">
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading40">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse40" aria-expanded="false"
+                                       aria-controls="collapse40">
+                                        <h5 class="mb-0 white-text">
+                                            Rechercher un utilisateur par nom / prénom
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse40" class="collapse" role="tabpanel" aria-labelledby="heading40"
+                                     data-parent="#accordionEx72">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/rechercher/img1.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il faut écrire le nom et/ou de la personne que vous voulez rechercher, dans la barre de texte située en haut.
+                                            <br>
+                                            Il faut ensuite cliquer sur le bouton à gauche de la barre de texte puis cliquer sur 'Utilisateur'
+                                        </p>
+                                        <img src="{{ asset('images/screens/rechercher/img2.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Une fois fait, il suffit juste de cliquer sur la loupe à droite pour lancer la recherche.
+                                        </p>
+                                        <img src="{{ asset('images/screens/rechercher/img4.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Vous verrez ensuite le résultat de votre recherche.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading41">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse41" aria-expanded="false"
+                                       aria-controls="collapse41">
+                                        <h5 class="mb-0 white-text">
+                                            Rechercher un utilisateur par genre(s) de musique favori(s) ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse41" class="collapse" role="tabpanel" aria-labelledby="heading41"
+                                     data-parent="#accordionEx72">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/rechercher/img1.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Il faut écrire le nom du ou des genres que vous voulez rechercher, dans la barre de texte située en haut.
+                                            <br>
+                                            Il faut ensuite cliquer sur le bouton à gauche de la barre de texte puis cliquer sur 'Utilisateur - Genres musicaux'
+                                        </p>
+                                        <img src="{{ asset('images/screens/rechercher/img3.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Une fois fait, il suffit juste de cliquer sur la loupe à droite pour lancer la recherche.
+                                        </p>
+                                        <img src="{{ asset('images/screens/rechercher/img5.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Vous verrez ensuite le résultat de votre recherche.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                        </div>
+                        <!-- Accordion wrapper -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+                <br><br><br>
+
+                <h4 id="profil" class="text-center title dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                    <strong>Profil</strong>
+                </h4>
+                <!-- Grid row -->
+                <div class="row d-flex justify-content-center">
+
+                    <!-- Grid column -->
+                    <div class="col-md-10 col-xl-8">
+
+                        <!-- Accordion wrapper -->
+                        <div class="accordion md-accordion" id="accordionEx73" role="tablist" aria-multiselectable="true">
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading50">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse50" aria-expanded="false"
+                                       aria-controls="collapse50">
+                                        <h5 class="mb-0 white-text">
+                                            Accéder à mon profil ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse50" class="collapse" role="tabpanel" aria-labelledby="heading50"
+                                     data-parent="#accordionEx73">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/profil/img1.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Il faut que vous vous dirigiez en haut à droite de la page, puis que vous cliquiez sur le bouton contenant votre nom d'utilisateur.
+                                            <br>
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/profil/img2.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Ensuite, il faut que vous cliquiez sur <B>"Mon Profil"</B> et vous allez être redirigé sur la page de votre profil.
+                                            <br>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading51">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse51" aria-expanded="false"
+                                       aria-controls="collapse51">
+                                        <h5 class="mb-0 white-text">
+                                            Accéder au profil d'un utilisateur ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse51" class="collapse" role="tabpanel" aria-labelledby="heading51"
+                                     data-parent="#accordionEx73">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/profil/img3.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Sur une publication, il suffit de cliquer sur le nom de l'utilisateur. Vous serez ensuite redirigé sur son profil.
+                                        </p>
+                                        <img src="{{ asset('images/screens/profil/img4.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Ou alors, lorsque vous effectuer une recherche pour trouver des utilisateurs, il suffit de cliquer sur le bouton 'Voir profil'
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen lighten-2 z-depth-1 mb-1" role="tab" id="heading52">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse52" aria-expanded="false"
+                                       aria-controls="collapse52">
+                                        <h5 class="mb-0 white-text">
+                                            Voir mes amis ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse52" class="collapse" role="tabpanel" aria-labelledby="heading52"
+                                     data-parent="#accordionEx73">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        <img src="{{ asset('images/screens/profil/img1.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Il faut que vous vous dirigiez en haut à droite de la page, puis que vous cliquiez sur le bouton contenant votre nom d'utilisateur.
+                                            <br>
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/profil/img5.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Ensuite, il faut que vous cliquiez sur <B>"Mes amis"</B> et vous allez être redirigé sur la page de votre profil.
+                                            <br>
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/profil/img6.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Vous êtes maintenant sur la page affichant vos amis. <br>
+                                            Vous pouvez également voir le profil d'un de vos amis, ou le supprimer de votre liste d'amis.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion card -->
+
+                            <!-- Accordion card -->
+                            <div class="card border-0">
+                                <!-- Card header -->
+                                <div class="card-header pastelgreen-darker lighten-2 z-depth-1 mb-1" role="tab" id="heading53">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapse53" aria-expanded="false"
+                                       aria-controls="collapse53">
+                                        <h5 class="mb-0 white-text">
+                                            Envoyer un message à un amis ?
+                                            <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+                                </div>
+
+                                <!-- Card body -->
+                                <div id="collapse53" class="collapse" role="tabpanel" aria-labelledby="heading53"
+                                     data-parent="#accordionEx73">
+                                    <div class="card-body mb-1 rgba-pastelgreen-slight white-text text-center">
+                                        Si vous accéder au profil d'un utilisateur avec qui vous êtes amis, il faudra juste cliquer sur le bouton 'Envoyer un message'
+                                        <img src="{{ asset('images/screens/profil/img6.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Sinon, il faut accéder à la page 'Mes amis' et lorsque celle-ci est affichée, cliquer sur le bouton 'Envoyer un message' sur le profil d'un utilisateur.
+                                            <br>
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/profil/img7.png') }}">
+                                        <p class="dark-grey-text my-4" >
+
+                                            Ensuite, il faut que vous cliquiez sur <B>"Mes amis"</B> et vous allez être redirigé sur la page de votre profil.
+                                            <br>
+
+                                        </p>
+                                        <img src="{{ asset('images/screens/profil/img8.png') }}">
+                                        <p class="dark-grey-text my-4">
+                                            Vous arriverez ensuite sur la page contenant vos différentes conversations, et vous pourrez envoyez des messages à vos amis, et en recevoir
                                         </p>
                                     </div>
                                 </div>

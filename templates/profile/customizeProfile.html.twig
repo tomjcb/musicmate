@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row first-content">
+        <div class="container content">
+            <div class="row">
+                <h1 class="first-title">Customisation de votre profil</h1>
+            </div>
+
+
+            <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
+
+            </div>
+
+            <h2> Choisir une autre image de profil :</h2>
+
+            <section class="card profile-card mb-4 text-center">
+                <div class="avatar z-depth-1-half">
+                    <img src="{{ asset("images/defaultpp.png") }}" alt="" class="img-fluid">
+                </div>
+                <!-- Card content -->
+                <div class="card-body">
+                </div>
+            </section>
+            <section class="card profile-card mb-4 text-center">
+                <div class="avatar z-depth-1-half">
+                    <img src="{{ asset("images/metalpp.png") }}" alt="" class="img-fluid">
+                </div>
+                <!-- Card content -->
+                <div class="card-body">
+                </div>
+            </section>
+            <section class="card profile-card mb-4 text-center">
+                <div class="avatar z-depth-1-half">
+                    <img src="{{ asset("images/pianopp.png") }}" alt="" class="img-fluid">
+                </div>
+                <!-- Card content -->
+                <div class="card-body">
+                </div>
+            </section>
+
+
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

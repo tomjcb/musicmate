@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Activite;
 use App\Entity\Conversation;
+use App\Entity\Demande;
 use App\Entity\Message;
 use App\Entity\Publication;
 use App\Entity\User;
@@ -25,6 +26,7 @@ class UserFixtures extends Fixture
         $this->addPublication($manager);
         $this->createConv($manager);
         $this->addAmis($manager);
+        $this->addDemandes($manager);
         $manager->flush();
     }
 
@@ -35,7 +37,7 @@ class UserFixtures extends Fixture
             ['username'=>'mdupont','password'=>'user','role'=>'ROLE_USER','nom'=>'DUPONT','prenom'=>'Michel', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'rock;metal;country'],
             ['username'=>'plaupretre','password'=>'user2','role'=>'ROLE_USER','nom'=>'LAUPRETRE','prenom'=>'Pascal', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'EDM;dubstep'],
             ['username'=>'ibort','password'=>'user3','role'=>'ROLE_USER','nom'=>'BORT','prenom'=>'Isabelle', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'classique'],
-            ['username'=>'nharg','password'=>'user4','role'=>'ROLE_USER','nom'=>'HARG','prenom'=>'Noémie', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'orchestral;classique'],
+            ['username'=>'nharg','password'=>'user4','role'=>'ROLE_USER','nom'=>'HARG','prenom'=>'Noémie', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'orchestral;rock'],
             ['username'=>'ebigre','password'=>'user5','role'=>'ROLE_USER','nom'=>'BIGRE','prenom'=>'Edouard', 'confirmkey' => 12345645, 'confirmed' => 1, 'favgenres' => 'RnB;Hip-Hop']
         ];
 
@@ -54,6 +56,7 @@ class UserFixtures extends Fixture
             $new_User->setComfirmed($User['confirmed']);
             $new_User->setMail("example@email.fr");
             $new_User->setFavgenres($User['favgenres']);
+            $new_User->setIsFirstlogin(1);
 
             //echo $new_User;
             $manager->persist($new_User);
@@ -64,9 +67,12 @@ class UserFixtures extends Fixture
 
     public function addPublication(ObjectManager $manager){
         $Publications = [
-            ['user'=>'mdupont', 'contenu'=>"J'ai écouté les DaftPunk récemment.. ca faisait longtemps!"],
-            ['user'=>'plaupretre', 'contenu'=>"J'aime plus trop la musique Rock ..."],
-            ['user'=>'plaupretre', 'contenu'=>"Ecouter du Jazz ? Pourquoi pas"]
+            ['user'=>'mdupont', 'contenu'=>"J'ai écouté les DaftPunk récemment.. ca faisait longtemps!", 'songlinked' => '1pKYYY0dkg23sQQXi0Q5zN', 'date' => new \DateTime()],
+            ['user'=>'plaupretre', 'contenu'=>"J'aime plus trop la musique Rock ...", 'songlinked' => null, 'date' => new \DateTime()],
+            ['user'=>'plaupretre', 'contenu'=>"Ecouter du Jazz ? Pourquoi pas", 'songlinked' => null, 'date' => new \DateTime()],
+            ['user'=>'nharg', 'contenu'=>"Bonjour tout le monde !", 'songlinked' => null, 'date' => new \DateTime('2020-06-02')],
+            ['user'=>'nharg', 'contenu'=>"Je vous partage une musique que j'aime écouter en ce moment", 'songlinked' => '1oYYd2gnWZYrt89EBXdFiO', 'date' => new \DateTime('2020-06-08')],
+            ['user'=>'ebigre', 'contenu'=>"Je me demande comment les jeunes font pour écouter du rap", 'songlinked' => null, 'date' => new \DateTime('2020-06-07')]
         ];
 
         foreach ($Publications as $Publication){
@@ -79,8 +85,10 @@ class UserFixtures extends Fixture
             $new_acti->setAction("Ajout");
             $new_acti->setDateActivite(new \DateTime());
             $new_publi->setContenu($Publication['contenu']);
+            $new_publi->setSonglinked($Publication['songlinked']);
             $new_publi->setNbLikes(0);
             $new_publi->setNbDislikes(0);
+            $new_publi->setDatePublication($Publication['date']);
 
             $manager->persist($new_publi);
             $manager->persist($new_acti);
@@ -110,12 +118,12 @@ class UserFixtures extends Fixture
             ['auteur'=>$admin, 'contenu'=>"Parfait ! Le soucis est réglé alors."],
         ];
 
-        foreach ($Messages as $Message){
+        foreach ($Messages as $key => $Message){
             $msg = new Message();
             $msg->setAuteur($Message['auteur']);
             $msg->setContenu($Message['contenu']);
             $msg->setDateMessage(new \DateTime());
-            $msg->setIsRead(false);
+            $msg->setIsRead(true);
 
             $manager->persist($msg);
 
@@ -123,7 +131,13 @@ class UserFixtures extends Fixture
             $msg2->setAuteur($Message['auteur']);
             $msg2->setContenu($Message['contenu']);
             $msg2->setDateMessage(new \DateTime());
-            $msg2->setIsRead(false);
+            if($key != count($Messages) - 1){
+                $msg2->setIsRead(true);
+            }
+            else{
+                $msg2->setIsRead(false);
+            }
+
 
             $manager->persist($msg2);
 
@@ -140,6 +154,15 @@ class UserFixtures extends Fixture
         $manager->persist($admin);
         $manager->persist($user);
 
+
+    }
+    public function addDemandes(ObjectManager $manager){
+        $mudpont = $manager->getRepository(User::class)->findOneBy(['username' => 'mdupont']);
+
+        $Demande = new Demande();
+        $Demande->setFromuser('ibort');
+        $Demande->setTouser($mudpont);
+        $manager->persist($Demande);
 
     }
 

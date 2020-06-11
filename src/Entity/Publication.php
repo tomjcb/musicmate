@@ -65,6 +65,11 @@ class Publication
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $datePublication;
+
 
     public function __construct()
     {
@@ -262,6 +267,18 @@ class Publication
                 $commentaire->setPublication(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDatePublication(): ?\DateTimeInterface
+    {
+        return $this->datePublication;
+    }
+
+    public function setDatePublication(\DateTimeInterface $datePublication): self
+    {
+        $this->datePublication = $datePublication;
 
         return $this;
     }

@@ -64,6 +64,7 @@ class RegisterController extends AbstractController
                 $User->setConfirmKey($key);
                 $User->setComfirmed("0");
                 $User->setRoles('ROLE_USER');
+                $User->setIsFirstlogin(0);
 
                 $entityManager->persist($User);
                 $entityManager->flush();

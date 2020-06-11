@@ -69,6 +69,7 @@
                             {% if currentUserProfile is defined %}
                             <button type="button" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect" data-toggle="modal" data-target="#modalContactUser">Modifier vos infos<i
                                         class="fa fa-pencil-square-o ml-2"></i></button>
+                            <a type="button" href="{{ path('User.customize') }}" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect">Customiser le profil <i class="fas fa-paint-brush"></i></a>
                             {% else %}
                                 {% if isDemandeSent is defined %}
                                     <a type="button" class="btn tempting-azure-gradient black-text btn-rounded btn-sm waves-effect" >Demande envoyée</a>

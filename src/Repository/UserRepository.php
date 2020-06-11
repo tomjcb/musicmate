@@ -39,19 +39,64 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findUserLike($keywordss)
+{
+    $keywords = explode(" ", $keywordss);
+
+
+    $query = $this->createQueryBuilder('u');
+    foreach ($keywords as $key => $keyword) {
+        $requ = 'u.nom LIKE :val' . $key;
+        $param = 'val' . $key;
+        $query->orWhere($requ)
+            ->setParameter($param, '%'.$keyword.'%');
+    }
+    foreach ($keywords as $key => $keyword) {
+        $requ = 'u.prenom LIKE :val' . $key;
+        $param = 'val' . $key;
+        $query->orWhere($requ)
+            ->setParameter($param, '%'.$keyword.'%');
+    }
+
+    return $query->andWhere('u.roles != :role')
+        ->setParameter('role', 'ROLE_ADMIN')
+        ->andWhere('u.roles = :role2')
+        ->setParameter('role2', 'ROLE_USER')
+        ->andWhere('u.comfirmed = :state')
+        ->setParameter('state', 1)
+        ->orderBy('u.id', 'ASC')
+        ->setMaxResults(10)
+        ->getQuery()
+        ->getResult()
+        ;
+}
+
+    public function findUserGenreLike($keywordss)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+        $keywords = explode(" ", $keywordss);
+
+
+        $query = $this->createQueryBuilder('u');
+        foreach ($keywords as $key => $keyword) {
+            $requ = 'u.favgenres LIKE :val' . $key;
+            $param = 'val' . $key;
+            $query->orWhere($requ)
+                ->setParameter($param, '%'.$keyword.'%');
+        }
+
+        return $query->andWhere('u.roles != :role')
+            ->setParameter('role', 'ROLE_ADMIN')
+            ->andWhere('u.roles = :role2')
+            ->setParameter('role2', 'ROLE_USER')
+            ->andWhere('u.comfirmed = :state')
+            ->setParameter('state', 1)
             ->orderBy('u.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?User

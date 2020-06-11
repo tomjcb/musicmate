@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Activite;
 use App\Entity\Ban;
+use App\Entity\Commentaire;
+use App\Entity\Publication;
 use App\Entity\Signalement;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
@@ -46,6 +48,8 @@ class AdminController extends AbstractController
         $countBan = sizeof($doctrine->getRepository(Ban::class)->findAll());
         $countAdmin = sizeof($doctrine->getRepository(User::class)->findBy(array('roles' => 'ROLE_ADMIN', 'comfirmed' => 1)));
         $countsignalement = sizeof($doctrine->getRepository(Signalement::class)->findBy(array('etat' => array('A traiter', 'En cours'))));
+        $countPubli = sizeof($doctrine->getRepository(Publication::class)->findAll());
+        $countCom = sizeof($doctrine->getRepository(Commentaire::class)->findAll());
 
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
@@ -56,7 +60,9 @@ class AdminController extends AbstractController
             'countadmin' => $countAdmin,
             'lastactivity' => $lastactivity,
             'lastsignalement' => $lastsignalement,
-            'countsignalement' => $countsignalement
+            'countsignalement' => $countsignalement,
+            'countpubli' => $countPubli,
+            'countcom' => $countCom
         ]);
     }
 
@@ -73,6 +79,21 @@ class AdminController extends AbstractController
             'signalements' => $signalements
         ]);
     }
+
+    /**
+     * @IsGranted("ROLE_ADMIN", statusCode=404, message="Accès interdit")
+     * @Route("/admin/users", name="Admin.showUsers")
+     */
+    public function showUser(ManagerRegistry $doctrine)
+    {
+        $utilisateurs = $doctrine->getRepository(User::class)->findBy(array(), array('dateInscription' => 'DESC'));
+
+        return $this->render('admin/showUsers.html.twig', [
+            'controller_name' => 'AdminController',
+            'utilisateurs' => $utilisateurs
+        ]);
+    }
+
 
     /**
      * @IsGranted("ROLE_ADMIN", statusCode=404, message="Accès interdit")

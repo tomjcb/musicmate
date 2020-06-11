@@ -23,7 +23,13 @@ class IndexController extends AbstractController
         }
 
         elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            $publication = $doctrine->getRepository(Publication::class)->findBy(array(), array('id' => 'DESC'));
+            //$publication = $doctrine->getRepository(Publication::class)->findBy(array(), array('id' => 'DESC'));
+            $friends = [];
+            foreach ($this->getUser()->getAmis() as $ami){
+                array_push($friends, $ami);
+            }
+            $publication = $doctrine->getRepository(Publication::class)->findBy(['auteur' => $friends],['datePublication' => 'DESC']);
+                //array('auteur' => $this->getUser()->getAmis()), array('datePublication' => 'DESC'));
 
             if($publication){
                 return $this->render('registered/index.html.twig', [

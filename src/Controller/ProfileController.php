@@ -46,6 +46,48 @@ class ProfileController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/customize", name="User.customize")
+     */
+    public function customizeprofil()
+    {
+        return $this->render('profile/customizeProfile.html.twig', [
+            'user' => $this->getUser()
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/profil/changepp/{path}", name="User.changepp")
+     */
+    public function changepp(ManagerRegistry $doctrine, $path = null)
+    {
+        $user = $doctrine->getRepository(User::class)->findOneBy(['username'=>$userName]);
+        if($this->getUser()->getUsername() == $userName){
+            return $this->render('profile/index.html.twig', [
+                'user' => $user,
+                'profileuser' => $this->getUser(),
+                'currentUserProfile' => 'yes'
+            ]);
+        }
+        $demande = $doctrine->getRepository(Demande::class)->findOneBy(['fromuser' => $this->getUser()->getUsername(), 'touser' => $user]);
+        if($demande){
+            return $this->render('profile/index.html.twig', [
+                'user' => $this->getUser(),
+                'profileuser' => $user,
+                'isDemandeSent' => 'yes'
+            ]);
+        }
+
+        return $this->render('profile/index.html.twig', [
+            'user' => $this->getUser(),
+            'profileuser' => $user
+        ]);
+    }
+
+
+
+    /**
      * @IsGranted("ROLE_NEEDUSERNAME")
      * @Route("/googleuser/username", name="User.setusername")
      */

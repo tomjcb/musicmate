@@ -19,10 +19,10 @@
                     </div>
                 </li>
                 <li class="nav-item active col-3">
-                    <a class="nav-link" href="" tabindex="-1" aria-disabled="true">Gestion des utilisateurs</a>
+                    <a class="nav-link btn btn-outline-white" href="{{ path('Admin.showUsers') }}" tabindex="-1" aria-disabled="true">Gestion des utilisateurs</a>
                 </li>
                 <li class="nav-item active col-3">
-                    <a class="nav-link" href="" tabindex="-1" aria-disabled="true">Gestion des signalements</a>
+                    <a class="nav-link btn btn-outline-white" href="{{ path('Admin.showSignalements') }}" tabindex="-1" aria-disabled="true">Gestion des signalements</a>
                 </li>
                 <form class="form-inline my-2 my-lg-0 col-3" action="{{ path('app_logout') }}" style="text-align: right">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
@@ -40,15 +40,28 @@
                         <script>
                             function search(ele) {
                                 if(event.key === 'Enter') {
-                                    var url = '{{ path('spotify_app',{search: "star"}) }}';
-                                    url = url.replace("star", ele.value);
-                                    url = url.replace("'",' ');
+                                    var url = '{{ path('User.search',{type: "star", keyword: "star2"}) }}';
+                                    var cat = document.getElementById('dropdownSearch').innerHTML.toString();
+                                    cat = cat.replace(' <i class="fas fa-angle-down"></i>', '');
+                                    url = url.replace("star", cat);
+                                    url = url.replace("star2", ele.value);
+                                    url = url.replace(" ", "-");
                                     window.location.href = url;
                                 }
                             }
                         </script>
                         {% if is_granted('ROLE_USER') %}
                             <div class="input-group ">
+                                <div class="input-group-btn input-group-prepend active dropdown">
+                                    <a class="input-group-text white-text red lighten-3" type="button" id="dropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilisateur <i class="fas fa-angle-down"></i></a>
+                                    <div class="dropdown-menu dropdown-lightred" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" onclick="document.getElementById('dropdownSearch').innerHTML = 'Utilisateur <i class=\'fas fa-angle-down\'></i>';">Utilisateur</a>
+                                        <a class="dropdown-item" onclick="document.getElementById('dropdownSearch').innerHTML = 'Genres musicaux <i class=\'fas fa-angle-down\'></i>';">Utilisateur - Genres musicaux</a>
+                                        <a class="dropdown-item" onclick="document.getElementById('dropdownSearch').innerHTML = 'Publication <i class=\'fas fa-angle-down\'></i>';">Publication</a>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="text-center align-content-center align-self-center"><span class="grey-text">Que voulez vous chercher ?</span></div>
+                                    </div>
+                                </div>
                                 <input id="searchBar" type="text" class="form-control my-0 py-1 red-border white" placeholder="Recherche" onkeydown="search(this)" >
                                 <div class="input-group-append">
                                 <a class="input-group-text red lighten-3" id="basic-text1" onclick="clickSearch()">
@@ -60,8 +73,13 @@
                         <script>
                             function clickSearch(){
                                 var ele = document.getElementById("searchBar");
-                                var url = '';
-                                url = url.replace("star", ele.value);
+                                var url = '{{ path('User.search',{type: "star", keyword: "star2"}) }}';
+                                var cat = document.getElementById('dropdownSearch').innerHTML.toString();
+                                cat = cat.replace(' <i class="fas fa-angle-down"></i>', '');
+                                url = url.replace("star", cat);
+                                url = url.replace("star2", ele.value);
+                                url = url.replace(" ", "-");
+
                                 window.location.href = url;
                             }
                         </script>

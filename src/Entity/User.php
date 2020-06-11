@@ -143,6 +143,16 @@ class User implements UserInterface
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $isFirstlogin;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ppicturepath;
+
 
 
     public function __construct()
@@ -693,6 +703,30 @@ class User implements UserInterface
                 $commentaire->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsFirstlogin(): ?int
+    {
+        return $this->isFirstlogin;
+    }
+
+    public function setIsFirstlogin(int $isFirstlogin): self
+    {
+        $this->isFirstlogin = $isFirstlogin;
+
+        return $this;
+    }
+
+    public function getPpicturepath(): ?string
+    {
+        return $this->ppicturepath;
+    }
+
+    public function setPpicturepath(?string $ppicturepath): self
+    {
+        $this->ppicturepath = $ppicturepath;
 
         return $this;
     }

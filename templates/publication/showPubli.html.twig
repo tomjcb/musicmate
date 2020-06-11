@@ -97,8 +97,9 @@
                                                         <div class="dropdown-menu dropdown-default">
                                                             {% if user.id == commentaire.user.id or is_granted('ROLE_ADMIN') or user.id == publication.auteur.id %}
                                                                 <a class="dropdown-item" href="{{ path('User.deleteCom', {idpubli: publication.id, idcom: commentaire.id}) }}">Supprimer le commentaire</a>
-                                                            {% endif %}
+                                                            {% else %}
                                                                 <a class="dropdown-item" href="{{ path('User.signalement', {idpubli: publication.id}) }}">Signaler le comentaire</a>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                     <li class="media">
@@ -112,7 +113,7 @@
                                                                 {{ commentaire.contenu|nl2br }}
                                                             </h6>
                                                             <span class="text-muted pull-right">
-                                                                <small class="text-muted">30 min ago</small>
+                                                                <small class="text-muted"></small>
                                                             </span>
                                                         </div>
                                                     </li>
