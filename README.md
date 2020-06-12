@@ -12,6 +12,10 @@ Afin de configurer la base de données qui va être utilisée, il faut remplacer
 ## Commandes à effectuer
 > Les commandes doivent être entrées, depuis le dossier racine du projet (celui qui contient bin, config, public etc.)
 
+### Générer les dossier var et vendor (il faut obligatoirement les avoir)
+Il faut tout d'abord avoir composer d'installé.
+Ensuie, il faut executer la commande 'composer install' afin que les dossiers var et vendor soit générés
+
 ### Injecter les tables dans la base de donnée indiquée dans le .env
 
 ```
