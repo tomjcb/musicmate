@@ -57,6 +57,7 @@ class UserFixtures extends Fixture
             $new_User->setMail("example@email.fr");
             $new_User->setFavgenres($User['favgenres']);
             $new_User->setIsFirstlogin(1);
+            $new_User->setPpicturepath('images/defaultpp.png');
 
             //echo $new_User;
             $manager->persist($new_User);

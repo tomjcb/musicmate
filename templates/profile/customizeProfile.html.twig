@@ -14,10 +14,22 @@
         </div>
     {% endfor %}
 
-    <div class="row first-content">
+    <style>
+        html{
+            margin: 0;
+            height: 100%;
+
+        }
+        body{
+            height: 100%;
+
+        }
+    </style>
+<body  style="background:  url({{ asset("images/gear-wallpaper.png") }});background-size: 100%; ">
+    <div class="row ">
         <div class="container content">
             <div class="row">
-                <h1 class="first-title">Customisation de votre profil</h1>
+                <h1 class="first-title"><B>Customisation de votre profil</B></h1>
             </div>
 
 
@@ -25,38 +37,187 @@
 
             </div>
 
+            <div id="choices" class="row text-center align-content-center align-self-center justify-content-center d-none">
+                <button id="btnprofil" onclick="displayprofil()" class="btn btn-pastelgreen  my-2 my-sm-0 wow fadeInLeft" data-wow-delay="0.6s">
+                    <i class="fas fa-portrait"></i>
+                    Photo de profil
+                </button>
+
+                <button id="btnwallpaper" onclick="displaywallpaper()" class="btn btn-pastelprimary my-2 my-sm-0 wow fadeInRight" data-wow-delay="0.6s">
+                    <i class="fas fa-image"></i>
+                    Image de fond
+                </button>
+            </div>
+
+            <br>
+
+            <div id="custom_profile" class="wow fadeIn d-none">
             <h2> Choisir une autre image de profil :</h2>
 
-            <section class="card profile-card mb-4 text-center">
-                <div class="avatar z-depth-1-half">
-                    <img src="{{ asset("images/defaultpp.png") }}" alt="" class="img-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <section class="card profile-card mb-4 text-center">
+                        <div class="avatar z-depth-1-half">
+                            <img src="{{ asset("images/defaultpp.png") }}" alt="" class="img-fluid">
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body">
+                            <a type="button" href="{{ path('User.changepp', {path : 'defaultpp', extension : 'png'}) }}" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect">Choisir cette image <i class="fas fa-paint-brush"></i></a>
+                        </div>
+                    </section>
                 </div>
-                <!-- Card content -->
-                <div class="card-body">
+                <div class="col-md-4">
+                    <section class="card profile-card mb-4 text-center">
+                        <div class="avatar z-depth-1-half">
+                            <img src="{{ asset("images/metalpp.png") }}" alt="" class="img-fluid">
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body">
+                            <a type="button" href="{{ path('User.changepp', {path : 'metalpp', extension : 'png'}) }}" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect">Choisir cette image <i class="fas fa-paint-brush"></i></a>
+                        </div>
+                    </section>
                 </div>
-            </section>
-            <section class="card profile-card mb-4 text-center">
-                <div class="avatar z-depth-1-half">
-                    <img src="{{ asset("images/metalpp.png") }}" alt="" class="img-fluid">
+                <div class="col-md-4">
+                    <section class="card profile-card mb-4 text-center">
+                        <div class="avatar z-depth-1-half">
+                            <img src="{{ asset("images/pianopp.png") }}" alt="" class="img-fluid">
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body">
+                            <a type="button" href="{{ path('User.changepp', {path : 'pianopp', extension : 'png'}) }}" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect">Choisir cette image <i class="fas fa-paint-brush"></i></a>
+                        </div>
+                    </section>
                 </div>
-                <!-- Card content -->
-                <div class="card-body">
+            </div>
+            </div>
+
+            <div id="custom_wallpaper" class="wow fadeIn d-none">
+                <h2> Choisir une autre image de fond pour votre fil d'actualité :</h2>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- Card Wider -->
+                        <div class="card card-cascade wider">
+
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                                <img class="card-img-top" src="{{ asset('images/covers.jpg') }}" height="218px" width="350px" alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center">
+                                <a type="button" href="{{ path('User.changepp', {path : 'metalpp', extension : 'png'}) }}" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect">Choisir cette image <i class="fas fa-paint-brush"></i></a>
+                            </div>
+
+                        </div>
+                        <!-- Card Wider -->
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Card Wider -->
+                        <div class="card card-cascade wider">
+
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo6.jpg" height="218px" width="350px" alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center">
+                                <a type="button" href="{{ path('User.changepp', {path : 'metalpp', extension : 'png'}) }}" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect">Choisir cette image <i class="fas fa-paint-brush"></i></a>
+                            </div>
+
+                        </div>
+                        <!-- Card Wider -->
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Card Wider -->
+                        <div class="card card-cascade wider">
+
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                                <img class="card-img-top" src="{{ asset('images/covers2.jpg') }}" height="218px" width="350px" alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center">
+                                <a type="button" href="{{ path('User.changepp', {path : 'metalpp', extension : 'png'}) }}" class="btn tempting-azure-gradient btn-rounded btn-sm waves-effect">Choisir cette image <i class="fas fa-paint-brush"></i></a>
+                            </div>
+
+                        </div>
+                        <!-- Card Wider -->
+                    </div>
                 </div>
-            </section>
-            <section class="card profile-card mb-4 text-center">
-                <div class="avatar z-depth-1-half">
-                    <img src="{{ asset("images/pianopp.png") }}" alt="" class="img-fluid">
+            </div>
+            <div id="choice" class="row text-center align-content-center justify-content-center align-self-center wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-md-6 my-5">
+                <div class="card " >
+                    <div class="card-body my-3">
+                        <div class="white-text text-center align-content-center ">
+                            <h4 class="black-text">Vous souhaitez customiser votre profil ?</h4>  <br>
+                            <h6 class="black-text">Que souhaitez vous modifier ?</h6>  <br>
+                            <button class="btn btn-pastelgreen  my-2 my-sm-0 wow fadeInLeft" data-wow-delay="0.6s" onclick="firstdisplayprofile()">
+                                <i class="fas fa-portrait"></i>
+                                Photo de profil
+                            </button>
+
+                            <button class="btn btn-pastelprimary my-2 my-sm-0 wow fadeInRight" data-wow-delay="0.6s" onclick="firstdisplaywallpaper()">
+                                <i class="fas fa-image"></i>
+                                Image de fond
+                            </button>
+                        </div>
+
+                        <br>
+                    </div>
                 </div>
-                <!-- Card content -->
-                <div class="card-body">
-                </div>
-            </section>
+
+            </div>
+            </div>
+
 
 
 
 
         </div>
     </div>
+</body>
+
+    <script>
+        function firstdisplayprofile(){
+            document.getElementById('custom_profile').classList.toggle('d-none');
+            document.getElementById('choice').classList.toggle('d-none');
+            document.getElementById('choices').classList.toggle('d-none');
+            document.getElementById('btnprofil').onclick = null;
+        }
+        function firstdisplaywallpaper(){
+            document.getElementById('custom_wallpaper').classList.toggle('d-none');
+            document.getElementById('choice').classList.toggle('d-none');
+            document.getElementById('choices').classList.toggle('d-none');
+            document.getElementById('btnwallpaper').onclick = null;
+        }
+
+        function displayprofil() {
+            document.getElementById('custom_profile').classList.toggle('d-none');
+            document.getElementById('custom_wallpaper').classList.toggle('d-none');
+            document.getElementById('btnwallpaper').onclick = displaywallpaper;
+            document.getElementById('btnprofil').onclick = null;
+        }
+        function displaywallpaper() {
+            document.getElementById('custom_profile').classList.toggle('d-none');
+            document.getElementById('custom_wallpaper').classList.toggle('d-none');
+            document.getElementById('btnwallpaper').onclick = null;
+            document.getElementById('btnprofil').onclick = displayprofil;
+        }
+    </script>
 
 
 

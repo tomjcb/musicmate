@@ -65,6 +65,7 @@ class RegisterController extends AbstractController
                 $User->setComfirmed("0");
                 $User->setRoles('ROLE_USER');
                 $User->setIsFirstlogin(0);
+                $User->setPpicturepath('images/defaultpp.png');
 
                 $entityManager->persist($User);
                 $entityManager->flush();

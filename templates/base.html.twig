@@ -40,7 +40,7 @@
         var height = element.offsetHeight;
         window.onresize = resize;
         console.log("Windows innerHeight : " + window.innerHeight + "\n" + "Windows outerHeight : " + window.outerHeight + "\n" + "Body height : " + height);
-        if (height < window.innerHeight - 30) {
+        if (height < window.innerHeight) {
             document.getElementById("footer").classList.add('stikybottom');
         }
         else{

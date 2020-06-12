@@ -60,7 +60,7 @@
                             <!-- Title -->
                             <a class="black-text" href="{{ path('User.profil', {userName: publication.auteur.username}) }}">
                             <h4  class="card-title" style="text-align: left;">
-                                {{ publication.auteur.nom }} {{ publication.auteur.prenom }}
+                                <img src="{{ asset(publication.auteur.ppicturepath) }}" alt="" height="50px" width="50px" class="img-fluid"> {{ publication.auteur.nom }} {{ publication.auteur.prenom }}
 
                             </h4>
                             </a>
@@ -129,7 +129,7 @@
                                                         <li class="media">
 
                                                             <a href="#" class="pull-left">
-                                                                <img src="{{ asset('images/defaultpp.png') }}" alt="" class="rounded-circle z-depth-1-half">
+                                                                <img src="{{ asset(commentaire.user.ppicturepath) }}" alt="" class="rounded-circle z-depth-1-half">
                                                             </a>
                                                             <div class="media-body">
                                                                 <strong class="text-default">{{ commentaire.user.prenom }} {{ commentaire.user.nom }}</strong>
@@ -156,7 +156,7 @@
                                                     <li class="media">
 
                                                         <a href="#" class="pull-left">
-                                                            <img src="{{ asset('images/defaultpp.png') }}" alt="" class="rounded-circle z-depth-1-half">
+                                                            <img src="{{ asset(commentaire.user.ppicturepath) }}" alt="" class="rounded-circle z-depth-1-half">
                                                         </a>
                                                         <div class="media-body">
                                                             <strong class="text-default">{{ commentaire.user.prenom }} {{ commentaire.user.nom }}</strong>

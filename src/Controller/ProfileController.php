@@ -58,31 +58,15 @@ class ProfileController extends AbstractController
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/profil/changepp/{path}", name="User.changepp")
+     * @Route("/profil/changepp/{path}/{extension}", name="User.changepp")
      */
-    public function changepp(ManagerRegistry $doctrine, $path = null)
+    public function changepp(ManagerRegistry $doctrine, $path = null, $extension = null)
     {
-        $user = $doctrine->getRepository(User::class)->findOneBy(['username'=>$userName]);
-        if($this->getUser()->getUsername() == $userName){
-            return $this->render('profile/index.html.twig', [
-                'user' => $user,
-                'profileuser' => $this->getUser(),
-                'currentUserProfile' => 'yes'
-            ]);
-        }
-        $demande = $doctrine->getRepository(Demande::class)->findOneBy(['fromuser' => $this->getUser()->getUsername(), 'touser' => $user]);
-        if($demande){
-            return $this->render('profile/index.html.twig', [
-                'user' => $this->getUser(),
-                'profileuser' => $user,
-                'isDemandeSent' => 'yes'
-            ]);
-        }
+        $this->getUser()->setPpicturepath('images/'.$path.'.'.$extension);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
 
-        return $this->render('profile/index.html.twig', [
-            'user' => $this->getUser(),
-            'profileuser' => $user
-        ]);
+        return $this->redirectToRoute('User.profil', array('userName' => $this->getUser()->getUsername()));
     }
 
 

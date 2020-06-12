@@ -72,6 +72,7 @@ class GoogleAuthenticator extends SocialAuthenticator
                 $user->setUsername($googleUser->getEmail());
                 $user->setComfirmed(1);
                 $user->setIsFirstlogin(0);
+                $user->setPpicturepath('images/defaultpp.png');
                 $user->setRoles('ROLE_NEEDUSERNAME');
                 $this->em->persist($user);
                 $this->em->flush();

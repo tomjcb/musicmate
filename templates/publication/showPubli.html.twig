@@ -42,18 +42,22 @@
                                 <!-- Title -->
                                 <a class="black-text" href="{{ path('User.profil', {userName: publication.auteur.username}) }}">
                                     <h4  class="card-title" style="text-align: left;">
-                                        {{ publication.auteur.nom }} {{ publication.auteur.prenom }}
+                                        <img src="{{ asset(publication.auteur.ppicturepath) }}" alt="" height="50px" width="50px" class="img-fluid"> {{ publication.auteur.nom }} {{ publication.auteur.prenom }}
 
                                     </h4>
                                 </a>
 
                                 <hr>
                                 <!-- Text -->
-                                <p class="card-text">{{ publication.contenu|nl2br }}</p>
+                                <a href="{{ path('User.showPublication', {idpubli: publication.id}) }}">
+                                    <div>
+                                        <p class="card-text">{{ publication.contenu|nl2br }}</p>
 
-                                {% if publication.songlinked is not null %}
-                                    <iframe style="margin-bottom: 10px" src="https://open.spotify.com/embed/track/{{ publication.songlinked }}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                                {% endif %}
+                                        {% if publication.songlinked is not null %}
+                                            <iframe style="margin-bottom: 10px" src="https://open.spotify.com/embed/track/{{ publication.songlinked }}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                        {% endif %}
+                                    </div>
+                                </a>
 
                             </div>
                             {% set isliked = 0 %}
@@ -73,7 +77,7 @@
                             <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                                 <ul class="list-unstyled list-inline font-small">
                                     <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o"></i> {{ "now"|date("d/m/Y") }}</li>
-                                    <li class="list-inline-item pr-2"><a href="#" class="white-text"><i
+                                    <li class="list-inline-item pr-2"><a href="{{ path('User.showPublication', {idpubli: publication.id}) }}" class="white-text"><i
                                                     class="fa fa-comments pr-1"></i>{{ publication.commentaires|length }}</a></li>
                                     <li class="list-inline-item pr-2 white-text"><a href="{{ path('User.like', {idpubli: publication.id}) }}" class="{% if isliked == 1 %} blue-text {% else %} white-text {% endif %}" ><i class="fa fa-thumbs-o-up pr-1">
                                             </i></a>{{ publication.likes|length }}</li>
@@ -105,7 +109,7 @@
                                                     <li class="media">
 
                                                         <a href="#" class="pull-left">
-                                                            <img src="{{ asset('images/defaultpp.png') }}" alt="" class="rounded-circle z-depth-1-half">
+                                                            <img src="{{ asset(commentaire.user.ppicturepath) }}" alt="" class="rounded-circle z-depth-1-half">
                                                         </a>
                                                         <div class="media-body">
                                                             <strong class="text-default">{{ commentaire.user.prenom }} {{ commentaire.user.nom }}</strong>

@@ -82,6 +82,7 @@ class ConvController extends AbstractController
         elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
         $allconv = $doctrine->getRepository(Conversation::class)->findBy(['user' => $this->getUser()]);
         $conv = $doctrine->getRepository(Conversation::class)->findOneBy(array('user' => $this->getUser(), 'interlocuteur' => $cible));
+        $userinterlocuteur = $doctrine->getRepository(User::class)->findOneBy(['username' => $cible]);
         $msg = $conv->getMessages();
         $manager = $this->getDoctrine()->getManager();
         foreach ($msg as $message){
@@ -142,6 +143,7 @@ class ConvController extends AbstractController
         return $this->render('conv/index.html.twig', [
             'form'=>$form->createView(),
             'user' => $this->getUser(),
+            'userinterlocuteur' => $userinterlocuteur,
             'allconv' => $allconv,
             'conv' => $conv,
             'active' => 1
