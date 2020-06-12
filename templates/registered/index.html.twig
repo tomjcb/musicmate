@@ -23,20 +23,19 @@
         html{
             margin: 0;
             height: 100%;
-
         }
 
     </style>
 
 <body  style="background:  url({{ asset("images/covers2.jpg") }});background-size: 100%;background-attachment: fixed ">
 <div class="mask rgba-blue-grey-light" style="backdrop-filter: blur(0.9); height: 100%;">
-    <div class="row" style="padding-bottom: 150px">
+    <div class="row" style="padding-bottom: 0px">
         <div class="container content">
 
             <div class="row text-center justify-content-center align-content-center wow fadeInDown" data-wow-delay="0.4s">
-                <div class="rgba-grey-strong rounded" style="margin-top: 10px; margin-bottom: 30px; padding: 5px;">
-                <h1 class="first-title ">Bienvenue sur votre fil d'actualité  {{ user.username }}</h1>
-                <h5 class="first-title"> Vous retrouverez ici différentes publications</h5>
+                <div class="rgba-grey-stronger rounded" style="margin-top: 10px; margin-bottom: 30px; padding: 5px;">
+                <h1 class="first-title white-text lighten-4">Bienvenue sur votre fil d'actualité  {{ user.username }}</h1>
+                <h5 class="first-title white-text lighten-4"> Vous retrouverez ici différentes publications</h5>
                 </div>
             </div>
 
@@ -53,7 +52,7 @@
 
 
                     <!-- Card -->
-                    <div class="card">
+                    <div class="card" style="border-radius: 20px;">
                             <div  style="text-align: right;">
                                 <div class="dropdown">
                                     <a class="btn-floating btn-rounded btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenu{{ publication.id }}" data-toggle="dropdown"

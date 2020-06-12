@@ -30,9 +30,11 @@
         console.log("Windows innerHeight : " + window.innerHeight + "\n" + "Windows outerHeight : " + window.outerHeight + "\n" + "Body height : " + height);
         if (height < window.innerHeight) {
             document.getElementById("footer").classList.add('stikybottom');
+            document.body.style.height = '100%';
         }
         else{
             document.getElementById("footer").classList.remove('stikybottom');
+            document.body.style.height = 'inherit';
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
@@ -42,9 +44,11 @@
         console.log("Windows innerHeight : " + window.innerHeight + "\n" + "Windows outerHeight : " + window.outerHeight + "\n" + "Body height : " + height);
         if (height < window.innerHeight) {
             document.getElementById("footer").classList.add('stikybottom');
+            document.body.classList.add('fix');
         }
         else{
             document.getElementById("footer").classList.remove('stikybottom');
+            document.body.classList.remove('fix');
         }
     }, false);
 

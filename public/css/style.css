@@ -68,6 +68,13 @@
     color: #3F729B;
 }
 
+.rgba-grey-stronger,
+.rgba-grey-stronger:after {
+    background-color: rgba(158, 158, 158, 0.85); }
+.fix{
+    height : 100%;
+}
+
 .dropdown .dropdown-menu.dropdown-lightred .dropdown-item.active,.dropdown .dropdown-menu.dropdown-lightred .dropdown-item:active,.dropdown .dropdown-menu.dropdown-lightred .dropdown-item:hover,.dropleft .dropdown-menu.dropdown-lightred .dropdown-item.active,.dropleft .dropdown-menu.dropdown-lightred .dropdown-item:active,.dropleft .dropdown-menu.dropdown-lightred .dropdown-item:hover,.dropright .dropdown-menu.dropdown-lightred .dropdown-item.active,.dropright .dropdown-menu.dropdown-lightred .dropdown-item:active,.dropright .dropdown-menu.dropdown-lightred .dropdown-item:hover,.dropup .dropdown-menu.dropdown-lightred .dropdown-item.active,.dropup .dropdown-menu.dropdown-lightred .dropdown-item:active,.dropup .dropdown-menu.dropdown-lightred .dropdown-item:hover{
     background-color:#ef9a9a!important;
     -webkit-box-shadow:0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15);

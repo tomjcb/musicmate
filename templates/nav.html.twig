@@ -152,10 +152,14 @@
                                 <a class="dropdown-item" href="{{ path('User.showFriends') }}">Mes amis</a>
                                 <a class="dropdown-item" href="{{ path('User.publication') }}">Publier</a>
                                 <div class="dropdown-divider"></div>
-                                <button class="btn young-passion-gradient" onclick="location.href='{{ path('app_logout') }}';">
-                                    Se Déconnecter
-                                    <i class="fa fa-sign-out"></i>
-                                </button>
+
+                                <div class="row align-content-center text-center justify-content-center" style="margin-left: 5px;margin-right: 5px;">
+                                    <button class="btn young-passion-gradient" onclick="location.href='{{ path('app_logout') }}';">
+                                        Se Déconnecter
+                                        <i class="fa fa-sign-out"></i>
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                         <!--/Dropdown primary-->

@@ -37,8 +37,13 @@ class PublicationController extends AbstractController
             'aa843fe9284d48529060b852d2e06e68'
         );
 
+        if($user->getRtoken() == null){
+            $session->refreshAccessToken('AQAnWGbwzluaQwXpCiIf9juzWbapSefg_uPPKn1jOelugh9jTbUwJNx_WdcQRZjtnqwDIGteMKnKMhPHu1rltDE3GgIb-ScENaKwKTuWApyiLC2Cq4wzOhZDWPOLepw8Qc4');
+        }
+        else{
+            $session->refreshAccessToken($user->getRtoken());
+        }
 
-        $session->refreshAccessToken($user->getRtoken());
 
         $options = [
             'auto_refresh' => true,
@@ -50,9 +55,9 @@ class PublicationController extends AbstractController
 
         $api->me();
 
-        // Remember to grab the tokens afterwards, they might have been updated
+
         $user->setAtoken($session->getAccessToken());
-        $user->setRtoken($session->getRefreshToken()); // Sometimes, a new refresh token will be returned
+        $user->setRtoken($session->getRefreshToken());
         $entityManager->persist($user);
 
         $entityManager->flush();
