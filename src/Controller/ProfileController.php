@@ -69,6 +69,19 @@ class ProfileController extends AbstractController
         return $this->redirectToRoute('User.profil', array('userName' => $this->getUser()->getUsername()));
     }
 
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/profil/wallpaper/{path}/{extension}", name="User.changewallpaper")
+     */
+    public function changewallpaper(ManagerRegistry $doctrine, $path = null, $extension = null)
+    {
+        $this->getUser()->setWallpaperpath('images/'.$path.'.'.$extension);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+
+        return $this->redirectToRoute('User.profil', array('userName' => $this->getUser()->getUsername()));
+    }
+
 
 
     /**

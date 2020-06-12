@@ -8,21 +8,27 @@
         </div>
     {% endfor %}
 
-    <div class="row first-content">
+
+    <body  {% if profileuser.wallpaperpath is not null %}style="background:  url({{ asset(user.wallpaperpath) }});background-size: 100%;background-attachment: fixed;" {% endif %}>
+    <div class="mask rgba-blue-grey-light" style="backdrop-filter: blur(0.9); height: 100%;">
+    <div class="row">
         <div class="container content">
-            <div class="row">
-                {% if currentUserProfile is defined %}
-                <h1 class="first-title">Votre profil</h1>
-                {% else %}
-                <h1 class="first-title">Profil utilisateur</h1>
-                {% endif %}
+            <div class="row text-center justify-content-center align-content-center wow fadeInDown" data-wow-delay="0.4s">
+                <div class="rgba-grey-stronger rounded" style="margin-top: 10px; margin-bottom: 30px; padding: 5px;">
+                    {% if currentUserProfile is defined %}
+                        <h1 class="first-title white-text lighten-4">Votre profil</h1>
+                    {% else %}
+                        <h1 class="first-title white-text lighten-4">Profil utilisateur</h1>
+                    {% endif %}
+                </div>
             </div>
+
 
             <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
 
             </div>
 
-            <div class="row">
+            <div class="row" >
                 <div class="form-signin col-md-6 offset-3"  style="text-align: center;">
 
                     <!-- Section: Basic Info -->
@@ -93,11 +99,20 @@
 
                 </div>
             </div>
+            <div class="row text-center justify-content-center align-content-center" data-wow-delay="0.4s">
+                <div class="rgba-grey-stronger rounded" style="margin-top: 10px; margin-bottom: 30px; padding: 5px;">
+                    <h2 class="first-title white-text" >Activité</h2>
+                </div>
+            </div>
 
-            <h2 class="text-center" style="margin-bottom: 25px;">Activité</h2>
             <div class="row" style="padding-bottom: 150px">
                 <div class="col-md-6" style="border-right: 3px solid #465362;">
-                    <h3>Publication{% if profileuser.publications|length > 1 %}s{% endif %}</h3>
+                    <div class="row " data-wow-delay="0.4s">
+                        <div class="rgba-grey-stronger rounded" style="margin-top: 10px; margin-bottom: 30px; padding: 5px;">
+                            <h3>Publication{% if profileuser.publications|length > 1 %}s{% endif %}</h3>
+                        </div>
+                    </div>
+
                     <div class="form-signin col-md-12"  style="text-align: center;">
 
                         {% if profileuser.publications|length > 0 %}
@@ -183,7 +198,8 @@
                 </div>
 
                 <div class="col-md-6">
-                    <h3>Liké récemment</h3>
+                    <div class="rgba-grey-stronger rounded">
+                    <h3 class="">Liké récemment</h3>
 
 
                     {% if profileuser.likes|length == 0 %}
@@ -194,10 +210,13 @@
                             <h5>"<i>{{ like.publication.contenu }}</i>"</h5>
                         {% endfor %}
                     {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+</body>
 
 
 

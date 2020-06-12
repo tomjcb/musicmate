@@ -5,18 +5,23 @@
             MusicMate{% if is_granted('ROLE_ADMIN') %} - Panel Admin{% endif %}</a>
     </div>
     {% if is_granted('ROLE_ADMIN') %}
+        {% set count = 0 %}
+
+        {% for conv in user.conversations %}
+            {% for msg in conv.messages %}
+                {% if msg.auteur != user %}
+                    {% if msg.isRead == 0 %}
+                        {% set count = count + 1 %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
         <div class="collapse navbar-collapse col-10" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto col-12">
-                <li class="nav-item active col-3 dropdown"  style="text-align: center">
-                    <div class="input-group-btn input-group-prepend active dropdown">
-                        <button style="background: #465362; color:white" class="btn btn-default dropdown-toggle button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Gestion des (mettre un truc)
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="">Gestion des évènements</a>
-                            <a class="dropdown-item" href="#">Gestion des catégories</a>
-                        </div>
-                    </div>
+                <li class="nav-item active col-3 "  style="text-align: center">
+                    <a class="nav-link btn btn-outline-white" href="{{ path('Conv.conv') }}" tabindex="-1" aria-disabled="true">Messages{% if user.demandes|length + count > 0 %}
+                        <span class="badge badge-danger ml-2">{{ count }}</span>
+                        {% endif %}</a>
                 </li>
                 <li class="nav-item active col-3">
                     <a class="nav-link btn btn-outline-white" href="{{ path('Admin.showUsers') }}" tabindex="-1" aria-disabled="true">Gestion des utilisateurs</a>

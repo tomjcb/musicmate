@@ -62,7 +62,8 @@ class AdminController extends AbstractController
             'lastsignalement' => $lastsignalement,
             'countsignalement' => $countsignalement,
             'countpubli' => $countPubli,
-            'countcom' => $countCom
+            'countcom' => $countCom,
+            'user' => $this->getUser()
         ]);
     }
 

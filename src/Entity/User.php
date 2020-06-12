@@ -153,6 +153,11 @@ class User implements UserInterface
      */
     private $ppicturepath;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $wallpaperpath;
+
 
 
     public function __construct()
@@ -727,6 +732,18 @@ class User implements UserInterface
     public function setPpicturepath(?string $ppicturepath): self
     {
         $this->ppicturepath = $ppicturepath;
+
+        return $this;
+    }
+
+    public function getWallpaperpath(): ?string
+    {
+        return $this->wallpaperpath;
+    }
+
+    public function setWallpaperpath(?string $wallpaperpath): self
+    {
+        $this->wallpaperpath = $wallpaperpath;
 
         return $this;
     }
