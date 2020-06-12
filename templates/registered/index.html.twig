@@ -3,34 +3,48 @@
 {% block body %}
 
     {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
+        <div class="alert alert-success wow fadeInDown" data-wow-delay="0.6s">
             {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     {% endfor %}
 
     {% for message in app.flashes('danger') %}
-        <div class="alert alert-danger">
+        <div class="alert alert-danger wow fadeInDown" data-wow-delay="0.6s">
             {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     {% endfor %}
+    <style>
+        html{
+            margin: 0;
+            height: 100%;
 
+        }
 
+    </style>
+
+<body  style="background:  url({{ asset("images/covers2.jpg") }});background-size: 100%;background-attachment: fixed ">
+<div class="mask rgba-blue-grey-light" style="backdrop-filter: blur(0.9); height: 100%;">
     <div class="row" style="padding-bottom: 150px">
         <div class="container content">
-            <div class="row">
-                <h1 class="first-title">Bienvenue sur votre fil d'actualité  {{ user.username }}</h1>
-            </div>
-            <div class="row">
+
+            <div class="row text-center justify-content-center align-content-center wow fadeInDown" data-wow-delay="0.4s">
+                <div class="rgba-grey-strong rounded" style="margin-top: 10px; margin-bottom: 30px; padding: 5px;">
+                <h1 class="first-title ">Bienvenue sur votre fil d'actualité  {{ user.username }}</h1>
                 <h5 class="first-title"> Vous retrouverez ici différentes publications</h5>
-            </div>
-
-            <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
-
+                </div>
             </div>
 
 
 
-            <div class="row">
+
+
+            <div class="row wow fadeIn" data-wow-delay="0.6s">
                 <div class="form-signin col-md-6 offset-3"  style="text-align: center;">
 
                     {% if publications is defined %}
@@ -123,7 +137,9 @@
                                                                 {% if user.id == commentaire.user.id or is_granted('ROLE_ADMIN') or user.id == publication.auteur.id %}
                                                                     <a class="dropdown-item" href="{{ path('User.deleteCom', {idpubli: publication.id, idcom: commentaire.id}) }}">Supprimer le commentaire</a>
                                                                 {% endif %}
+                                                                {% if user.id != commentaire.user.id %}
                                                                 <a class="dropdown-item" href="{{ path('User.signalement', {idpubli: publication.id}) }}">Signaler le comentaire</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                         <li class="media">
@@ -150,7 +166,9 @@
                                                             {% if user.id == commentaire.user.id or is_granted('ROLE_ADMIN') or user.id == publication.auteur.id %}
                                                                 <a class="dropdown-item" href="{{ path('User.deleteCom', {idpubli: publication.id, idcom: commentaire.id}) }}">Supprimer le commentaire</a>
                                                             {% endif %}
-                                                            <a class="dropdown-item" href="{{ path('User.signalement', {idpubli: publication.id}) }}">Signaler le comentaire</a>
+                                                            {% if user.id != commentaire.user.id %}
+                                                                <a class="dropdown-item" href="{{ path('User.signalement', {idpubli: publication.id}) }}">Signaler le comentaire</a>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                     <li class="media">
@@ -191,6 +209,8 @@
             </div>
         </div>
     </div>
+</div>
+</body>
 
 
 
