@@ -19,13 +19,13 @@
             </button>
         </div>
     {% endfor %}
+
     <style>
         html{
-            margin: 0;
             height: 100%;
         }
-
     </style>
+
 
 <body  {% if user.wallpaperpath is not null %}style="background:  url({{ asset(user.wallpaperpath) }});background-size: 100%;background-attachment: fixed "{% endif %}>
 <div class="mask rgba-blue-grey-light" style="backdrop-filter: blur(0.9); height: 100%;">

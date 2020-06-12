@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="row first-content">
+        <div class="container content">
+            <div class="row">
+                <h1 class="first-title">C'est votre première connexion !</h1>
+                <h4 class="first-title">Voici des utilisateurs ayant des goûts musicaux similaires à ceux que vous avez spécifié</h4>
+
+            </div>
+
+            <div class="row" style="border-bottom: 3px solid #465362; margin-bottom: 50px">
+
+            </div>
+
+            <div class="row">
+                <div class="form-signin col-md-6 offset-3"  style="text-align: center;">
+
+
+                    {% set len = ppltoadd|length %}
+                    {% for searchuser in ppltoadd %}
+                        {% if user.username != searchuser.username %}
+                            <!-- Section: Basic Info -->
+                            <section class="card profile-card mb-4 text-center">
+                                <div class="avatar z-depth-1-half">
+                                    <img src="{{ asset(searchuser.ppicturepath) }}" alt="" class="img-fluid">
+                                </div>
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h4 class="card-title"><strong>{{ searchuser.prenom }} {{ searchuser.nom }}</strong></h4>
+
+                                    <p class="dark-grey-text">{{ searchuser.username }}</p>
+
+                                    Genres favoris :
+                                    {% if searchuser.favgenres != '' %}
+                                        {% set favgenres = searchuser.favgenres|split(';') %}
+                                        {% for favgenre in favgenres %}
+                                            <h6 class="btn heavy-rain-gradient text-lowercase" style="border-radius: 25px; padding:.25rem .5rem; font-size: 0.725rem;">{{ favgenre }}</h6>
+                                        {% endfor %}
+                                    {% else %}
+                                        <span class="grey-text">Aucun spécifié</span>
+                                    {% endif %}
+
+                                    <br>
+
+                                    <a type="button" class="btn btn-fb white-text btn-rounded btn-sm waves-effect" href="{{ path('User.profil', {userName: searchuser.username}) }}">Voir profil</a>
+                                </div>
+
+                            </section>
+                            <!-- Section: Basic Info -->
+                        {% else %}
+                            {% set len = len -1 %}
+                        {% endif %}
+
+                    {% endfor %}
+                    {% if len == 0 %}
+                        <i><h2 class="grey-text">Aucun résultat</h2></i>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -105,6 +105,8 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
                 $User->setRoles('ROLE_USER');
                 $User->setUsername($form['_username']->getData());
+                $genres = $form['favgenres']->getData();
+                $User->setFavgenres($genres);
 
                 $entityManager->persist($User);
                 $entityManager->flush();

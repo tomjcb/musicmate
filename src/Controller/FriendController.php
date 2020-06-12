@@ -7,6 +7,7 @@ use App\Entity\Demande;
 use App\Entity\Publication;
 use App\Entity\User;
 use App\Form\GoogleUserType;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,6 +32,25 @@ class FriendController extends AbstractController
 
         return $this->render('friends/index.html.twig', [
             'user' => $this->getUser(),
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/firstlogin/addfriends", name="User.firstlogin")
+     */
+    public function addNewFriends(ManagerRegistry $doctrine, UserRepository $userRepository)
+    {
+        $ppltoadd = null;
+            $genres = str_replace(';', ' ', $this->getUser()->getFavgenres());
+
+            $ppltoadd = $userRepository->findUserGenreLike($genres);
+
+
+
+        return $this->render('registered/firstlogin.html.twig', [
+            'user' => $this->getUser(),
+            'ppltoadd' => $ppltoadd
         ]);
     }
 

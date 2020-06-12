@@ -24,6 +24,12 @@ class IndexController extends AbstractController
 
         elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             //$publication = $doctrine->getRepository(Publication::class)->findBy(array(), array('id' => 'DESC'));
+            if($this->getUser()->getIsFirstlogin() == 0){
+                $entityManager = $this->getDoctrine()->getManager();
+                $this->getUser()->setIsFirstlogin(1);
+                $entityManager->flush();
+                return $this->redirectToRoute("User.firstlogin");
+            }
             $friends = [];
             foreach ($this->getUser()->getAmis() as $ami){
                 array_push($friends, $ami);
