@@ -1,3 +1,10 @@
+# Description
+
+Ce Site Web a été développé en solitaire dans le cadre du Projet de Fin d'Etudes (PFE) du DUT Informatique. Ce dernier remplace le stage de fin de deuxième année, à cause des restrictions sanitaires dues au COVID.
+J'ai décidé de développer un site web en Symfony. Ce dernier est un réseau social, qui est orienté sur les goûts musicaux des utilisateurs
+
+Il a été développé en Php à l'aide du Framework Symfony.
+
 # Config pour démarrer le site
 
 ## Configurer le fichier .env
